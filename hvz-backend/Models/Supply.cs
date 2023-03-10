@@ -36,5 +36,8 @@ namespace hvz_backend.Models
         public ItemType Drop { get; set; }
 
         public int? Amount { get; set; }
+
+        public int MapId { get; set; }
+        public Map Map { get; set; }
     }
 }

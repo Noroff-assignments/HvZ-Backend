@@ -23,5 +23,18 @@ namespace hvz_backend.Models
 
         [Required]
         public StateGame Status { get; set; }
+
+        //many to one
+        public ICollection<Kill> Kills { get; set;}
+        public ICollection<Player> Players { get;set;}
+        public ICollection<Squad> Squads { get; set; }
+
+        // one to many
+        public int AdminId { get; set; }
+        public Admin Admin { get; set; }
+
+        //one to one
+        public Chat Chat { get; set; }
+        public Map Map { get; set; }
     }
 }

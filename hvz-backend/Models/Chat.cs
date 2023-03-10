@@ -1,6 +1,7 @@
 ﻿using hvz_backend.Models.Enums;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace hvz_backend.Models
 {
@@ -17,6 +18,12 @@ namespace hvz_backend.Models
 
         [Required, DisplayFormat(DataFormatString = "{yyyy-MM-dd HH:mm}", ApplyFormatInEditMode = true)]
         public DateTime TimeStamp { get; set; }
+
+        public int GameId { get; set; }
+        public Game Game { get; set; }
+
+        public int PlayerId { get; set; }
+        public Player Player { get; set; }
 
     }
 }

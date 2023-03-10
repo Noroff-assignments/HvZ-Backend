@@ -34,5 +34,8 @@ namespace hvz_backend.Models
 
         [Required, Range(1,50, ErrorMessage = "Radius must be between 1 and 50.")]
         public int Radius { get; set; }
+
+        public int MapId { get; set; }
+        public Map Map { get; set; }
     }
 }

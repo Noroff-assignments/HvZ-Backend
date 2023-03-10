@@ -16,5 +16,7 @@ namespace hvz_backend.Models
 
         [Required]
         public StateAdmin Status { get; set; }
+
+        public ICollection<Game> Games { get; set; }
     }
 }

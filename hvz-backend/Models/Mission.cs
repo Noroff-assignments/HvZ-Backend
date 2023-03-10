@@ -31,5 +31,8 @@ namespace hvz_backend.Models
         [Required, DisplayFormat(DataFormatString = "{0:HH:mm}", ApplyFormatInEditMode = true)]
         public DateTime EndTime { get; set; }
 
+        public int MapId { get; set; }
+        public Map Map { get; set; }
+
     }
 }

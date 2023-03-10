@@ -25,7 +25,7 @@ builder.Services.AddSwaggerGen(options =>
     {
         Version = "v1",
         Title = "Web API for Human vs. Zombies database.",
-        Description = "Database containing all the games, user, player and points of interess.",
+        Description = "Help tool for the Game Master of a game of Humans vs. Zombies.",
         Contact = new OpenApiContact
         {
             Name = "Rene 'Code Crusher' Marcker & Michael Piepgras Neergaard",
@@ -50,6 +50,13 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+
+using var scope = app.Services.CreateScope();
+var services = scope.ServiceProvider;
+var dbContext = services.GetRequiredService<HvZDbContext>();
+
+dbContext.Database.Migrate();
 
 app.UseHttpsRedirection();
 
