@@ -11,9 +11,9 @@ namespace hvz_backend.Models
         [Required, MinLength(2), MaxLength(100)]
         public string Name { get; set; }
         public string? Description { get; set; }
-        [DisplayFormat(DataFormatString = "{0:HH:mm}", ApplyFormatInEditMode = true)]
+        [Required, DisplayFormat(DataFormatString = "{0:HH:mm}", ApplyFormatInEditMode = true)]
         public DateTime? BeginTime { get; set; }
-        [DisplayFormat(DataFormatString = "{0:HH:mm}", ApplyFormatInEditMode = true)]
+        [Required, DisplayFormat(DataFormatString = "{0:HH:mm}", ApplyFormatInEditMode = true)]
         public DateTime EndTime { get; set; }
         [Required]
         public StateGame Status { get; set; }
