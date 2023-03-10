@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using hvz_backend.Models.Enums;
+using System.ComponentModel.DataAnnotations;
 
 namespace hvz_backend.Models
 {
@@ -10,12 +11,9 @@ namespace hvz_backend.Models
         public string FirstName { get; set; }
         [Required, MinLength(2), MaxLength(100)]
         public string LastName { get; set; }
+        [Required]
+        public StateAdmin Status { get; set; }
 
-        public enum State
-        {
-            Active,
-            Inactive
-        }
 
     }
 }
