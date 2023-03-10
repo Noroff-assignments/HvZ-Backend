@@ -6,8 +6,10 @@ namespace hvz_backend.Models
     {
         [Key]
         public int Id { get; set; }
+
         [Required, DisplayFormat(DataFormatString = "{0:HH:mm}", ApplyFormatInEditMode = true)]
         public DateTime TimeDead { get; set; }
+
         [MaxLength(150)]
         public string? DeadStory { get; set; }
     }
