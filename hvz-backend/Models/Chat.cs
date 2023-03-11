@@ -16,14 +16,14 @@ namespace hvz_backend.Models
         [Required]
         public ChatMode Mode { get; set; }
 
-        [Required, DisplayFormat(DataFormatString = "{yyyy-MM-dd HH:mm}", ApplyFormatInEditMode = true)]
+        [Required, DisplayFormat(DataFormatString = "{yyyy-MM-dd HH:mm:ss}", ApplyFormatInEditMode = true)]
         public DateTime TimeStamp { get; set; }
 
         public int GameId { get; set; }
         public Game Game { get; set; }
 
-        public int PlayerId { get; set; }
-        public Player Player { get; set; }
+        public int? PlayerId { get; set; }
+        public Player? Player { get; set; }
 
     }
 }
