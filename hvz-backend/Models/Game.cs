@@ -10,7 +10,7 @@ namespace hvz_backend.Models
         public int Id { get; set; }
 
         [Required, MinLength(2), MaxLength(100)]
-        public string Name { get; set; }
+        public string Title { get; set; }
 
         [MaxLength(255)]
         public string? Description { get; set; }
@@ -25,9 +25,9 @@ namespace hvz_backend.Models
         public StateGame Status { get; set; }
 
         //many to one
-        public ICollection<Kill> Kills { get; set;}
-        public ICollection<Player> Players { get;set;}
-        public ICollection<Squad> Squads { get; set; }
+        public ICollection<Kill>? Kills { get; set;}
+        public ICollection<Player>? Players { get;set;}
+        public ICollection<Squad>? Squads { get; set; }
 
         // one to many
         public int AdminId { get; set; }
