@@ -28,7 +28,7 @@ builder.Services.AddSwaggerGen(options =>
         Description = "Help tool for the Game Master of a game of Humans vs. Zombies.",
         Contact = new OpenApiContact
         {
-            Name = "Rene 'Code Crusher' Marcker & Michael Piepgras Neergaard",
+            Name = "Rene Dam Marcker",
             Url = new Uri("https://github.com/Noroff-assignments/hvz-backend")
         },
         License = new OpenApiLicense
