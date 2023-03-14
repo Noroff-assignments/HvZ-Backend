@@ -11,8 +11,6 @@ namespace hvz_backend.Models
 
         [Required, MinLength(2), MaxLength(100)]
         public string Title { get; set; }
-
-        [MaxLength(255)]
         public string? Description { get; set; }
 
         [Required, DisplayFormat(DataFormatString = "{yyyy-MM-dd HH:mm}", ApplyFormatInEditMode = true)]

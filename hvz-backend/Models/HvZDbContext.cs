@@ -7,11 +7,12 @@ namespace hvz_backend.Models
     public class HvZDbContext : DbContext
     {
         // Sets the tables for the database
-        
+
         public DbSet<Admin> Admins { get; set; }
         public DbSet<Chat> Chats { get; set; }
         public DbSet<Game> Games { get; set; }
         public DbSet<Kill> Kills { get; set; }
+
         public DbSet<Map> Maps { get; set; }
         public DbSet<Mission> Missions { get; set; }
         public DbSet<Player> Players { get; set; }
@@ -19,19 +20,21 @@ namespace hvz_backend.Models
         public DbSet<Squad> Squads { get; set; }
         public DbSet<Supply> Supplies { get; set; }
         public DbSet<User> Users { get; set; }
-        
+
 
         public HvZDbContext(DbContextOptions options) : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
+
             #region Admins
             modelBuilder.Entity<Admin>().HasData(
-                new Admin { Id=1, FirstName= "René", LastName = "Dam Marcker"},
-                new Admin { Id=2, FirstName = "Thomas", LastName = "Osterhammel"},
-                new Admin { Id=3, FirstName = "Anja", LastName = "Fausing Wilstrup Sundebo"},
-                new Admin { Id=4, FirstName = "Michael", LastName = "Neergaard"}
-                );
+                    new Admin { Id = 1, FirstName = "René", LastName = "Dam Marcker" },
+                    new Admin { Id = 2, FirstName = "Thomas", LastName = "Osterhammel" },
+                    new Admin { Id = 3, FirstName = "Anja", LastName = "Fausing Wilstrup Sundebo" },
+                    new Admin { Id = 4, FirstName = "Michael", LastName = "Neergaard" }
+                    );
             #endregion
 
             /*#region Chats
@@ -150,26 +153,38 @@ namespace hvz_backend.Models
                     "The Experis Academy candidates are some of the most talented and skilled players in the game, and the championship promises to be an exciting showcase of their abilities. " +
                     "Who will emerge victorious, the humans or the zombies? Only time will tell. Join us as we witness the ultimate battle between life and death, in the Experis Academy Championship for Human vs Zombie."
                 }
-                ) ;
+                );
             #endregion
- 
-            #region Kills
-            modelBuilder.Entity<Kill>().HasData(
-                new Kill { Id = 1, GameId = 1, KillerId = 1,  VictimId = 18, TimeDead = new DateTime(2023, 03, 11, 09, 10, 00), DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie." },
-                new Kill { Id = 2, GameId = 1, KillerId = 1,  VictimId = 24, TimeDead = new DateTime(2023, 03, 11, 09, 23, 00), DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie." },
-                new Kill { Id = 3, GameId = 1, KillerId = 18, VictimId = 3,  TimeDead = new DateTime(2023, 03, 11, 09, 43, 00), DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie." },
-                new Kill { Id = 4, GameId = 1, KillerId = 24, VictimId = 9,  TimeDead = new DateTime(2023, 03, 11, 09, 55, 00), DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie." },
-                new Kill { Id = 5, GameId = 1, KillerId = 1,  VictimId = 7,  TimeDead = new DateTime(2023, 03, 11, 10, 10, 00), DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie." },
-                new Kill { Id = 6, GameId = 1, KillerId = 3,  VictimId = 33, TimeDead = new DateTime(2023, 03, 11, 10, 16, 00), DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie." },
-                new Kill { Id = 7, GameId = 1, KillerId = 3,  VictimId = 13, TimeDead = new DateTime(2023, 03, 11, 10, 33, 00), DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie." },
-                new Kill { Id = 8, GameId = 1, KillerId = 7,  VictimId = 11, TimeDead = new DateTime(2023, 03, 11, 10, 47, 00), DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie." },
-                new Kill { Id = 9, GameId = 1, KillerId = 9,  VictimId = 16, TimeDead = new DateTime(2023, 03, 11, 10, 56, 00), DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie." },
-                new Kill { Id =10, GameId = 1, KillerId = 1,  VictimId = 22, TimeDead = new DateTime(2023, 03, 11, 11, 17, 00), DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie." },
-                new Kill { Id =11, GameId = 1, KillerId = 18, VictimId = 24, TimeDead = new DateTime(2023, 03, 11, 11, 22, 00), DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie." },
-                new Kill { Id =12, GameId = 1, KillerId = 16, VictimId = 31, TimeDead = new DateTime(2023, 03, 11, 11, 38, 00), DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie." },
-                new Kill { Id =13, GameId = 1, KillerId = 11, VictimId = 26, TimeDead = new DateTime(2023, 03, 11, 11, 49, 00), DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie." },
-                new Kill { Id =14, GameId = 1, KillerId = 13, VictimId = 28, TimeDead = new DateTime(2023, 03, 11, 11, 51, 00), DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie." },
 
+            #region Kills
+
+            modelBuilder.Entity<Kill>()
+            .HasOne(k => k.Killer)
+            .WithMany(p => p.KillsByMe)
+            .HasForeignKey(k => k.KillerId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Kill>()
+                .HasOne(k => k.Victim)
+                .WithMany(p => p.KillsAgainstMe)
+                .HasForeignKey(k => k.VictimId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Kill>().HasData(
+                new Kill { Id = 1, GameId = 1, KillerId = 1, VictimId = 18, TimeDead = new DateTime(2023, 03, 11, 09, 10, 00), DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie." },
+                new Kill { Id = 2, GameId = 1, KillerId = 1, VictimId = 24, TimeDead = new DateTime(2023, 03, 11, 09, 23, 00), DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie." },
+                new Kill { Id = 3, GameId = 1, KillerId = 18, VictimId = 3, TimeDead = new DateTime(2023, 03, 11, 09, 43, 00), DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie." },
+                new Kill { Id = 4, GameId = 1, KillerId = 24, VictimId = 9, TimeDead = new DateTime(2023, 03, 11, 09, 55, 00), DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie." },
+                new Kill { Id = 5, GameId = 1, KillerId = 1, VictimId = 7, TimeDead = new DateTime(2023, 03, 11, 10, 10, 00), DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie." },
+                new Kill { Id = 6, GameId = 1, KillerId = 3, VictimId = 33, TimeDead = new DateTime(2023, 03, 11, 10, 16, 00), DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie." },
+                new Kill { Id = 7, GameId = 1, KillerId = 3, VictimId = 13, TimeDead = new DateTime(2023, 03, 11, 10, 33, 00), DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie." },
+                new Kill { Id = 8, GameId = 1, KillerId = 7, VictimId = 11, TimeDead = new DateTime(2023, 03, 11, 10, 47, 00), DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie." },
+                new Kill { Id = 9, GameId = 1, KillerId = 9, VictimId = 16, TimeDead = new DateTime(2023, 03, 11, 10, 56, 00), DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie." },
+                new Kill { Id = 10, GameId = 1, KillerId = 1, VictimId = 22, TimeDead = new DateTime(2023, 03, 11, 11, 17, 00), DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie." },
+                new Kill { Id = 11, GameId = 1, KillerId = 18, VictimId = 24, TimeDead = new DateTime(2023, 03, 11, 11, 22, 00), DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie." },
+                new Kill { Id = 12, GameId = 1, KillerId = 16, VictimId = 31, TimeDead = new DateTime(2023, 03, 11, 11, 38, 00), DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie." },
+                new Kill { Id = 13, GameId = 1, KillerId = 11, VictimId = 26, TimeDead = new DateTime(2023, 03, 11, 11, 49, 00), DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie." },
+                new Kill { Id = 14, GameId = 1, KillerId = 13, VictimId = 28, TimeDead = new DateTime(2023, 03, 11, 11, 51, 00), DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie." },
                 new Kill { Id = 15, GameId = 2, KillerId = 36, VictimId = 66, TimeDead = new DateTime(2023, 03, 12, 09, 19, 00), DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie." },
                 new Kill { Id = 16, GameId = 2, KillerId = 36, VictimId = 55, TimeDead = new DateTime(2023, 03, 12, 09, 32, 00), DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie." },
                 new Kill { Id = 17, GameId = 2, KillerId = 55, VictimId = 50, TimeDead = new DateTime(2023, 03, 12, 09, 44, 00), DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie." },
@@ -185,29 +200,28 @@ namespace hvz_backend.Models
                 new Kill { Id = 27, GameId = 2, KillerId = 40, VictimId = 58, TimeDead = new DateTime(2023, 03, 12, 11, 44, 00), DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie." },
                 new Kill { Id = 28, GameId = 2, KillerId = 68, VictimId = 45, TimeDead = new DateTime(2023, 03, 12, 11, 45, 00), DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie." },
                 new Kill { Id = 29, GameId = 2, KillerId = 57, VictimId = 63, TimeDead = new DateTime(2023, 03, 12, 11, 52, 00), DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie." },
-
-                new Kill { Id = 30, GameId = 3, KillerId = 2,  VictimId = 12, TimeDead = new DateTime(2023, 03, 29, 09, 13, 00), DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie." },
-                new Kill { Id = 30, GameId = 3, KillerId = 2,  VictimId = 15, TimeDead = new DateTime(2023, 03, 29, 09, 24, 00), DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie." },
-                new Kill { Id = 30, GameId = 3, KillerId = 12, VictimId = 20, TimeDead = new DateTime(2023, 03, 29, 09, 39, 00), DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie." },
-                new Kill { Id = 30, GameId = 3, KillerId = 2,  VictimId = 25, TimeDead = new DateTime(2023, 03, 29, 09, 55, 00), DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie." },
-                new Kill { Id = 30, GameId = 3, KillerId = 15, VictimId = 8,  TimeDead = new DateTime(2023, 03, 29, 10, 07, 00), DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie." },
-                new Kill { Id = 30, GameId = 3, KillerId = 20, VictimId = 44, TimeDead = new DateTime(2023, 03, 29, 10, 15, 00), DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie." },
-                new Kill { Id = 30, GameId = 3, KillerId = 25, VictimId = 70, TimeDead = new DateTime(2023, 03, 29, 10, 20, 00), DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie." },
-                new Kill { Id = 30, GameId = 3, KillerId = 2,  VictimId = 64, TimeDead = new DateTime(2023, 03, 29, 10, 35, 00), DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie." },
-                new Kill { Id = 30, GameId = 3, KillerId = 8,  VictimId = 49, TimeDead = new DateTime(2023, 03, 29, 10, 40, 00), DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie." },
-                new Kill { Id = 30, GameId = 3, KillerId = 15, VictimId = 6,  TimeDead = new DateTime(2023, 03, 29, 10, 47, 00), DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie." },
-                new Kill { Id = 30, GameId = 3, KillerId = 44, VictimId = 39, TimeDead = new DateTime(2023, 03, 29, 11, 02, 00), DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie." },
-                new Kill { Id = 30, GameId = 3, KillerId = 70, VictimId = 27, TimeDead = new DateTime(2023, 03, 29, 11, 16, 00), DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie." },
-                new Kill { Id = 30, GameId = 3, KillerId = 64, VictimId = 14, TimeDead = new DateTime(2023, 03, 29, 11, 24, 00), DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie." },
-                new Kill { Id = 30, GameId = 3, KillerId = 6,  VictimId = 61, TimeDead = new DateTime(2023, 03, 29, 11, 41, 00), DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie." },
-                new Kill { Id = 30, GameId = 3, KillerId = 27, VictimId = 54, TimeDead = new DateTime(2023, 03, 29, 11, 49, 00), DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie." }
-
+                new Kill { Id = 30, GameId = 3, KillerId = 2, VictimId = 12, TimeDead = new DateTime(2023, 03, 29, 09, 13, 00), DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie." },
+                new Kill { Id = 31, GameId = 3, KillerId = 2, VictimId = 15, TimeDead = new DateTime(2023, 03, 29, 09, 24, 00), DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie." },
+                new Kill { Id = 32, GameId = 3, KillerId = 12, VictimId = 20, TimeDead = new DateTime(2023, 03, 29, 09, 39, 00), DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie." },
+                new Kill { Id = 33, GameId = 3, KillerId = 2, VictimId = 25, TimeDead = new DateTime(2023, 03, 29, 09, 55, 00), DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie." },
+                new Kill { Id = 34, GameId = 3, KillerId = 15, VictimId = 8, TimeDead = new DateTime(2023, 03, 29, 10, 07, 00), DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie." },
+                new Kill { Id = 35, GameId = 3, KillerId = 20, VictimId = 44, TimeDead = new DateTime(2023, 03, 29, 10, 15, 00), DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie." },
+                new Kill { Id = 36, GameId = 3, KillerId = 25, VictimId = 70, TimeDead = new DateTime(2023, 03, 29, 10, 20, 00), DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie." },
+                new Kill { Id = 37, GameId = 3, KillerId = 2, VictimId = 64, TimeDead = new DateTime(2023, 03, 29, 10, 35, 00), DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie." },
+                new Kill { Id = 38, GameId = 3, KillerId = 8, VictimId = 49, TimeDead = new DateTime(2023, 03, 29, 10, 40, 00), DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie." },
+                new Kill { Id = 39, GameId = 3, KillerId = 15, VictimId = 6, TimeDead = new DateTime(2023, 03, 29, 10, 47, 00), DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie." },
+                new Kill { Id = 40, GameId = 3, KillerId = 44, VictimId = 39, TimeDead = new DateTime(2023, 03, 29, 11, 02, 00), DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie." },
+                new Kill { Id = 41, GameId = 3, KillerId = 70, VictimId = 27, TimeDead = new DateTime(2023, 03, 29, 11, 16, 00), DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie." },
+                new Kill { Id = 42, GameId = 3, KillerId = 64, VictimId = 14, TimeDead = new DateTime(2023, 03, 29, 11, 24, 00), DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie." },
+                new Kill { Id = 43, GameId = 3, KillerId = 6, VictimId = 61, TimeDead = new DateTime(2023, 03, 29, 11, 41, 00), DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie." },
+                new Kill { Id = 44, GameId = 3, KillerId = 27, VictimId = 54, TimeDead = new DateTime(2023, 03, 29, 11, 49, 00), DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie." }
                 );
+
             #endregion
 
             #region Maps
             modelBuilder.Entity<Map>().HasData(
-                new Map { Id = 1, GameId = 1, Latitude = 55.642780, Longitude = 12.271445, MapName = "Experis Academy Denmark", MapDescription = "The location for the Experis Academy World Championship 2023."},
+                new Map { Id = 1, GameId = 1, Latitude = 55.642780, Longitude = 12.271445, MapName = "Experis Academy Denmark", MapDescription = "The location for the Experis Academy World Championship 2023." },
                 new Map { Id = 2, GameId = 2, Latitude = 55.642780, Longitude = 12.271445, MapName = "Experis Academy Denmark", MapDescription = "The location for the Experis Academy World Championship 2023." },
                 new Map { Id = 3, GameId = 3, Latitude = 55.642780, Longitude = 12.271445, MapName = "Experis Academy Denmark", MapDescription = "The location for the Experis Academy World Championship 2023." },
                 new Map { Id = 4, GameId = 4, Latitude = 55.642780, Longitude = 12.271445, MapName = "Experis Academy Denmark", MapDescription = "The location for the Experis Academy World Championship 2023." }
@@ -216,168 +230,168 @@ namespace hvz_backend.Models
 
             #region Missions
             modelBuilder.Entity<Mission>().HasData(
-                new Mission { Id = 1, Title = "Get Supplies.",     HumanVisible = true, ZombieVisible = false, MapId = 1, Description = "Prepare for the upcoming Zombie attack.",                           BeginTime = new DateTime(2023, 03, 11, 09, 30, 00), EndTime = new DateTime(2023, 03, 11, 10, 00, 00), Latitude = 55.643243, Longitude = 12.270559 },
-                new Mission { Id = 2, Title = "Get fuel.",         HumanVisible = true, ZombieVisible = false, MapId = 1, Description = "Reach the point.",                                                  BeginTime = new DateTime(2023, 03, 11, 10, 30, 00), EndTime = new DateTime(2023, 03, 11, 10, 40, 00), Latitude = 55.643022, Longitude = 12.272587 },
-                new Mission { Id = 3, Title = "Get Radio.",        HumanVisible = true, ZombieVisible = false, MapId = 1, Description = "Reach the point and hold it.",                                      BeginTime = new DateTime(2023, 03, 11, 11, 00, 00), EndTime = new DateTime(2023, 03, 11, 11, 05, 00), Latitude = 55.642328, Longitude = 12.272512 },
-                new Mission { Id = 4, Title = "Stand Your Ground", HumanVisible = true, ZombieVisible = true,  MapId = 1, Description = "Zombies shall capture the flag and the humans need to defend it.",  BeginTime = new DateTime(2023, 03, 11, 11, 45, 00), EndTime = new DateTime(2023, 03, 11, 12, 00, 00), Latitude = 55.642780, Longitude = 12.271445 },
+                new Mission { Id = 1, Title = "Get Supplies.", HumanVisible = true, ZombieVisible = false, MapId = 1, Description = "Prepare for the upcoming Zombie attack.", BeginTime = new DateTime(2023, 03, 11, 09, 30, 00), EndTime = new DateTime(2023, 03, 11, 10, 00, 00), Latitude = 55.643243, Longitude = 12.270559 },
+                new Mission { Id = 2, Title = "Get fuel.", HumanVisible = true, ZombieVisible = false, MapId = 1, Description = "Reach the point.", BeginTime = new DateTime(2023, 03, 11, 10, 30, 00), EndTime = new DateTime(2023, 03, 11, 10, 40, 00), Latitude = 55.643022, Longitude = 12.272587 },
+                new Mission { Id = 3, Title = "Get Radio.", HumanVisible = true, ZombieVisible = false, MapId = 1, Description = "Reach the point and hold it.", BeginTime = new DateTime(2023, 03, 11, 11, 00, 00), EndTime = new DateTime(2023, 03, 11, 11, 05, 00), Latitude = 55.642328, Longitude = 12.272512 },
+                new Mission { Id = 4, Title = "Stand Your Ground", HumanVisible = true, ZombieVisible = true, MapId = 1, Description = "Zombies shall capture the flag and the humans need to defend it.", BeginTime = new DateTime(2023, 03, 11, 11, 45, 00), EndTime = new DateTime(2023, 03, 11, 12, 00, 00), Latitude = 55.642780, Longitude = 12.271445 },
 
-                new Mission { Id = 5, Title = "Get Supplies.",     HumanVisible = true, ZombieVisible = false, MapId = 2, Description = "Prepare for the upcoming Zombie attack.",                           BeginTime = new DateTime(2023, 03, 12, 09, 30, 00), EndTime = new DateTime(2023, 03, 12, 10, 00, 00), Latitude = 55.643243, Longitude = 12.270559 },
-                new Mission { Id = 6, Title = "Get fuel.",         HumanVisible = true, ZombieVisible = false, MapId = 2, Description = "Reach the point.",                                                  BeginTime = new DateTime(2023, 03, 12, 10, 30, 00), EndTime = new DateTime(2023, 03, 12, 10, 40, 00), Latitude = 55.643022, Longitude = 12.272587 },
-                new Mission { Id = 7, Title = "Get Radio.",        HumanVisible = true, ZombieVisible = false, MapId = 2, Description = "Reach the point and hold it.",                                      BeginTime = new DateTime(2023, 03, 12, 11, 00, 00), EndTime = new DateTime(2023, 03, 12, 11, 05, 00), Latitude = 55.642328, Longitude = 12.272512 },
-                new Mission { Id = 8, Title = "Stand Your Ground", HumanVisible = true, ZombieVisible = true,  MapId = 2, Description = "Zombies shall capture the flag and the humans need to defend it.",  BeginTime = new DateTime(2023, 03, 12, 11, 45, 00), EndTime = new DateTime(2023, 03, 12, 12, 00, 00), Latitude = 55.642780, Longitude = 12.271445 },
+                new Mission { Id = 5, Title = "Get Supplies.", HumanVisible = true, ZombieVisible = false, MapId = 2, Description = "Prepare for the upcoming Zombie attack.", BeginTime = new DateTime(2023, 03, 12, 09, 30, 00), EndTime = new DateTime(2023, 03, 12, 10, 00, 00), Latitude = 55.643243, Longitude = 12.270559 },
+                new Mission { Id = 6, Title = "Get fuel.", HumanVisible = true, ZombieVisible = false, MapId = 2, Description = "Reach the point.", BeginTime = new DateTime(2023, 03, 12, 10, 30, 00), EndTime = new DateTime(2023, 03, 12, 10, 40, 00), Latitude = 55.643022, Longitude = 12.272587 },
+                new Mission { Id = 7, Title = "Get Radio.", HumanVisible = true, ZombieVisible = false, MapId = 2, Description = "Reach the point and hold it.", BeginTime = new DateTime(2023, 03, 12, 11, 00, 00), EndTime = new DateTime(2023, 03, 12, 11, 05, 00), Latitude = 55.642328, Longitude = 12.272512 },
+                new Mission { Id = 8, Title = "Stand Your Ground", HumanVisible = true, ZombieVisible = true, MapId = 2, Description = "Zombies shall capture the flag and the humans need to defend it.", BeginTime = new DateTime(2023, 03, 12, 11, 45, 00), EndTime = new DateTime(2023, 03, 12, 12, 00, 00), Latitude = 55.642780, Longitude = 12.271445 },
 
-                new Mission { Id = 9, Title = "Get Supplies.",      HumanVisible = true, ZombieVisible = false, MapId = 3, Description = "Prepare for the upcoming Zombie attack.",                          BeginTime = new DateTime(2023, 03, 29, 09, 30, 00), EndTime = new DateTime(2023, 03, 29, 10, 00, 00), Latitude = 55.643243, Longitude = 12.270559 },
-                new Mission { Id = 10, Title = "Get fuel.",         HumanVisible = true, ZombieVisible = false, MapId = 3, Description = "Reach the point.",                                                 BeginTime = new DateTime(2023, 03, 29, 10, 30, 00), EndTime = new DateTime(2023, 03, 29, 10, 40, 00), Latitude = 55.643022, Longitude = 12.272587 },
-                new Mission { Id = 11, Title = "Get Radio.",        HumanVisible = true, ZombieVisible = false, MapId = 3, Description = "Reach the point and hold it.",                                     BeginTime = new DateTime(2023, 03, 29, 11, 00, 00), EndTime = new DateTime(2023, 03, 29, 11, 05, 00), Latitude = 55.642328, Longitude = 12.272512 },
-                new Mission { Id = 12, Title = "Stand Your Ground", HumanVisible = true, ZombieVisible = true,  MapId = 3, Description = "Zombies shall capture the flag and the humans need to defend it.", BeginTime = new DateTime(2023, 03, 29, 11, 45, 00), EndTime = new DateTime(2023, 03, 29, 12, 00, 00), Latitude = 55.642780, Longitude = 12.271445 },
+                new Mission { Id = 9, Title = "Get Supplies.", HumanVisible = true, ZombieVisible = false, MapId = 3, Description = "Prepare for the upcoming Zombie attack.", BeginTime = new DateTime(2023, 03, 29, 09, 30, 00), EndTime = new DateTime(2023, 03, 29, 10, 00, 00), Latitude = 55.643243, Longitude = 12.270559 },
+                new Mission { Id = 10, Title = "Get fuel.", HumanVisible = true, ZombieVisible = false, MapId = 3, Description = "Reach the point.", BeginTime = new DateTime(2023, 03, 29, 10, 30, 00), EndTime = new DateTime(2023, 03, 29, 10, 40, 00), Latitude = 55.643022, Longitude = 12.272587 },
+                new Mission { Id = 11, Title = "Get Radio.", HumanVisible = true, ZombieVisible = false, MapId = 3, Description = "Reach the point and hold it.", BeginTime = new DateTime(2023, 03, 29, 11, 00, 00), EndTime = new DateTime(2023, 03, 29, 11, 05, 00), Latitude = 55.642328, Longitude = 12.272512 },
+                new Mission { Id = 12, Title = "Stand Your Ground", HumanVisible = true, ZombieVisible = true, MapId = 3, Description = "Zombies shall capture the flag and the humans need to defend it.", BeginTime = new DateTime(2023, 03, 29, 11, 45, 00), EndTime = new DateTime(2023, 03, 29, 12, 00, 00), Latitude = 55.642780, Longitude = 12.271445 },
 
-                new Mission { Id = 13, Title = "Get Supplies.",     HumanVisible = true, ZombieVisible = false, MapId = 4, Description = "Prepare for the upcoming Zombie attack.",                          BeginTime = new DateTime(2023, 03, 31, 09, 30, 00), EndTime = new DateTime(2023, 03, 31, 10, 00, 00), Latitude = 55.643243, Longitude = 12.270559 },
-                new Mission { Id = 14, Title = "Get fuel.",         HumanVisible = true, ZombieVisible = false, MapId = 4, Description = "Reach the point.",                                                 BeginTime = new DateTime(2023, 03, 31, 10, 30, 00), EndTime = new DateTime(2023, 03, 31, 10, 40, 00), Latitude = 55.643022, Longitude = 12.272587 },
-                new Mission { Id = 15, Title = "Get Radio.",        HumanVisible = true, ZombieVisible = false, MapId = 4, Description = "Reach the point and hold it.",                                     BeginTime = new DateTime(2023, 03, 31, 11, 00, 00), EndTime = new DateTime(2023, 03, 31, 11, 05, 00), Latitude = 55.642328, Longitude = 12.272512 },
-                new Mission { Id = 16, Title = "Stand Your Ground", HumanVisible = true, ZombieVisible = true,  MapId = 4, Description = "Zombies shall capture the flag and the humans need to defend it.", BeginTime = new DateTime(2023, 03, 31, 11, 45, 00), EndTime = new DateTime(2023, 03, 31, 12, 00, 00), Latitude = 55.642780, Longitude = 12.271445 }
+                new Mission { Id = 13, Title = "Get Supplies.", HumanVisible = true, ZombieVisible = false, MapId = 4, Description = "Prepare for the upcoming Zombie attack.", BeginTime = new DateTime(2023, 03, 31, 09, 30, 00), EndTime = new DateTime(2023, 03, 31, 10, 00, 00), Latitude = 55.643243, Longitude = 12.270559 },
+                new Mission { Id = 14, Title = "Get fuel.", HumanVisible = true, ZombieVisible = false, MapId = 4, Description = "Reach the point.", BeginTime = new DateTime(2023, 03, 31, 10, 30, 00), EndTime = new DateTime(2023, 03, 31, 10, 40, 00), Latitude = 55.643022, Longitude = 12.272587 },
+                new Mission { Id = 15, Title = "Get Radio.", HumanVisible = true, ZombieVisible = false, MapId = 4, Description = "Reach the point and hold it.", BeginTime = new DateTime(2023, 03, 31, 11, 00, 00), EndTime = new DateTime(2023, 03, 31, 11, 05, 00), Latitude = 55.642328, Longitude = 12.272512 },
+                new Mission { Id = 16, Title = "Stand Your Ground", HumanVisible = true, ZombieVisible = true, MapId = 4, Description = "Zombies shall capture the flag and the humans need to defend it.", BeginTime = new DateTime(2023, 03, 31, 11, 45, 00), EndTime = new DateTime(2023, 03, 31, 12, 00, 00), Latitude = 55.642780, Longitude = 12.271445 }
                 );
             #endregion
 
-            
+
             #region Players
             modelBuilder.Entity<Player>().HasData(
-                new Player { Id = 1,  UserId = 1,  SquadId = null,  IsPatientZero = true,  IsZombie = true,  BiteCode = 1543, GameId = 1 },
-                new Player { Id = 2,  UserId = 2,  SquadId = 2,     IsPatientZero = false, IsZombie = false, BiteCode = 2804, GameId = 1 },
-                new Player { Id = 3,  UserId = 3,  SquadId = 2,     IsPatientZero = false, IsZombie = true,  BiteCode = 3110, GameId = 1 },
-                new Player { Id = 4,  UserId = 4,  SquadId = 3,     IsPatientZero = false, IsZombie = false, BiteCode = 4975, GameId = 1 },
-                new Player { Id = 5,  UserId = 5,  SquadId = 3,     IsPatientZero = false, IsZombie = false, BiteCode = 5368, GameId = 1 },
-                new Player { Id = 6,  UserId = 6,  SquadId = null,  IsPatientZero = false, IsZombie = false, BiteCode = 6729, GameId = 1 },
-                new Player { Id = 7,  UserId = 7,  SquadId = 4,     IsPatientZero = false, IsZombie = true,  BiteCode = 7462, GameId = 1 },
-                new Player { Id = 8,  UserId = 8,  SquadId = 2,     IsPatientZero = false, IsZombie = false, BiteCode = 8901, GameId = 1 },
-                new Player { Id = 9,  UserId = 9,  SquadId = 1,     IsPatientZero = false, IsZombie = true,  BiteCode = 9012, GameId = 1 },
-                new Player { Id = 10, UserId = 10, SquadId = null,  IsPatientZero = false, IsZombie = false, BiteCode = 1098, GameId = 1 },
-                new Player { Id = 11, UserId = 11, SquadId = null,  IsPatientZero = false, IsZombie = true,  BiteCode = 2109, GameId = 1 },
-                new Player { Id = 12, UserId = 12, SquadId = 2,     IsPatientZero = false, IsZombie = false, BiteCode = 3210, GameId = 1 },
-                new Player { Id = 13, UserId = 13, SquadId = 4,     IsPatientZero = false, IsZombie = true,  BiteCode = 8049, GameId = 1 },
-                new Player { Id = 14, UserId = 14, SquadId = null,  IsPatientZero = false, IsZombie = false, BiteCode = 9127, GameId = 1 },
-                new Player { Id = 15, UserId = 15, SquadId = 5,     IsPatientZero = false, IsZombie = false, BiteCode = 1379, GameId = 1 },
-                new Player { Id = 16, UserId = 16, SquadId = 3,     IsPatientZero = false, IsZombie = true,  BiteCode = 2556, GameId = 1 },
-                new Player { Id = 17, UserId = 17, SquadId = null,  IsPatientZero = false, IsZombie = false, BiteCode = 1987, GameId = 1 },
-                new Player { Id = 18, UserId = 18, SquadId = 1,     IsPatientZero = false, IsZombie = true,  BiteCode = 9876, GameId = 1 },
-                new Player { Id = 19, UserId = 19, SquadId = 5,     IsPatientZero = false, IsZombie = false, BiteCode = 3837, GameId = 1 },
-                new Player { Id = 20, UserId = 20, SquadId = null,  IsPatientZero = false, IsZombie = false, BiteCode = 4321, GameId = 1 },
-                new Player { Id = 21, UserId = 21, SquadId = 3,     IsPatientZero = false, IsZombie = false, BiteCode = 5698, GameId = 1 },
-                new Player { Id = 22, UserId = 22, SquadId = 5,     IsPatientZero = false, IsZombie = true,  BiteCode = 6067, GameId = 1 },
-                new Player { Id = 23, UserId = 23, SquadId = 4,     IsPatientZero = false, IsZombie = false, BiteCode = 7088, GameId = 1 },
-                new Player { Id = 24, UserId = 24, SquadId = null,  IsPatientZero = false, IsZombie = true,  BiteCode = 3219, GameId = 1 },
-                new Player { Id = 25, UserId = 25, SquadId = 4,     IsPatientZero = false, IsZombie = false, BiteCode = 2198, GameId = 1 },
-                new Player { Id = 26, UserId = 26, SquadId = null,  IsPatientZero = false, IsZombie = true,  BiteCode = 8765, GameId = 1 },
-                new Player { Id = 27, UserId = 27, SquadId = 1,     IsPatientZero = false, IsZombie = false, BiteCode = 7654, GameId = 1 },
-                new Player { Id = 28, UserId = 28, SquadId = 4,     IsPatientZero = false, IsZombie = true,  BiteCode = 8594, GameId = 1 },
-                new Player { Id = 29, UserId = 29, SquadId = null,  IsPatientZero = false, IsZombie = false, BiteCode = 5432, GameId = 1 },
-                new Player { Id = 30, UserId = 30, SquadId = 3,     IsPatientZero = false, IsZombie = false, BiteCode = 9645, GameId = 1 },
-                new Player { Id = 31, UserId = 31, SquadId = 5,     IsPatientZero = false, IsZombie = true,  BiteCode = 1034, GameId = 1 },
-                new Player { Id = 32, UserId = 32, SquadId = 2,     IsPatientZero = false, IsZombie = false, BiteCode = 6543, GameId = 1 },
-                new Player { Id = 33, UserId = 33, SquadId = null,  IsPatientZero = false, IsZombie = true,  BiteCode = 2345, GameId = 1 },
-                new Player { Id = 34, UserId = 34, SquadId = 2,     IsPatientZero = false, IsZombie = false, BiteCode = 3456, GameId = 1 },
-                new Player { Id = 35, UserId = 35, SquadId = 3,     IsPatientZero = false, IsZombie = false, BiteCode = 2223, GameId = 1 },
+                new Player { Id = 1, UserId = 1, SquadId = null, IsPatientZero = true, IsZombie = true, BiteCode = 1543, GameId = 1 },
+                new Player { Id = 2, UserId = 2, SquadId = 2, IsPatientZero = false, IsZombie = false, BiteCode = 2804, GameId = 1 },
+                new Player { Id = 3, UserId = 3, SquadId = 2, IsPatientZero = false, IsZombie = true, BiteCode = 3110, GameId = 1 },
+                new Player { Id = 4, UserId = 4, SquadId = 3, IsPatientZero = false, IsZombie = false, BiteCode = 4975, GameId = 1 },
+                new Player { Id = 5, UserId = 5, SquadId = 3, IsPatientZero = false, IsZombie = false, BiteCode = 5368, GameId = 1 },
+                new Player { Id = 6, UserId = 6, SquadId = null, IsPatientZero = false, IsZombie = false, BiteCode = 6729, GameId = 1 },
+                new Player { Id = 7, UserId = 7, SquadId = 4, IsPatientZero = false, IsZombie = true, BiteCode = 7462, GameId = 1 },
+                new Player { Id = 8, UserId = 8, SquadId = 2, IsPatientZero = false, IsZombie = false, BiteCode = 8901, GameId = 1 },
+                new Player { Id = 9, UserId = 9, SquadId = 1, IsPatientZero = false, IsZombie = true, BiteCode = 9012, GameId = 1 },
+                new Player { Id = 10, UserId = 10, SquadId = null, IsPatientZero = false, IsZombie = false, BiteCode = 1098, GameId = 1 },
+                new Player { Id = 11, UserId = 11, SquadId = null, IsPatientZero = false, IsZombie = true, BiteCode = 2109, GameId = 1 },
+                new Player { Id = 12, UserId = 12, SquadId = 2, IsPatientZero = false, IsZombie = false, BiteCode = 3210, GameId = 1 },
+                new Player { Id = 13, UserId = 13, SquadId = 4, IsPatientZero = false, IsZombie = true, BiteCode = 8049, GameId = 1 },
+                new Player { Id = 14, UserId = 14, SquadId = null, IsPatientZero = false, IsZombie = false, BiteCode = 9127, GameId = 1 },
+                new Player { Id = 15, UserId = 15, SquadId = 5, IsPatientZero = false, IsZombie = false, BiteCode = 1379, GameId = 1 },
+                new Player { Id = 16, UserId = 16, SquadId = 3, IsPatientZero = false, IsZombie = true, BiteCode = 2556, GameId = 1 },
+                new Player { Id = 17, UserId = 17, SquadId = null, IsPatientZero = false, IsZombie = false, BiteCode = 1987, GameId = 1 },
+                new Player { Id = 18, UserId = 18, SquadId = 1, IsPatientZero = false, IsZombie = true, BiteCode = 9876, GameId = 1 },
+                new Player { Id = 19, UserId = 19, SquadId = 5, IsPatientZero = false, IsZombie = false, BiteCode = 3837, GameId = 1 },
+                new Player { Id = 20, UserId = 20, SquadId = null, IsPatientZero = false, IsZombie = false, BiteCode = 4321, GameId = 1 },
+                new Player { Id = 21, UserId = 21, SquadId = 3, IsPatientZero = false, IsZombie = false, BiteCode = 5698, GameId = 1 },
+                new Player { Id = 22, UserId = 22, SquadId = 5, IsPatientZero = false, IsZombie = true, BiteCode = 6067, GameId = 1 },
+                new Player { Id = 23, UserId = 23, SquadId = 4, IsPatientZero = false, IsZombie = false, BiteCode = 7088, GameId = 1 },
+                new Player { Id = 24, UserId = 24, SquadId = null, IsPatientZero = false, IsZombie = true, BiteCode = 3219, GameId = 1 },
+                new Player { Id = 25, UserId = 25, SquadId = 4, IsPatientZero = false, IsZombie = false, BiteCode = 2198, GameId = 1 },
+                new Player { Id = 26, UserId = 26, SquadId = null, IsPatientZero = false, IsZombie = true, BiteCode = 8765, GameId = 1 },
+                new Player { Id = 27, UserId = 27, SquadId = 1, IsPatientZero = false, IsZombie = false, BiteCode = 7654, GameId = 1 },
+                new Player { Id = 28, UserId = 28, SquadId = 4, IsPatientZero = false, IsZombie = true, BiteCode = 8594, GameId = 1 },
+                new Player { Id = 29, UserId = 29, SquadId = null, IsPatientZero = false, IsZombie = false, BiteCode = 5432, GameId = 1 },
+                new Player { Id = 30, UserId = 30, SquadId = 3, IsPatientZero = false, IsZombie = false, BiteCode = 9645, GameId = 1 },
+                new Player { Id = 31, UserId = 31, SquadId = 5, IsPatientZero = false, IsZombie = true, BiteCode = 1034, GameId = 1 },
+                new Player { Id = 32, UserId = 32, SquadId = 2, IsPatientZero = false, IsZombie = false, BiteCode = 6543, GameId = 1 },
+                new Player { Id = 33, UserId = 33, SquadId = null, IsPatientZero = false, IsZombie = true, BiteCode = 2345, GameId = 1 },
+                new Player { Id = 34, UserId = 34, SquadId = 2, IsPatientZero = false, IsZombie = false, BiteCode = 3456, GameId = 1 },
+                new Player { Id = 35, UserId = 35, SquadId = 3, IsPatientZero = false, IsZombie = false, BiteCode = 2223, GameId = 1 },
 
-                new Player { Id = 36, UserId = 36, SquadId = null, IsPatientZero = true,  IsZombie = true,  BiteCode = 1543, GameId = 2 },
-                new Player { Id = 37, UserId = 37, SquadId = 7,    IsPatientZero = false, IsZombie = false, BiteCode = 2804, GameId = 2 },
-                new Player { Id = 38, UserId = 38, SquadId = 9,    IsPatientZero = false, IsZombie = true,  BiteCode = 3110, GameId = 2 },
-                new Player { Id = 39, UserId = 39, SquadId = 10,   IsPatientZero = false, IsZombie = false, BiteCode = 4975, GameId = 2 },
-                new Player { Id = 40, UserId = 40, SquadId = 8,    IsPatientZero = false, IsZombie = true,  BiteCode = 5368, GameId = 2 },
-                new Player { Id = 41, UserId = 41, SquadId = 9,    IsPatientZero = false, IsZombie = false, BiteCode = 6729, GameId = 2 },
-                new Player { Id = 42, UserId = 42, SquadId = 9,    IsPatientZero = false, IsZombie = false, BiteCode = 7462, GameId = 2 },
-                new Player { Id = 43, UserId = 43, SquadId = 6,    IsPatientZero = false, IsZombie = true,  BiteCode = 8901, GameId = 2 },
-                new Player { Id = 44, UserId = 44, SquadId = 10,   IsPatientZero = false, IsZombie = false, BiteCode = 9012, GameId = 2 },
-                new Player { Id = 45, UserId = 45, SquadId = 6,    IsPatientZero = false, IsZombie = true,  BiteCode = 1098, GameId = 2 },
-                new Player { Id = 46, UserId = 46, SquadId = 8,    IsPatientZero = false, IsZombie = false, BiteCode = 2109, GameId = 2 },
-                new Player { Id = 47, UserId = 47, SquadId = 6,    IsPatientZero = false, IsZombie = false, BiteCode = 3210, GameId = 2 },
-                new Player { Id = 48, UserId = 48, SquadId = 7,    IsPatientZero = false, IsZombie = true,  BiteCode = 8049, GameId = 2 },
-                new Player { Id = 49, UserId = 49, SquadId = 7,    IsPatientZero = false, IsZombie = false, BiteCode = 9127, GameId = 2 },
-                new Player { Id = 50, UserId = 50, SquadId = 9,    IsPatientZero = false, IsZombie = true,  BiteCode = 1379, GameId = 2 },
+                new Player { Id = 36, UserId = 36, SquadId = null, IsPatientZero = true, IsZombie = true, BiteCode = 1543, GameId = 2 },
+                new Player { Id = 37, UserId = 37, SquadId = 7, IsPatientZero = false, IsZombie = false, BiteCode = 2804, GameId = 2 },
+                new Player { Id = 38, UserId = 38, SquadId = 9, IsPatientZero = false, IsZombie = true, BiteCode = 3110, GameId = 2 },
+                new Player { Id = 39, UserId = 39, SquadId = 10, IsPatientZero = false, IsZombie = false, BiteCode = 4975, GameId = 2 },
+                new Player { Id = 40, UserId = 40, SquadId = 8, IsPatientZero = false, IsZombie = true, BiteCode = 5368, GameId = 2 },
+                new Player { Id = 41, UserId = 41, SquadId = 9, IsPatientZero = false, IsZombie = false, BiteCode = 6729, GameId = 2 },
+                new Player { Id = 42, UserId = 42, SquadId = 9, IsPatientZero = false, IsZombie = false, BiteCode = 7462, GameId = 2 },
+                new Player { Id = 43, UserId = 43, SquadId = 6, IsPatientZero = false, IsZombie = true, BiteCode = 8901, GameId = 2 },
+                new Player { Id = 44, UserId = 44, SquadId = 10, IsPatientZero = false, IsZombie = false, BiteCode = 9012, GameId = 2 },
+                new Player { Id = 45, UserId = 45, SquadId = 6, IsPatientZero = false, IsZombie = true, BiteCode = 1098, GameId = 2 },
+                new Player { Id = 46, UserId = 46, SquadId = 8, IsPatientZero = false, IsZombie = false, BiteCode = 2109, GameId = 2 },
+                new Player { Id = 47, UserId = 47, SquadId = 6, IsPatientZero = false, IsZombie = false, BiteCode = 3210, GameId = 2 },
+                new Player { Id = 48, UserId = 48, SquadId = 7, IsPatientZero = false, IsZombie = true, BiteCode = 8049, GameId = 2 },
+                new Player { Id = 49, UserId = 49, SquadId = 7, IsPatientZero = false, IsZombie = false, BiteCode = 9127, GameId = 2 },
+                new Player { Id = 50, UserId = 50, SquadId = 9, IsPatientZero = false, IsZombie = true, BiteCode = 1379, GameId = 2 },
                 new Player { Id = 51, UserId = 51, SquadId = null, IsPatientZero = false, IsZombie = false, BiteCode = 2556, GameId = 2 },
-                new Player { Id = 52, UserId = 52, SquadId = null, IsPatientZero = false, IsZombie = true,  BiteCode = 1987, GameId = 2 },
-                new Player { Id = 53, UserId = 53, SquadId = 10,   IsPatientZero = false, IsZombie = false, BiteCode = 9876, GameId = 2 },
-                new Player { Id = 54, UserId = 54, SquadId = 9,    IsPatientZero = false, IsZombie = false, BiteCode = 3837, GameId = 2 },
-                new Player { Id = 55, UserId = 55, SquadId = 9,    IsPatientZero = false, IsZombie = true,  BiteCode = 4321, GameId = 2 },
-                new Player { Id = 56, UserId = 56, SquadId = 8,    IsPatientZero = false, IsZombie = false, BiteCode = 5698, GameId = 2 },
-                new Player { Id = 57, UserId = 57, SquadId = null, IsPatientZero = false, IsZombie = true,  BiteCode = 6067, GameId = 2 },
-                new Player { Id = 58, UserId = 58, SquadId = null, IsPatientZero = false, IsZombie = true,  BiteCode = 7088, GameId = 2 },
-                new Player { Id = 59, UserId = 59, SquadId = 6,    IsPatientZero = false, IsZombie = false, BiteCode = 3219, GameId = 2 },
-                new Player { Id = 60, UserId = 60, SquadId = 10,   IsPatientZero = false, IsZombie = true,  BiteCode = 2198, GameId = 2 },
+                new Player { Id = 52, UserId = 52, SquadId = null, IsPatientZero = false, IsZombie = true, BiteCode = 1987, GameId = 2 },
+                new Player { Id = 53, UserId = 53, SquadId = 10, IsPatientZero = false, IsZombie = false, BiteCode = 9876, GameId = 2 },
+                new Player { Id = 54, UserId = 54, SquadId = 9, IsPatientZero = false, IsZombie = false, BiteCode = 3837, GameId = 2 },
+                new Player { Id = 55, UserId = 55, SquadId = 9, IsPatientZero = false, IsZombie = true, BiteCode = 4321, GameId = 2 },
+                new Player { Id = 56, UserId = 56, SquadId = 8, IsPatientZero = false, IsZombie = false, BiteCode = 5698, GameId = 2 },
+                new Player { Id = 57, UserId = 57, SquadId = null, IsPatientZero = false, IsZombie = true, BiteCode = 6067, GameId = 2 },
+                new Player { Id = 58, UserId = 58, SquadId = null, IsPatientZero = false, IsZombie = true, BiteCode = 7088, GameId = 2 },
+                new Player { Id = 59, UserId = 59, SquadId = 6, IsPatientZero = false, IsZombie = false, BiteCode = 3219, GameId = 2 },
+                new Player { Id = 60, UserId = 60, SquadId = 10, IsPatientZero = false, IsZombie = true, BiteCode = 2198, GameId = 2 },
                 new Player { Id = 61, UserId = 61, SquadId = null, IsPatientZero = false, IsZombie = false, BiteCode = 8765, GameId = 2 },
                 new Player { Id = 62, UserId = 62, SquadId = null, IsPatientZero = false, IsZombie = false, BiteCode = 7654, GameId = 2 },
-                new Player { Id = 63, UserId = 63, SquadId = null, IsPatientZero = false, IsZombie = true,  BiteCode = 8594, GameId = 2 },
+                new Player { Id = 63, UserId = 63, SquadId = null, IsPatientZero = false, IsZombie = true, BiteCode = 8594, GameId = 2 },
                 new Player { Id = 64, UserId = 64, SquadId = null, IsPatientZero = false, IsZombie = false, BiteCode = 5432, GameId = 2 },
-                new Player { Id = 65, UserId = 65, SquadId = 7,    IsPatientZero = false, IsZombie = true,  BiteCode = 9645, GameId = 2 },
-                new Player { Id = 66, UserId = 66, SquadId = 10,   IsPatientZero = false, IsZombie = true,  BiteCode = 1034, GameId = 2 },
-                new Player { Id = 67, UserId = 67, SquadId = 10,   IsPatientZero = false, IsZombie = false, BiteCode = 6543, GameId = 2 },
-                new Player { Id = 68, UserId = 68, SquadId = 8,    IsPatientZero = false, IsZombie = true,  BiteCode = 2345, GameId = 2 },
-                new Player { Id = 69, UserId = 69, SquadId = 6,    IsPatientZero = false, IsZombie = false, BiteCode = 3456, GameId = 2 },
+                new Player { Id = 65, UserId = 65, SquadId = 7, IsPatientZero = false, IsZombie = true, BiteCode = 9645, GameId = 2 },
+                new Player { Id = 66, UserId = 66, SquadId = 10, IsPatientZero = false, IsZombie = true, BiteCode = 1034, GameId = 2 },
+                new Player { Id = 67, UserId = 67, SquadId = 10, IsPatientZero = false, IsZombie = false, BiteCode = 6543, GameId = 2 },
+                new Player { Id = 68, UserId = 68, SquadId = 8, IsPatientZero = false, IsZombie = true, BiteCode = 2345, GameId = 2 },
+                new Player { Id = 69, UserId = 69, SquadId = 6, IsPatientZero = false, IsZombie = false, BiteCode = 3456, GameId = 2 },
                 new Player { Id = 70, UserId = 70, SquadId = null, IsPatientZero = false, IsZombie = false, BiteCode = 2223, GameId = 2 },
 
-                new Player { Id = 71, UserId = 2,  SquadId = null, IsPatientZero = true,  IsZombie = true,  BiteCode = 2804, GameId = 3 },
-                new Player { Id = 72, UserId = 4,  SquadId = 11,   IsPatientZero = false, IsZombie = false, BiteCode = 4975, GameId = 3 },
-                new Player { Id = 73, UserId = 5,  SquadId = 12,   IsPatientZero = false, IsZombie = false, BiteCode = 5368, GameId = 3 },
-                new Player { Id = 74, UserId = 6,  SquadId = null, IsPatientZero = false, IsZombie = true,  BiteCode = 6729, GameId = 3 },
-                new Player { Id = 75, UserId = 8,  SquadId = null, IsPatientZero = false, IsZombie = true,  BiteCode = 8901, GameId = 3 },
+                new Player { Id = 71, UserId = 2, SquadId = null, IsPatientZero = true, IsZombie = true, BiteCode = 2804, GameId = 3 },
+                new Player { Id = 72, UserId = 4, SquadId = 11, IsPatientZero = false, IsZombie = false, BiteCode = 4975, GameId = 3 },
+                new Player { Id = 73, UserId = 5, SquadId = 12, IsPatientZero = false, IsZombie = false, BiteCode = 5368, GameId = 3 },
+                new Player { Id = 74, UserId = 6, SquadId = null, IsPatientZero = false, IsZombie = true, BiteCode = 6729, GameId = 3 },
+                new Player { Id = 75, UserId = 8, SquadId = null, IsPatientZero = false, IsZombie = true, BiteCode = 8901, GameId = 3 },
                 new Player { Id = 76, UserId = 10, SquadId = null, IsPatientZero = false, IsZombie = false, BiteCode = 1098, GameId = 3 },
-                new Player { Id = 77, UserId = 12, SquadId = 13,   IsPatientZero = false, IsZombie = true,  BiteCode = 3210, GameId = 3 },
-                new Player { Id = 78, UserId = 14, SquadId = 14,   IsPatientZero = false, IsZombie = true,  BiteCode = 9127, GameId = 3 },
-                new Player { Id = 79, UserId = 15, SquadId = null, IsPatientZero = false, IsZombie = true,  BiteCode = 1379, GameId = 3 },
+                new Player { Id = 77, UserId = 12, SquadId = 13, IsPatientZero = false, IsZombie = true, BiteCode = 3210, GameId = 3 },
+                new Player { Id = 78, UserId = 14, SquadId = 14, IsPatientZero = false, IsZombie = true, BiteCode = 9127, GameId = 3 },
+                new Player { Id = 79, UserId = 15, SquadId = null, IsPatientZero = false, IsZombie = true, BiteCode = 1379, GameId = 3 },
                 new Player { Id = 80, UserId = 17, SquadId = null, IsPatientZero = false, IsZombie = false, BiteCode = 1987, GameId = 3 },
                 new Player { Id = 81, UserId = 19, SquadId = null, IsPatientZero = false, IsZombie = false, BiteCode = 3837, GameId = 3 },
-                new Player { Id = 82, UserId = 20, SquadId = null, IsPatientZero = false, IsZombie = true,  BiteCode = 4321, GameId = 3 },
-                new Player { Id = 83, UserId = 21, SquadId = 11,   IsPatientZero = false, IsZombie = false, BiteCode = 5698, GameId = 3 },
-                new Player { Id = 84, UserId = 23, SquadId = 13,   IsPatientZero = false, IsZombie = false, BiteCode = 7088, GameId = 3 },
-                new Player { Id = 85, UserId = 25, SquadId = 13,   IsPatientZero = false, IsZombie = true,  BiteCode = 2198, GameId = 3 },
-                new Player { Id = 86, UserId = 27, SquadId = null, IsPatientZero = false, IsZombie = true,  BiteCode = 7654, GameId = 3 },
-                new Player { Id = 87, UserId = 29, SquadId = 14,   IsPatientZero = false, IsZombie = false, BiteCode = 5432, GameId = 3 },
+                new Player { Id = 82, UserId = 20, SquadId = null, IsPatientZero = false, IsZombie = true, BiteCode = 4321, GameId = 3 },
+                new Player { Id = 83, UserId = 21, SquadId = 11, IsPatientZero = false, IsZombie = false, BiteCode = 5698, GameId = 3 },
+                new Player { Id = 84, UserId = 23, SquadId = 13, IsPatientZero = false, IsZombie = false, BiteCode = 7088, GameId = 3 },
+                new Player { Id = 85, UserId = 25, SquadId = 13, IsPatientZero = false, IsZombie = true, BiteCode = 2198, GameId = 3 },
+                new Player { Id = 86, UserId = 27, SquadId = null, IsPatientZero = false, IsZombie = true, BiteCode = 7654, GameId = 3 },
+                new Player { Id = 87, UserId = 29, SquadId = 14, IsPatientZero = false, IsZombie = false, BiteCode = 5432, GameId = 3 },
                 new Player { Id = 88, UserId = 30, SquadId = null, IsPatientZero = false, IsZombie = false, BiteCode = 9645, GameId = 3 },
-                new Player { Id = 89, UserId = 32, SquadId = 12,   IsPatientZero = false, IsZombie = false, BiteCode = 6543, GameId = 3 },
-                new Player { Id = 90, UserId = 34, SquadId = 12,   IsPatientZero = false, IsZombie = false, BiteCode = 3456, GameId = 3 },
-                new Player { Id = 91, UserId = 35, SquadId = 12,   IsPatientZero = false, IsZombie = false, BiteCode = 2223, GameId = 3 },
+                new Player { Id = 89, UserId = 32, SquadId = 12, IsPatientZero = false, IsZombie = false, BiteCode = 6543, GameId = 3 },
+                new Player { Id = 90, UserId = 34, SquadId = 12, IsPatientZero = false, IsZombie = false, BiteCode = 3456, GameId = 3 },
+                new Player { Id = 91, UserId = 35, SquadId = 12, IsPatientZero = false, IsZombie = false, BiteCode = 2223, GameId = 3 },
                 new Player { Id = 92, UserId = 37, SquadId = null, IsPatientZero = false, IsZombie = false, BiteCode = 2804, GameId = 3 },
-                new Player { Id = 93, UserId = 39, SquadId = 13,   IsPatientZero = false, IsZombie = true,  BiteCode = 4975, GameId = 3 },
-                new Player { Id = 94, UserId = 41, SquadId = 11,   IsPatientZero = false, IsZombie = false, BiteCode = 6729, GameId = 3 },
+                new Player { Id = 93, UserId = 39, SquadId = 13, IsPatientZero = false, IsZombie = true, BiteCode = 4975, GameId = 3 },
+                new Player { Id = 94, UserId = 41, SquadId = 11, IsPatientZero = false, IsZombie = false, BiteCode = 6729, GameId = 3 },
                 new Player { Id = 95, UserId = 42, SquadId = null, IsPatientZero = false, IsZombie = false, BiteCode = 7462, GameId = 3 },
-                new Player { Id = 96, UserId = 44, SquadId = null, IsPatientZero = false, IsZombie = true,  BiteCode = 9012, GameId = 3 },
-                new Player { Id = 97, UserId = 46, SquadId = 11,   IsPatientZero = false, IsZombie = false, BiteCode = 2109, GameId = 3 },
-                new Player { Id = 98, UserId = 47, SquadId = 13,   IsPatientZero = false, IsZombie = false, BiteCode = 3210, GameId = 3 },
-                new Player { Id = 99, UserId = 49, SquadId = null, IsPatientZero = false, IsZombie = true,  BiteCode = 9127, GameId = 3 },
-                new Player { Id = 100,UserId = 51, SquadId = 13,   IsPatientZero = false, IsZombie = false, BiteCode = 2556, GameId = 3 },
-                new Player { Id = 101,UserId = 53, SquadId = null, IsPatientZero = false, IsZombie = false, BiteCode = 9876, GameId = 3 },
-                new Player { Id = 102,UserId = 54, SquadId = 14,   IsPatientZero = false, IsZombie = true,  BiteCode = 3837, GameId = 3 },
-                new Player { Id = 103,UserId = 56, SquadId = null, IsPatientZero = false, IsZombie = false, BiteCode = 5698, GameId = 3 },
-                new Player { Id = 104,UserId = 59, SquadId = null, IsPatientZero = false, IsZombie = false, BiteCode = 3219, GameId = 3 },
-                new Player { Id = 105,UserId = 61, SquadId = 11,   IsPatientZero = false, IsZombie = true,  BiteCode = 8765, GameId = 3 },
-                new Player { Id = 106,UserId = 62, SquadId = null, IsPatientZero = false, IsZombie = false, BiteCode = 7654, GameId = 3 },
-                new Player { Id = 107,UserId = 64, SquadId = 13,   IsPatientZero = false, IsZombie = true,  BiteCode = 5432, GameId = 3 },
-                new Player { Id = 108,UserId = 67, SquadId = null, IsPatientZero = false, IsZombie = false, BiteCode = 6543, GameId = 3 },
-                new Player { Id = 109,UserId = 69, SquadId = 14,   IsPatientZero = false, IsZombie = false, BiteCode = 3456, GameId = 3 },
-                new Player { Id = 110,UserId = 70, SquadId = 13,   IsPatientZero = false, IsZombie = true,  BiteCode = 2223, GameId = 3 },
+                new Player { Id = 96, UserId = 44, SquadId = null, IsPatientZero = false, IsZombie = true, BiteCode = 9012, GameId = 3 },
+                new Player { Id = 97, UserId = 46, SquadId = 11, IsPatientZero = false, IsZombie = false, BiteCode = 2109, GameId = 3 },
+                new Player { Id = 98, UserId = 47, SquadId = 13, IsPatientZero = false, IsZombie = false, BiteCode = 3210, GameId = 3 },
+                new Player { Id = 99, UserId = 49, SquadId = null, IsPatientZero = false, IsZombie = true, BiteCode = 9127, GameId = 3 },
+                new Player { Id = 100, UserId = 51, SquadId = 13, IsPatientZero = false, IsZombie = false, BiteCode = 2556, GameId = 3 },
+                new Player { Id = 101, UserId = 53, SquadId = null, IsPatientZero = false, IsZombie = false, BiteCode = 9876, GameId = 3 },
+                new Player { Id = 102, UserId = 54, SquadId = 14, IsPatientZero = false, IsZombie = true, BiteCode = 3837, GameId = 3 },
+                new Player { Id = 103, UserId = 56, SquadId = null, IsPatientZero = false, IsZombie = false, BiteCode = 5698, GameId = 3 },
+                new Player { Id = 104, UserId = 59, SquadId = null, IsPatientZero = false, IsZombie = false, BiteCode = 3219, GameId = 3 },
+                new Player { Id = 105, UserId = 61, SquadId = 11, IsPatientZero = false, IsZombie = true, BiteCode = 8765, GameId = 3 },
+                new Player { Id = 106, UserId = 62, SquadId = null, IsPatientZero = false, IsZombie = false, BiteCode = 7654, GameId = 3 },
+                new Player { Id = 107, UserId = 64, SquadId = 13, IsPatientZero = false, IsZombie = true, BiteCode = 5432, GameId = 3 },
+                new Player { Id = 108, UserId = 67, SquadId = null, IsPatientZero = false, IsZombie = false, BiteCode = 6543, GameId = 3 },
+                new Player { Id = 109, UserId = 69, SquadId = 14, IsPatientZero = false, IsZombie = false, BiteCode = 3456, GameId = 3 },
+                new Player { Id = 110, UserId = 70, SquadId = 13, IsPatientZero = false, IsZombie = true, BiteCode = 2223, GameId = 3 },
 
-                new Player { Id = 111,UserId = 4,  SquadId = null, IsPatientZero = true,  IsZombie = true,  BiteCode = 4975, GameId = 4 },
-                new Player { Id = 112,UserId = 5,  SquadId = null, IsPatientZero = false, IsZombie = false, BiteCode = 5368, GameId = 4 },
-                new Player { Id = 113,UserId = 10, SquadId = null, IsPatientZero = false, IsZombie = false, BiteCode = 1098, GameId = 4 },
-                new Player { Id = 114,UserId = 17, SquadId = null, IsPatientZero = false, IsZombie = false, BiteCode = 1987, GameId = 4 },
-                new Player { Id = 115,UserId = 19, SquadId = null, IsPatientZero = false, IsZombie = false, BiteCode = 3837, GameId = 4 },
-                new Player { Id = 116,UserId = 21, SquadId = null, IsPatientZero = false, IsZombie = false, BiteCode = 5698, GameId = 4 },
-                new Player { Id = 117,UserId = 23, SquadId = null, IsPatientZero = false, IsZombie = false, BiteCode = 7088, GameId = 4 },
-                new Player { Id = 118,UserId = 29, SquadId = null, IsPatientZero = false, IsZombie = false, BiteCode = 5432, GameId = 4 },
-                new Player { Id = 119,UserId = 30, SquadId = null, IsPatientZero = false, IsZombie = false, BiteCode = 9645, GameId = 4 },
-                new Player { Id = 120,UserId = 32, SquadId = null, IsPatientZero = false, IsZombie = false, BiteCode = 6543, GameId = 4 },
-                new Player { Id = 121,UserId = 34, SquadId = null, IsPatientZero = false, IsZombie = false, BiteCode = 3456, GameId = 4 },
-                new Player { Id = 122,UserId = 35, SquadId = null, IsPatientZero = false, IsZombie = false, BiteCode = 2223, GameId = 4 },
-                new Player { Id = 123,UserId = 37, SquadId = null, IsPatientZero = false, IsZombie = false, BiteCode = 2804, GameId = 4 },
-                new Player { Id = 124,UserId = 41, SquadId = null, IsPatientZero = false, IsZombie = false, BiteCode = 6729, GameId = 4 },
-                new Player { Id = 125,UserId = 42, SquadId = null, IsPatientZero = false, IsZombie = false, BiteCode = 7462, GameId = 4 },
-                new Player { Id = 126,UserId = 46, SquadId = null, IsPatientZero = false, IsZombie = false, BiteCode = 2109, GameId = 4 },
-                new Player { Id = 127,UserId = 47, SquadId = null, IsPatientZero = false, IsZombie = false, BiteCode = 3210, GameId = 4 },
-                new Player { Id = 128,UserId = 51, SquadId = null, IsPatientZero = false, IsZombie = false, BiteCode = 2556, GameId = 4 },
-                new Player { Id = 129,UserId = 53, SquadId = null, IsPatientZero = false, IsZombie = false, BiteCode = 9876, GameId = 4 },
-                new Player { Id = 130,UserId = 56, SquadId = null, IsPatientZero = false, IsZombie = false, BiteCode = 5698, GameId = 4 },
-                new Player { Id = 131,UserId = 59, SquadId = null, IsPatientZero = false, IsZombie = false, BiteCode = 3219, GameId = 4 },
-                new Player { Id = 132,UserId = 62, SquadId = null, IsPatientZero = false, IsZombie = false, BiteCode = 7654, GameId = 4 },
-                new Player { Id = 133,UserId = 67, SquadId = null, IsPatientZero = false, IsZombie = false, BiteCode = 6543, GameId = 4 },
-                new Player { Id = 134,UserId = 69, SquadId = null, IsPatientZero = false, IsZombie = false, BiteCode = 3456, GameId = 4 }
+                new Player { Id = 111, UserId = 4, SquadId = null, IsPatientZero = true, IsZombie = true, BiteCode = 4975, GameId = 4 },
+                new Player { Id = 112, UserId = 5, SquadId = null, IsPatientZero = false, IsZombie = false, BiteCode = 5368, GameId = 4 },
+                new Player { Id = 113, UserId = 10, SquadId = null, IsPatientZero = false, IsZombie = false, BiteCode = 1098, GameId = 4 },
+                new Player { Id = 114, UserId = 17, SquadId = null, IsPatientZero = false, IsZombie = false, BiteCode = 1987, GameId = 4 },
+                new Player { Id = 115, UserId = 19, SquadId = null, IsPatientZero = false, IsZombie = false, BiteCode = 3837, GameId = 4 },
+                new Player { Id = 116, UserId = 21, SquadId = null, IsPatientZero = false, IsZombie = false, BiteCode = 5698, GameId = 4 },
+                new Player { Id = 117, UserId = 23, SquadId = null, IsPatientZero = false, IsZombie = false, BiteCode = 7088, GameId = 4 },
+                new Player { Id = 118, UserId = 29, SquadId = null, IsPatientZero = false, IsZombie = false, BiteCode = 5432, GameId = 4 },
+                new Player { Id = 119, UserId = 30, SquadId = null, IsPatientZero = false, IsZombie = false, BiteCode = 9645, GameId = 4 },
+                new Player { Id = 120, UserId = 32, SquadId = null, IsPatientZero = false, IsZombie = false, BiteCode = 6543, GameId = 4 },
+                new Player { Id = 121, UserId = 34, SquadId = null, IsPatientZero = false, IsZombie = false, BiteCode = 3456, GameId = 4 },
+                new Player { Id = 122, UserId = 35, SquadId = null, IsPatientZero = false, IsZombie = false, BiteCode = 2223, GameId = 4 },
+                new Player { Id = 123, UserId = 37, SquadId = null, IsPatientZero = false, IsZombie = false, BiteCode = 2804, GameId = 4 },
+                new Player { Id = 124, UserId = 41, SquadId = null, IsPatientZero = false, IsZombie = false, BiteCode = 6729, GameId = 4 },
+                new Player { Id = 125, UserId = 42, SquadId = null, IsPatientZero = false, IsZombie = false, BiteCode = 7462, GameId = 4 },
+                new Player { Id = 126, UserId = 46, SquadId = null, IsPatientZero = false, IsZombie = false, BiteCode = 2109, GameId = 4 },
+                new Player { Id = 127, UserId = 47, SquadId = null, IsPatientZero = false, IsZombie = false, BiteCode = 3210, GameId = 4 },
+                new Player { Id = 128, UserId = 51, SquadId = null, IsPatientZero = false, IsZombie = false, BiteCode = 2556, GameId = 4 },
+                new Player { Id = 129, UserId = 53, SquadId = null, IsPatientZero = false, IsZombie = false, BiteCode = 9876, GameId = 4 },
+                new Player { Id = 130, UserId = 56, SquadId = null, IsPatientZero = false, IsZombie = false, BiteCode = 5698, GameId = 4 },
+                new Player { Id = 131, UserId = 59, SquadId = null, IsPatientZero = false, IsZombie = false, BiteCode = 3219, GameId = 4 },
+                new Player { Id = 132, UserId = 62, SquadId = null, IsPatientZero = false, IsZombie = false, BiteCode = 7654, GameId = 4 },
+                new Player { Id = 133, UserId = 67, SquadId = null, IsPatientZero = false, IsZombie = false, BiteCode = 6543, GameId = 4 },
+                new Player { Id = 134, UserId = 69, SquadId = null, IsPatientZero = false, IsZombie = false, BiteCode = 3456, GameId = 4 }
                 );
             #endregion
 
@@ -392,28 +406,28 @@ namespace hvz_backend.Models
 
             #region Squads
             modelBuilder.Entity<Squad>().HasData(
-                new Squad { Id = 1,  Name = "Alpha Squad",      Description = "A team of elite soldiers trained in special operations and advanced tactics." },
-                new Squad { Id = 2,  Name = "Thunder Squad",    Description = "A highly skilled unit specializing in airborne operations and lightning fast strikes." },
-                new Squad { Id = 3,  Name = "Phoenix Squad",    Description = "A group of resilient soldiers known for their ability to rise from the ashes of defeat." },
-                new Squad { Id = 4,  Name = "Ghost Squad",      Description = "A covert unit specializing in stealth and infiltration missions." },
-                new Squad { Id = 5,  Name = "Titan Squad",      Description = "A formidable force of heavily armored soldiers with unparalleled firepower." },
-                new Squad { Id = 6,  Name = "Chimera Squad",    Description = "A team of specialists with unique abilities and powers, able to take on any challenge." },
-                new Squad { Id = 7,  Name = "Shadow Squad",     Description = "A group of skilled assassins and covert operatives, operating in the shadows." },
-                new Squad { Id = 8,  Name = "Valkyrie Squad",   Description = "An all-female unit known for their ferocity and bravery in battle." },
-                new Squad { Id = 9,  Name = "Fury Squad",       Description = "A team of soldiers who fight with a relentless passion and unbridled fury." },
-                new Squad { Id = 10, Name = "Storm Squad",      Description = "A versatile unit specializing in rapid response and weather-related operations." },
-                new Squad { Id = 11, Name = "Sabre Squad",      Description = "A highly trained unit specializing in close combat and hand-to-hand combat." },
-                new Squad { Id = 12, Name = "Atlas Squad",      Description = "A unit of soldiers with incredible strength and endurance, capable of moving mountains." },
-                new Squad { Id = 13, Name = "Omega Squad",      Description = "A team of soldiers equipped with cutting-edge technology and advanced weaponry." },
-                new Squad { Id = 14, Name = "Blade Squad",      Description = "A group of highly skilled swordsmen, trained in the art of combat and swordplay." }
+                new Squad { Id = 1, Name = "Alpha Squad", Description = "A team of elite soldiers trained in special operations and advanced tactics." },
+                new Squad { Id = 2, Name = "Thunder Squad", Description = "A highly skilled unit specializing in airborne operations and lightning fast strikes." },
+                new Squad { Id = 3, Name = "Phoenix Squad", Description = "A group of resilient soldiers known for their ability to rise from the ashes of defeat." },
+                new Squad { Id = 4, Name = "Ghost Squad", Description = "A covert unit specializing in stealth and infiltration missions." },
+                new Squad { Id = 5, Name = "Titan Squad", Description = "A formidable force of heavily armored soldiers with unparalleled firepower." },
+                new Squad { Id = 6, Name = "Chimera Squad", Description = "A team of specialists with unique abilities and powers, able to take on any challenge." },
+                new Squad { Id = 7, Name = "Shadow Squad", Description = "A group of skilled assassins and covert operatives, operating in the shadows." },
+                new Squad { Id = 8, Name = "Valkyrie Squad", Description = "An all-female unit known for their ferocity and bravery in battle." },
+                new Squad { Id = 9, Name = "Fury Squad", Description = "A team of soldiers who fight with a relentless passion and unbridled fury." },
+                new Squad { Id = 10, Name = "Storm Squad", Description = "A versatile unit specializing in rapid response and weather-related operations." },
+                new Squad { Id = 11, Name = "Sabre Squad", Description = "A highly trained unit specializing in close combat and hand-to-hand combat." },
+                new Squad { Id = 12, Name = "Atlas Squad", Description = "A unit of soldiers with incredible strength and endurance, capable of moving mountains." },
+                new Squad { Id = 13, Name = "Omega Squad", Description = "A team of soldiers equipped with cutting-edge technology and advanced weaponry." },
+                new Squad { Id = 14, Name = "Blade Squad", Description = "A group of highly skilled swordsmen, trained in the art of combat and swordplay." }
                 );
             #endregion
 
             #region Supplies
             modelBuilder.Entity<Supply>().HasData(
                 new Supply { Id = 1, Title = "NerfGun Ammo", HumanVisible = true, ZombieVisible = false, MapId = 1, BeginTime = new DateTime(2023, 03, 11, 09, 30, 00), EndTime = new DateTime(2023, 03, 11, 10, 00, 00), Latitude = 55.643243, Longitude = 12.270559, Drop = ItemType.AMMO, Amount = 40 },
-                new Supply { Id = 2, Title = "NerfGun",      HumanVisible = true, ZombieVisible = false, MapId = 1, BeginTime = new DateTime(2023, 03, 11, 09, 30, 00), EndTime = new DateTime(2023, 03, 11, 10, 00, 00), Latitude = 55.643243, Longitude = 12.270559, Drop = ItemType.NERFGUN, Amount = 10 },
-                new Supply { Id = 3, Title = "Grenades",     HumanVisible = true, ZombieVisible = false, MapId = 1, BeginTime = new DateTime(2023, 03, 11, 09, 30, 00), EndTime = new DateTime(2023, 03, 11, 10, 00, 00), Latitude = 55.643243, Longitude = 12.270559, Drop = ItemType.GENERADE, Amount = 10 },
+                new Supply { Id = 2, Title = "NerfGun", HumanVisible = true, ZombieVisible = false, MapId = 1, BeginTime = new DateTime(2023, 03, 11, 09, 30, 00), EndTime = new DateTime(2023, 03, 11, 10, 00, 00), Latitude = 55.643243, Longitude = 12.270559, Drop = ItemType.NERFGUN, Amount = 10 },
+                new Supply { Id = 3, Title = "Grenades", HumanVisible = true, ZombieVisible = false, MapId = 1, BeginTime = new DateTime(2023, 03, 11, 09, 30, 00), EndTime = new DateTime(2023, 03, 11, 10, 00, 00), Latitude = 55.643243, Longitude = 12.270559, Drop = ItemType.GENERADE, Amount = 10 },
 
                 new Supply { Id = 4, Title = "NerfGun Ammo", HumanVisible = true, ZombieVisible = false, MapId = 2, BeginTime = new DateTime(2023, 03, 11, 09, 30, 00), EndTime = new DateTime(2023, 03, 11, 10, 00, 00), Latitude = 55.643243, Longitude = 12.270559, Drop = ItemType.AMMO, Amount = 40 },
                 new Supply { Id = 5, Title = "NerfGun", HumanVisible = true, ZombieVisible = false, MapId = 2, BeginTime = new DateTime(2023, 03, 11, 09, 30, 00), EndTime = new DateTime(2023, 03, 11, 10, 00, 00), Latitude = 55.643243, Longitude = 12.270559, Drop = ItemType.NERFGUN, Amount = 10 },

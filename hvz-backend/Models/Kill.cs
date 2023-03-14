@@ -16,10 +16,13 @@ namespace hvz_backend.Models
         public int GameId { get; set; }
         public Game Game { get; set; }
 
-        public int KillerId { get; set; }
+        public int KillerId { get;  set; }
+
         public Player Killer { get; set; }
 
         public int VictimId { get; set; }
+
         public Player Victim { get; set; }
+
     }
 }

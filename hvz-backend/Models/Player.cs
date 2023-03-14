@@ -7,7 +7,7 @@ namespace hvz_backend.Models
         [Key]
         public int Id { get; set; }
 
-        [Required,Range(100000000,999999999)]
+        [Required,Range(1000,9999)]
         public int BiteCode { get; set; }
 
         [Required]
@@ -24,6 +24,9 @@ namespace hvz_backend.Models
 
         public int UserId { get; set; }
         public User User { get; set; }
+
+        public ICollection<Kill>? KillsByMe { get; set; }
+        public ICollection<Kill>? KillsAgainstMe { get; set; }
 
     }
 }
