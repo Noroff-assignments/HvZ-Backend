@@ -51,6 +51,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+if (app.Environment.IsProduction())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "v1"));
+}
+
 
 using var scope = app.Services.CreateScope();
 var services = scope.ServiceProvider;
