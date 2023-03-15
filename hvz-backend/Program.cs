@@ -1,4 +1,5 @@
 using hvz_backend.Models;
+using hvz_backend.Services.GameServices;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
@@ -41,6 +42,7 @@ builder.Services.AddSwaggerGen(options =>
 });
 
 // Adds services to the builder
+builder.Services.AddTransient<IGameService, GameService>();
 
 var app = builder.Build();
 
