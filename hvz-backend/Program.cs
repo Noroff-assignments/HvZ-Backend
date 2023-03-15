@@ -43,6 +43,7 @@ builder.Services.AddSwaggerGen(options =>
 
 // Adds services to the builder
 builder.Services.AddTransient<IGameService, GameService>();
+builder.Services.Configure<RouteOptions>(options => options.LowercaseUrls = true);
 
 var app = builder.Build();
 
