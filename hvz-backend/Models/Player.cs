@@ -22,8 +22,8 @@ namespace hvz_backend.Models
         public int GameId { get; set; }
         public Game Game { get; set; }
 
-        public int UserId { get; set; }
-        public User User { get; set; }
+        [Required]
+        public string UserToken { get; set; }
 
         public ICollection<Kill>? KillsByMe { get; set; }
         public ICollection<Kill>? KillsAgainstMe { get; set; }
