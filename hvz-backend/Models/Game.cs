@@ -27,7 +27,7 @@ namespace hvz_backend.Models
         public ICollection<Player>? Players { get;set;}
         public ICollection<Squad>? Squads { get; set; }
 
-        public string AdminToken { get; set; }
+        public string AdminID { get; set; }
 
         public Map Map { get; set; }
     }
