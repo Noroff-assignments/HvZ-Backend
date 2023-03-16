@@ -5,6 +5,7 @@ using Microsoft.OpenApi.Models;
 using System.Reflection;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using hvz_backend;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,7 +24,7 @@ builder.Services.AddCors(options =>
 
 builder.Services.AddControllers();
 builder.Services.AddDbContext<HvZDbContext>(
-    options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
+    options => options.UseSqlServer(builder.Configuration["DefaultConnection"])
     );
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle .
@@ -54,6 +55,12 @@ builder.Services.AddSwaggerGen(options =>
     options.IncludeXmlComments(xmlPath);
 });
 
+
+PusherConfig.ApiKey = builder.Configuration["Pusher:ApiKey"];
+PusherConfig.ApiId = builder.Configuration["Pusher:ApiId"];
+PusherConfig.ApiSecret = builder.Configuration["Pusher:Secret"];
+
+
 // Adds services to the builder
 builder.Services.AddTransient<IGameService, GameService>();
 builder.Services.Configure<RouteOptions>(options => options.LowercaseUrls = true);
@@ -65,12 +72,12 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         {
             ValidateIssuer = true,
             ValidateAudience = true,
-            ValidIssuer = builder.Configuration["IssuerURI"],
+            ValidIssuer = builder.Configuration["KeyCloak:IssuerURI"],
             ValidAudience = "account",
             IssuerSigningKeyResolver = (token, SecurityToken, kid, parameters) =>
             {
                 var client = new HttpClient();
-                var keyuri = builder.Configuration["KeyURI"];
+                var keyuri = builder.Configuration["KeyCloak:KeyURI"];
                 var response = client.GetAsync(keyuri).Result;
                 var responseString = response.Content.ReadAsStringAsync().Result;
                 var keys = new JsonWebKeySet(responseString);
@@ -78,6 +85,8 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             }
         };
     });
+
+
 
 var app = builder.Build();
 
