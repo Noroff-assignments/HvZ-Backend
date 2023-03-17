@@ -13,7 +13,6 @@ namespace hvz_backend.Models.DTOs.Game
 
         public StateGame Status { get; set; }
 
-        //many to one
         public List<string>? Kills { get; set; }
         public List<string>? Players { get; set; }
         public List<string>? Squads { get; set; }

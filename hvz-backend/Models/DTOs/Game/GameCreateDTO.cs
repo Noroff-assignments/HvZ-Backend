@@ -8,7 +8,7 @@ namespace hvz_backend.Models.DTOs.Game
         public string? Description { get; set; }
         public DateTime BeginTime { get; set; }
         public DateTime EndTime { get; set; }
-        public StateGame Status { get; set; }
-        public Map Map { get; set; }
+        public int MapId { get; set; }
+        public string AdminID { get; set; }
     }
 }

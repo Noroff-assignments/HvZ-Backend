@@ -6,6 +6,13 @@ using System.Reflection;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using hvz_backend;
+using hvz_backend.Services.MapServices;
+using hvz_backend.Services.KillServices;
+using hvz_backend.Services.MissionServices;
+using hvz_backend.Services.PlayerServices;
+using hvz_backend.Services.SafezoneServices;
+using hvz_backend.Services.SquadServices;
+using hvz_backend.Services.SupplyServices;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -63,6 +70,15 @@ PusherConfig.ApiSecret = builder.Configuration["Pusher:Secret"];
 
 // Adds services to the builder
 builder.Services.AddTransient<IGameService, GameService>();
+builder.Services.AddTransient<IMapService, MapService>();
+builder.Services.AddTransient<IKillService, KillService>();
+builder.Services.AddTransient<IMissionService, MissionService>();
+builder.Services.AddTransient<IPlayerService, PlayerService>();
+builder.Services.AddTransient<ISafezoneService, SafezoneService>();
+builder.Services.AddTransient<ISquadService, SquadService>();
+builder.Services.AddTransient<ISupplyService, SupplyService>();
+
+
 builder.Services.Configure<RouteOptions>(options => options.LowercaseUrls = true);
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

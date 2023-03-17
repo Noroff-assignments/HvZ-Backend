@@ -29,6 +29,7 @@ namespace hvz_backend.Models
 
         public string AdminID { get; set; }
 
+        public int MapId { get; set; }
         public Map Map { get; set; }
     }
 }
