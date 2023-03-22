@@ -1,22 +1,78 @@
-﻿using hvz_backend.Models;
+﻿using hvz_backend.Exceptions;
+using hvz_backend.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace hvz_backend.Services.KillServices
 {
     public class KillService : IKillService
     {
-        public Task<Kill> CreateKill(Kill kill)
+        #region Constrcutor & Fields
+        private readonly HvZDbContext _context;
+
+        public KillService(HvZDbContext context)
         {
-            throw new NotImplementedException();
+            _context = context;
+        }
+        #endregion
+
+        #region Create
+        public async Task<Kill> CreateKill(Kill kill)
+        {
+            if (kill == null) throw new ArgumentNullException(nameof(kill));
+            _context.Kills.Add(kill);
+            await _context.SaveChangesAsync();
+            return kill;
+        }
+        #endregion
+
+        #region Read
+        public async Task<IEnumerable<Kill>> GetAllKillsInMap(int gameId)
+        {
+            var game = await _context.Games
+                .Include(m => m.Kills)
+                .Where(k => k.Id == gameId)
+                .FirstOrDefaultAsync();
+            if (game == null) throw new GameNotFoundException(gameId);
+            var kills = game.Kills;
+            if (kills == null) throw new KillNotFoundException();
+            return kills;
         }
 
-        public Task<IEnumerable<Kill>> GetAllKills()
+        public async Task<Kill> GetKillByIdInMap(int gameId, int id)
         {
-            throw new NotImplementedException();
+            var game = await _context.Games
+                .Include(m => m.Kills)
+                .Where(k => k.Id == gameId)
+                .FirstOrDefaultAsync();
+            if (game == null) throw new GameNotFoundException(gameId);
+            var kill = game.Kills.FirstOrDefault(k => k.Id == id);
+            if (kill == null) throw new KillNotFoundException(id);
+            return kill;
         }
+        #endregion
 
-        public Task<Kill> GetKillById(int id)
+
+        #region Update
+        public async Task<Kill> UpdateKill(Kill kill)
         {
-            throw new NotImplementedException();
+            var foundKill = await _context.Kills.AnyAsync(m => m.Id == kill.Id);
+            if (!foundKill) throw new KillNotFoundException(kill.Id);
+
+            _context.Entry(kill).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+            return kill;
         }
+        #endregion
+
+        #region Delete
+        public async Task DeleteKill(int id)
+        {
+            Kill? kill = await _context.Kills.FindAsync(id);
+
+            if (kill == null) throw new KillNotFoundException(id);
+            _context.Kills.Remove(kill);
+            await _context.SaveChangesAsync();
+        }
+        #endregion
     }
 }

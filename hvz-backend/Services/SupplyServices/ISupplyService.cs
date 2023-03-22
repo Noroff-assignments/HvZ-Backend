@@ -4,8 +4,10 @@ namespace hvz_backend.Services.SupplyServices
 {
     public interface ISupplyService
     {
-        Task<IEnumerable<Supply>> GetAllSupplys();
-        Task<Supply> GetSupplyById(int id);
         Task<Supply> CreateSupply(Supply supply);
+        Task<IEnumerable<Supply>> GetAllSuppliesInMap(int mapId);
+        Task<Supply> GetSupplyByIdInMap(int mapId, int id);
+        Task<Supply> UpdateSupply(Supply supply);
+        Task DeleteSupply(int id);
     }
 }

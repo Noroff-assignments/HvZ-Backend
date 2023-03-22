@@ -7,5 +7,7 @@ namespace hvz_backend.Services.GameServices
         Task<IEnumerable<Game>> GetAllGames();
         Task<Game> GetGameById(int id);
         Task<Game> CreateGame(Game game);
+        Task<Game> UpdateGame(Game game);
+        Task DeleteGame(int id);
     }
 }

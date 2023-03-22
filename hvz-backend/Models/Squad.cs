@@ -16,5 +16,9 @@ namespace hvz_backend.Models
         public int? TotalPlayer { get; set; }
 
         public int? TotalDead { get; set; }
+        public int? GameId { get; set; }
+        public Game? Game { get; set; }
+
+        public ICollection<Player>? Players { get; set; }
     }
 }

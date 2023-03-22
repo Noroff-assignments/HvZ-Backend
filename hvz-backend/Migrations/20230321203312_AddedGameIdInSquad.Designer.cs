@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using hvz_backend.Models;
 
@@ -11,9 +12,11 @@ using hvz_backend.Models;
 namespace hvz_backend.Migrations
 {
     [DbContext(typeof(HvZDbContext))]
-    partial class HvZDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230321203312_AddedGameIdInSquad")]
+    partial class AddedGameIdInSquad
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -2352,98 +2355,84 @@ namespace hvz_backend.Migrations
                         {
                             Id = 1,
                             Description = "A team of elite soldiers trained in special operations and advanced tactics.",
-                            GameId = 1,
                             Name = "Alpha Squad"
                         },
                         new
                         {
                             Id = 2,
                             Description = "A highly skilled unit specializing in airborne operations and lightning fast strikes.",
-                            GameId = 1,
                             Name = "Thunder Squad"
                         },
                         new
                         {
                             Id = 3,
                             Description = "A group of resilient soldiers known for their ability to rise from the ashes of defeat.",
-                            GameId = 1,
                             Name = "Phoenix Squad"
                         },
                         new
                         {
                             Id = 4,
                             Description = "A covert unit specializing in stealth and infiltration missions.",
-                            GameId = 1,
                             Name = "Ghost Squad"
                         },
                         new
                         {
                             Id = 5,
                             Description = "A formidable force of heavily armored soldiers with unparalleled firepower.",
-                            GameId = 1,
                             Name = "Titan Squad"
                         },
                         new
                         {
                             Id = 6,
                             Description = "A team of specialists with unique abilities and powers, able to take on any challenge.",
-                            GameId = 2,
                             Name = "Chimera Squad"
                         },
                         new
                         {
                             Id = 7,
                             Description = "A group of skilled assassins and covert operatives, operating in the shadows.",
-                            GameId = 2,
                             Name = "Shadow Squad"
                         },
                         new
                         {
                             Id = 8,
                             Description = "An all-female unit known for their ferocity and bravery in battle.",
-                            GameId = 2,
                             Name = "Valkyrie Squad"
                         },
                         new
                         {
                             Id = 9,
                             Description = "A team of soldiers who fight with a relentless passion and unbridled fury.",
-                            GameId = 2,
                             Name = "Fury Squad"
                         },
                         new
                         {
                             Id = 10,
                             Description = "A versatile unit specializing in rapid response and weather-related operations.",
-                            GameId = 2,
                             Name = "Storm Squad"
                         },
                         new
                         {
                             Id = 11,
                             Description = "A highly trained unit specializing in close combat and hand-to-hand combat.",
-                            GameId = 3,
                             Name = "Sabre Squad"
                         },
                         new
                         {
                             Id = 12,
                             Description = "A unit of soldiers with incredible strength and endurance, capable of moving mountains.",
-                            GameId = 3,
                             Name = "Atlas Squad"
                         },
                         new
                         {
                             Id = 13,
                             Description = "A team of soldiers equipped with cutting-edge technology and advanced weaponry.",
-                            GameId = 3,
                             Name = "Omega Squad"
                         },
                         new
                         {
                             Id = 14,
                             Description = "A group of highly skilled swordsmen, trained in the art of combat and swordplay.",
-                            GameId = 3,
                             Name = "Blade Squad"
                         });
                 });
@@ -2768,8 +2757,7 @@ namespace hvz_backend.Migrations
                 {
                     b.HasOne("hvz_backend.Models.Game", "Game")
                         .WithMany("Squads")
-                        .HasForeignKey("GameId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("GameId");
 
                     b.Navigation("Game");
                 });

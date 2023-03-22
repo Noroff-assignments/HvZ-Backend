@@ -15,21 +15,22 @@ namespace hvz_backend.Services.GameServices
         }
         #endregion
 
-        /// <summary>
-        /// The service of getting all the games in the db.
-        /// </summary>
-        /// <returns>List of all games.</returns>
+        #region Create
+        public async Task<Game> CreateGame(Game game)
+        {
+            if (game == null) throw new ArgumentNullException(nameof(game));
+            await _context.Games.AddAsync(game);
+            await _context.SaveChangesAsync();
+            return game;
+        }
+        #endregion
+
+        #region Read
         public async Task<IEnumerable<Game>> GetAllGames()
         {
             return await _context.Games.ToListAsync();
         }
 
-        /// <summary>
-        /// The service of getting a game based on a id.
-        /// </summary>
-        /// <param name="id">The unique id of a game.</param>
-        /// <returns>The game of the unique id.</returns>
-        /// <exception cref="GameNotFoundException">When the unique id is not in the db.</exception>
         public async Task<Game> GetGameById(int id)
         {
             var game = await _context.Games.FindAsync(id);
@@ -40,19 +41,31 @@ namespace hvz_backend.Services.GameServices
             }
             return game;
         }
+        #endregion
 
-        /// <summary>
-        /// The service for creating a new game for the db.
-        /// </summary>
-        /// <param name="game">An game with parameter </param>
-        /// <returns>Given game and post on db.</returns>
-        /// <exception cref="ArgumentNullException">When given gane is null.</exception>
-        public async Task<Game> CreateGame(Game game)
+        #region Update
+        public async Task<Game> UpdateGame(Game game)
         {
-            if (game == null) throw new ArgumentNullException(nameof(game));
-            await _context.Games.AddAsync(game);
+            var foundGame = await _context.Games.AnyAsync(m => m.Id == game.Id);
+            if (!foundGame) throw new GameNotFoundException(game.Id);
+
+            _context.Entry(game).State = EntityState.Modified;
             await _context.SaveChangesAsync();
             return game;
         }
+        #endregion
+
+        #region Delete
+        public async Task DeleteGame(int id)
+        {
+            Game? game = await _context.Games.FindAsync(id);
+
+            if (game == null) throw new GameNotFoundException(id);
+            _context.Games.Remove(game);
+            await _context.SaveChangesAsync();
+        }
+        #endregion
+
+
     }
 }

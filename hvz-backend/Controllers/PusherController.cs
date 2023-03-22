@@ -5,7 +5,7 @@ using System.Net.Mime;
 namespace hvz_backend.Controllers
 {
 
-    [Route("api/v1/[controller]")]
+    [Route("api/v1/game/chat")]
     [ApiController]
     [Produces(MediaTypeNames.Application.Json)]
     [Consumes(MediaTypeNames.Application.Json)]

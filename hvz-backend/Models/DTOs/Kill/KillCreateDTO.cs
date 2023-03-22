@@ -1,5 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
+﻿
 namespace hvz_backend.Models.DTOs.Kill
 {
     public class KillCreateDTO
@@ -8,7 +7,5 @@ namespace hvz_backend.Models.DTOs.Kill
         public string? DeadStory { get; set; }
         public int GameId { get; set; }
         public int KillerId { get; set; }
-        public int VictimId { get; set; }
-
     }
 }

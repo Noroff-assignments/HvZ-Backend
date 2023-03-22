@@ -4,8 +4,10 @@ namespace hvz_backend.Services.PlayerServices
 {
     public interface IPlayerService
     {
-        Task<IEnumerable<Player>> GetAllPlayers();
-        Task<Map> GetPlayerById(int id);
-        Task<Map> CreatePlayer(Player player);
+        Task<Player> CreatePlayer(Player supply);
+        Task<IEnumerable<Player>> GetAllPlayersInMap(int mapId);
+        Task<Player> GetPlayerByIdInMap(int mapId, int id);
+        Task<Player> UpdatePlayer(Player player);
+        Task DeletePlayer(int id);
     }
 }

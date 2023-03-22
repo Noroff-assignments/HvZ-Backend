@@ -4,8 +4,10 @@ namespace hvz_backend.Services.SquadServices
 {
     public interface ISquadService
     {
-        Task<IEnumerable<Squad>> GetAllSquads();
-        Task<Squad> GetSquadById(int id);
         Task<Squad> CreateSquad(Squad squad);
+        Task<IEnumerable<Squad>> GetAllSquadsInMap(int gameId);
+        Task<Squad> GetSquadByIdInMap(int gameId, int id);
+        Task<Squad> UpdateSquad(Squad squad);
+        Task DeleteSquad(int id);
     }
 }

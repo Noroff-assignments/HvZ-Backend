@@ -2,6 +2,7 @@
 {
     public class MapReadDTO
     {
+        public int Id { get; set; }
         public string MapName { get; set; }
         public string? MapDescription { get; set; }
         public double Latitude { get; set; }

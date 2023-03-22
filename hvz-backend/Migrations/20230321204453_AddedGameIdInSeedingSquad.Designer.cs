@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using hvz_backend.Models;
 
@@ -11,9 +12,11 @@ using hvz_backend.Models;
 namespace hvz_backend.Migrations
 {
     [DbContext(typeof(HvZDbContext))]
-    partial class HvZDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230321204453_AddedGameIdInSeedingSquad")]
+    partial class AddedGameIdInSeedingSquad
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -2768,8 +2771,7 @@ namespace hvz_backend.Migrations
                 {
                     b.HasOne("hvz_backend.Models.Game", "Game")
                         .WithMany("Squads")
-                        .HasForeignKey("GameId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("GameId");
 
                     b.Navigation("Game");
                 });

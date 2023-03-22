@@ -4,8 +4,10 @@ namespace hvz_backend.Services.KillServices
 {
     public interface IKillService
     {
-        Task<IEnumerable<Kill>> GetAllKills();
-        Task<Kill> GetKillById(int id);
-        Task<Kill> CreateKill(Kill kill);
+        Task<Kill> CreateKill(Kill supply);
+        Task<IEnumerable<Kill>> GetAllKillsInMap(int mapId);
+        Task<Kill> GetKillByIdInMap(int mapId, int id);
+        Task<Kill> UpdateKill(Kill kill);
+        Task DeleteKill(int id);
     }
 }
