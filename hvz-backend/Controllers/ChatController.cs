@@ -10,11 +10,11 @@ namespace hvz_backend.Controllers
     [Produces(MediaTypeNames.Application.Json)]
     [Consumes(MediaTypeNames.Application.Json)]
     [ApiConventionType(typeof(DefaultApiConventions))]
-    public class PusherController : ControllerBase
+    public class ChatController : ControllerBase
     {
         private readonly Pusher pusher;
 
-        public PusherController()
+        public ChatController()
         {
             var options = new PusherOptions
             {
@@ -30,9 +30,10 @@ namespace hvz_backend.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> HelloWorld()
+        // 
+        public async Task<ActionResult> Message(string message, string eventName) 
         {
-            return Ok(await pusher.TriggerAsync("HvZApp","my-event",new { message = "hello world" }));
+            return Ok(await pusher.TriggerAsync("HvZApp",eventName,message));
         }
     }
 }

@@ -9,5 +9,8 @@ namespace hvz_backend.Services.SquadServices
         Task<Squad> GetSquadByIdInMap(int gameId, int id);
         Task<Squad> UpdateSquad(Squad squad);
         Task DeleteSquad(int id);
+        //Task<Squad> AddSquadMember(int squadId,Player player);
+        //Task<Squad> GetSquadCheckIn(int squadId);
+        //Task<Squad> CreateSquadCheckIn()
     }
 }
