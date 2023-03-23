@@ -13,6 +13,8 @@ using hvz_backend.Services.PlayerServices;
 using hvz_backend.Services.SafezoneServices;
 using hvz_backend.Services.SquadServices;
 using hvz_backend.Services.SupplyServices;
+using Azure.Identity;
+using Azure.Security.KeyVault.Secrets;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,10 +30,13 @@ builder.Services.AddCors(options =>
         });
 });
 
+SecretClient secretDCClient = new SecretClient(vaultUri: new Uri("https://hvzvault.vault.azure.net/"), credential: new DefaultAzureCredential());
+KeyVaultSecret secretDC = secretDCClient.GetSecret("DefaultConnection");
+string secretDCValue = secretDC.Value;
 
 builder.Services.AddControllers();
 builder.Services.AddDbContext<HvZDbContext>(
-    options => options.UseSqlServer(builder.Configuration["DefaultConnection"])
+    options => options.UseSqlServer(secretDCValue)
     );
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle .
@@ -62,10 +67,22 @@ builder.Services.AddSwaggerGen(options =>
     options.IncludeXmlComments(xmlPath);
 });
 
+SecretClient secretPusherKeyClient = new SecretClient(vaultUri: new Uri("https://hvzvault.vault.azure.net/"), credential: new DefaultAzureCredential());
+KeyVaultSecret secretPusherKey = secretPusherKeyClient.GetSecret("PusherApiKey");
+string secretPusherKeyValue = secretPusherKey.Value;
 
-PusherConfig.ApiKey = builder.Configuration["Pusher:ApiKey"];
-PusherConfig.ApiId = builder.Configuration["Pusher:ApiId"];
-PusherConfig.ApiSecret = builder.Configuration["Pusher:Secret"];
+SecretClient secretPusherIdClient = new SecretClient(vaultUri: new Uri("https://hvzvault.vault.azure.net/"), credential: new DefaultAzureCredential());
+KeyVaultSecret secretPusherId = secretPusherIdClient.GetSecret("PusherApiId");
+string secretPusherIdValue = secretPusherId.Value;
+
+SecretClient secretPusherClient = new SecretClient(vaultUri: new Uri("https://hvzvault.vault.azure.net/"), credential: new DefaultAzureCredential());
+KeyVaultSecret secretPusher = secretPusherClient.GetSecret("PusherSecret");
+string secretPusherValue = secretPusher.Value;
+
+
+PusherConfig.ApiKey = builder.Configuration[secretPusherKeyValue];
+PusherConfig.ApiId = builder.Configuration[secretPusherIdValue];
+PusherConfig.ApiSecret = builder.Configuration[secretPusherValue];
 
 
 // Adds services to the builder
@@ -81,6 +98,14 @@ builder.Services.AddTransient<ISupplyService, SupplyService>();
 
 builder.Services.Configure<RouteOptions>(options => options.LowercaseUrls = true);
 
+SecretClient secretIssuerClient = new SecretClient(vaultUri: new Uri("https://hvzvault.vault.azure.net/"), credential: new DefaultAzureCredential());
+KeyVaultSecret secretIssuer = secretIssuerClient.GetSecret("KeycloakIssuerURI");
+string secretIssuerValue = secretIssuer.Value;
+
+SecretClient secretKeyClient = new SecretClient(vaultUri: new Uri("https://hvzvault.vault.azure.net/"), credential: new DefaultAzureCredential());
+KeyVaultSecret secretKey = secretKeyClient.GetSecret("KeycloakURI");
+string secretKeyValue = secretKey.Value;
+
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(opt =>
     {
@@ -88,12 +113,12 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         {
             ValidateIssuer = true,
             ValidateAudience = true,
-            ValidIssuer = builder.Configuration["KeyCloak:IssuerURI"],
+            ValidIssuer = builder.Configuration[secretIssuerValue],
             ValidAudience = "account",
             IssuerSigningKeyResolver = (token, SecurityToken, kid, parameters) =>
             {
                 var client = new HttpClient();
-                var keyuri = builder.Configuration["KeyCloak:KeyURI"];
+                var keyuri = builder.Configuration[secretKeyValue];
                 var response = client.GetAsync(keyuri).Result;
                 var responseString = response.Content.ReadAsStringAsync().Result;
                 var keys = new JsonWebKeySet(responseString);
