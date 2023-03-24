@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using hvz_backend.Models;
 using hvz_backend.Exceptions;
+using hvz_backend.Models.Enums;
+using Microsoft.OpenApi.Extensions;
 
 namespace hvz_backend.Services.GameServices
 {
@@ -34,13 +36,52 @@ namespace hvz_backend.Services.GameServices
         public async Task<Game> GetGameById(int id)
         {
             var game = await _context.Games.FindAsync(id);
-            if (game == null) 
-            {
-                throw new GameNotFoundException(id);
-            
-            }
+            if (game == null) throw new GameNotFoundException(id);
             return game;
         }
+
+        public async Task<Game> GetTitleGame(int id)
+        {
+            var game = await _context.Games.FindAsync(id);
+            if (game == null) throw new GameNotFoundException(id);
+            return game;
+        }
+
+        public async Task<string> GetDescriptionGame(int id)
+        {
+            var game = await _context.Games.FindAsync(id);
+            if (game == null) throw new GameNotFoundException(id);
+            return game.Description;
+        }
+
+        public async Task<string> GetAdminGame(int id)
+        {
+            var game = await _context.Games.FindAsync(id);
+            if (game == null) throw new GameNotFoundException(id);
+            return game.AdminID;
+        }
+
+        public async Task<DateTime> GetBeginTimeGame(int id)
+        {
+            var game = await _context.Games.FindAsync(id);
+            if (game == null) throw new GameNotFoundException(id);
+            return game.BeginTime;
+        }
+
+        public async Task<DateTime> GetEndTimeGame(int id)
+        {
+            var game = await _context.Games.FindAsync(id);
+            if (game == null) throw new GameNotFoundException(id);
+            return game.EndTime;
+        }
+
+        public async Task<string> GetStateGame(int id)
+        {
+            var game = await _context.Games.FindAsync(id);
+            if (game == null) throw new GameNotFoundException(id);
+            return game.Status.GetDisplayName();
+        }
+
         #endregion
 
         #region Update
@@ -53,6 +94,55 @@ namespace hvz_backend.Services.GameServices
             await _context.SaveChangesAsync();
             return game;
         }
+
+
+        public async Task PatchTitleGame(int id, string title)
+        {
+            var game = await _context.Games.FindAsync(id);
+            if (game == null) throw new GameNotFoundException(id);
+            game.Title= title;
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task PatchAdminGame(int id, string adminId)
+        {
+            var game = await _context.Games.FindAsync(id);
+            if (game == null) throw new GameNotFoundException(id);
+            game.AdminID = adminId;
+            await _context.SaveChangesAsync();
+        }
+        public async Task PatchDescriptionGame(int id, string description)
+        {
+            var game = await _context.Games.FindAsync(id);
+            if (game == null) throw new GameNotFoundException(id);
+            game.Description = description;
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task PatchBeginTimeGame(int id, DateTime begin)
+        {
+            var game = await _context.Games.FindAsync(id);
+            if (game == null) throw new GameNotFoundException(id);
+            game.BeginTime = begin;
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task PatchEndTimeGame(int id, DateTime end)
+        {
+            var game = await _context.Games.FindAsync(id);
+            if (game == null) throw new GameNotFoundException(id);
+            game.EndTime = end;
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task PatchStateGame(int id, StateGame state)
+        {
+            var game = await _context.Games.FindAsync(id);
+            if (game == null) throw new GameNotFoundException(id);
+            game.Status = state;
+            await _context.SaveChangesAsync();
+        }
+
         #endregion
 
         #region Delete

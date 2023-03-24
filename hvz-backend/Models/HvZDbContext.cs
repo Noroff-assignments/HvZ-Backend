@@ -1,6 +1,7 @@
 ﻿using hvz_backend.Models.Enums;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Extensions;
 
 namespace hvz_backend.Models
 {

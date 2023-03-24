@@ -13,6 +13,6 @@ namespace hvz_backend.Models.DTOs.Game
         public List<string>? Kills { get; set; }
         public List<string>? Players { get; set; }
         public List<string>? Squads { get; set; }
-        public Models.Map Map { get; set; }
+        public int MapId { get; set; }
     }
 }
