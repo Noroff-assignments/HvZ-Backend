@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using hvz_backend.Models;
+using hvz_backend.Models.DTOs.Game;
 using hvz_backend.Models.DTOs.Map;
 
 namespace hvz_backend.Profiles
@@ -18,6 +19,13 @@ namespace hvz_backend.Profiles
                 .ForMember(DTO => DTO.Supplies, options =>
                 options.MapFrom(mapDomain => mapDomain.Supplies.Select(supply => $"api/v1/map/{supply.MapId}/supply/{supply.Id}").ToList()))
                 ;
+
+            CreateMap<Map, MapNameDTO>().ForMember(dto => dto.MapName, opt => opt.MapFrom(map => map.MapName));
+            CreateMap<Map, MapDescriptionDTO>().ForMember(dto => dto.MapDescription, opt => opt.MapFrom(map => map.MapDescription));
+            CreateMap<Map, MapLatDTO>().ForMember(dto => dto.Latitude, opt => opt.MapFrom(map => map.Latitude));
+            CreateMap<Map, MapLongDTO>().ForMember(dto => dto.Longitude, opt => opt.MapFrom(map => map.Longitude));
+
+
         }
     }
 }

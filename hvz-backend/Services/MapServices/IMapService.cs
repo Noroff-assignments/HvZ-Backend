@@ -9,5 +9,10 @@ namespace hvz_backend.Services.MapServices
         Task<Map> GetMapById(int id);
         Task<Map> UpdateMap(Map map);
         Task DeleteMap(int id);
+
+        Task PatchNameMap(int id, string name);
+        Task PatchDescriptionMap (int id, string description);
+        Task PatchLatitudeMap (int id, double latitude);
+        Task PatchLongitudeMap (int id, double longitude);
     }
 }

@@ -16,7 +16,6 @@ namespace hvz_backend.Services.GameServices
         Task PatchBeginTimeGame(int id, DateTime begin);
         Task PatchEndTimeGame(int id, DateTime end);
         Task PatchStateGame(int id, StateGame state);
-
         Task PatchAmountGame(int id, int amount);
 
     }

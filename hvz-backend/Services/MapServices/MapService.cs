@@ -14,6 +14,7 @@ namespace hvz_backend.Services.MapServices
             _context = context;
         }
         #endregion
+
         #region Create
         /// <summary>
         /// The service for creating a new map for the db.
@@ -73,6 +74,37 @@ namespace hvz_backend.Services.MapServices
             _context.Entry(map).State = EntityState.Modified;
             await _context.SaveChangesAsync();
             return map;
+        }
+
+        public async Task PatchNameMap(int id, string name)
+        {
+            var map = await _context.Maps.FindAsync(id);
+            if (map == null) throw new GameNotFoundException(id);
+            map.MapName = name;
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task PatchDescriptionMap(int id, string description)
+        {
+            var map = await _context.Maps.FindAsync(id);
+            if (map == null) throw new GameNotFoundException(id);
+            map.MapDescription = description;
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task PatchLatitudeMap(int id, double latitude)
+        {
+            var map = await _context.Maps.FindAsync(id);
+            if (map == null) throw new GameNotFoundException(id);
+            map.Latitude = latitude;
+            await _context.SaveChangesAsync();
+        }
+        public async Task PatchLongtitudeMap(int id, double longtitude)
+        {
+            var map = await _context.Maps.FindAsync(id);
+            if (map == null) throw new GameNotFoundException(id);
+            map.Longitude = longtitude;
+            await _context.SaveChangesAsync();
         }
         #endregion
 

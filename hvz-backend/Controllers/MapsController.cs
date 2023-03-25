@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using hvz_backend.Exceptions;
 using hvz_backend.Models;
+using hvz_backend.Models.DTOs.Game;
 using hvz_backend.Models.DTOs.Map;
 using hvz_backend.Models.DTOs.Supply;
 using hvz_backend.Services.MapServices;
@@ -91,6 +92,72 @@ namespace hvz_backend.Controllers
                 });
             }
         }
+
+
+        [HttpGet("{id}/name")]
+        public async Task<ActionResult<MapNameDTO>> GetNameMap(int id)
+        {
+            try
+            {
+                return Ok(_mapper.Map<MapNameDTO>(await _service.GetMapById(id)));
+            }
+            catch (GameNotFoundException e)
+            {
+                return NotFound(new ProblemDetails
+                {
+                    Detail = e.Message
+                });
+            }
+        }
+
+        [HttpGet("{id}/description")]
+        public async Task<ActionResult<MapDescriptionDTO>> GetDescriptionMap(int id)
+        {
+            try
+            {
+                return Ok(_mapper.Map<MapDescriptionDTO>(await _service.GetMapById(id)));
+            }
+            catch (GameNotFoundException e)
+            {
+                return NotFound(new ProblemDetails
+                {
+                    Detail = e.Message
+                });
+            }
+        }
+
+        [HttpGet("{id}/latitude")]
+        public async Task<ActionResult<MapLatDTO>> GetLatitudeMap(int id)
+        {
+            try
+            {
+                return Ok(_mapper.Map<MapLatDTO>(await _service.GetMapById(id)));
+            }
+            catch (GameNotFoundException e)
+            {
+                return NotFound(new ProblemDetails
+                {
+                    Detail = e.Message
+                });
+            }
+        }
+
+        [HttpGet("{id}/longitude")]
+        public async Task<ActionResult<MapLongDTO>> GetLongitudeMap(int id)
+        {
+            try
+            {
+                return Ok(_mapper.Map<MapLongDTO>(await _service.GetMapById(id)));
+            }
+            catch (GameNotFoundException e)
+            {
+                return NotFound(new ProblemDetails
+                {
+                    Detail = e.Message
+                });
+            }
+        }
+
         #endregion
 
         #region HTTP PUT
@@ -105,6 +172,76 @@ namespace hvz_backend.Controllers
                 await _service.UpdateMap(map);
             }
             catch (MapNotFoundException e)
+            {
+                return NotFound(new ProblemDetails
+                {
+                    Detail = e.Message
+                });
+            }
+            return NoContent();
+        }
+        #endregion
+
+        #region PATCH 
+        [HttpPatch("{id}/name")]
+        public async Task<ActionResult> PatchNameMap(int id, [FromBody] MapNameDTO mapNameDTO)
+        {
+            try
+            {
+                await _service.PatchNameMap(id, mapNameDTO.MapName);
+            }
+            catch (GameNotFoundException e)
+            {
+                return NotFound(new ProblemDetails
+                {
+                    Detail = e.Message
+                });
+            }
+            return NoContent();
+        }
+
+        [HttpPatch("{id}/description")]
+        public async Task<ActionResult> PatchDescriptionMap(int id, [FromBody] MapDescriptionDTO mapDescriptionDTO)
+        {
+            try
+            {
+                await _service.PatchDescriptionMap(id, mapDescriptionDTO.MapDescription);
+            }
+            catch (GameNotFoundException e)
+            {
+                return NotFound(new ProblemDetails
+                {
+                    Detail = e.Message
+                });
+            }
+            return NoContent();
+        }
+
+        [HttpPatch("{id}/latitude")]
+        public async Task<ActionResult> PatchLatitudeMap(int id, [FromBody] MapLatDTO mapLatDTO)
+        {
+            try
+            {
+                await _service.PatchLatitudeMap(id, mapLatDTO.Latitude);
+            }
+            catch (GameNotFoundException e)
+            {
+                return NotFound(new ProblemDetails
+                {
+                    Detail = e.Message
+                });
+            }
+            return NoContent();
+        }
+
+        [HttpPatch("{id}/longitude")]
+        public async Task<ActionResult> PatchLongitudeMap(int id, [FromBody] MapLongDTO mapLongDTO)
+        {
+            try
+            {
+                await _service.PatchLongitudeMap(id, mapLongDTO.Longitude);
+            }
+            catch (GameNotFoundException e)
             {
                 return NotFound(new ProblemDetails
                 {
