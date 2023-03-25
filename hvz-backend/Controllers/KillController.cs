@@ -2,8 +2,6 @@
 using hvz_backend.Exceptions;
 using hvz_backend.Models;
 using hvz_backend.Models.DTOs.Kill;
-using hvz_backend.Models.DTOs.Kill;
-using hvz_backend.Services.KillServices;
 using hvz_backend.Services.KillServices;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Mime;
@@ -29,12 +27,13 @@ namespace hvz_backend.Controllers
         }
         #endregion
 
+        #region HTTP POST
         /// <summary>
         /// Create a kill for the game
         /// </summary>
         /// <param name="createKillDTO"></param>
         /// <returns></returns>
-        #region HTTP POST
+
         [HttpPost("{gameId}/kill")]
         public async Task<ActionResult<Kill>> CreateKill(KillCreateDTO createKillDTO)
         {
