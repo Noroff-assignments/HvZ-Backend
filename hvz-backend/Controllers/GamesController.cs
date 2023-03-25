@@ -2,7 +2,6 @@
 using hvz_backend.Exceptions;
 using hvz_backend.Models;
 using hvz_backend.Models.DTOs.Game;
-using hvz_backend.Models.Enums;
 using hvz_backend.Services.GameServices;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Mime;
