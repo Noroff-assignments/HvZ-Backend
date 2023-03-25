@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using hvz_backend.Exceptions;
 using hvz_backend.Models;
+using hvz_backend.Models.DTOs.Game;
 using hvz_backend.Models.DTOs.Kill;
 using hvz_backend.Services.KillServices;
 using Microsoft.AspNetCore.Mvc;
@@ -93,6 +94,102 @@ namespace hvz_backend.Controllers
                 });
             }
         }
+
+        [HttpGet("{gameId}/kill/{id}/timedead")]
+        public async Task<ActionResult<KillTimeDeadDTO>> GetKillTime(int gameId, int id)
+        {
+            try
+            {
+                return Ok(_mapper.Map<KillTimeDeadDTO>(await _service.GetKillByIdInMap(gameId, id)));
+            }
+            catch (KillNotFoundException e)
+            {
+                return NotFound(new ProblemDetails
+                {
+                    Detail = e.Message
+                });
+            }
+        }
+
+        [HttpGet("{gameId}/kill/{id}/killer")]
+        public async Task<ActionResult<KillKillerDTO>> GetKillKiller(int gameId, int id)
+        {
+            try
+            {
+                return Ok(_mapper.Map<KillKillerDTO>(await _service.GetKillByIdInMap(gameId, id)));
+            }
+            catch (KillNotFoundException e)
+            {
+                return NotFound(new ProblemDetails
+                {
+                    Detail = e.Message
+                });
+            }
+        }
+
+        [HttpGet("{gameId}/kill/{id}/latitude")]
+        public async Task<ActionResult<KillLatDTO>> GetKillLatitude(int gameId, int id)
+        {
+            try
+            {
+                return Ok(_mapper.Map<KillLatDTO>(await _service.GetKillByIdInMap(gameId, id)));
+            }
+            catch (KillNotFoundException e)
+            {
+                return NotFound(new ProblemDetails
+                {
+                    Detail = e.Message
+                });
+            }
+        }
+
+        [HttpGet("{gameId}/kill/{id}/longitude")]
+        public async Task<ActionResult<KillLongDTO>> GetKillLongitude(int gameId, int id)
+        {
+            try
+            {
+                return Ok(_mapper.Map<KillLongDTO>(await _service.GetKillByIdInMap(gameId, id)));
+            }
+            catch (KillNotFoundException e)
+            {
+                return NotFound(new ProblemDetails
+                {
+                    Detail = e.Message
+                });
+            }
+        }
+
+        [HttpGet("{gameId}/kill/{id}/story")]
+        public async Task<ActionResult<KillStoryDTO>> GetKillStory(int gameId, int id)
+        {
+            try
+            {
+                return Ok(_mapper.Map<KillStoryDTO>(await _service.GetKillByIdInMap(gameId, id)));
+            }
+            catch (KillNotFoundException e)
+            {
+                return NotFound(new ProblemDetails
+                {
+                    Detail = e.Message
+                });
+            }
+        }
+
+        [HttpGet("{gameId}/kill/{id}/victim")]
+        public async Task<ActionResult<KillVictimDTO>> GetKillVictim(int gameId, int id)
+        {
+            try
+            {
+                return Ok(_mapper.Map<KillVictimDTO>(await _service.GetKillByIdInMap(gameId, id)));
+            }
+            catch (KillNotFoundException e)
+            {
+                return NotFound(new ProblemDetails
+                {
+                    Detail = e.Message
+                });
+            }
+        }
         #endregion
 
         #region HTTP PUT
@@ -120,6 +217,60 @@ namespace hvz_backend.Controllers
             }
             return NoContent();
         }
+        #endregion
+
+        #region HTTP PATCH
+        [HttpPatch("{gameId}/kill/{id}/story")]
+        public async Task<ActionResult> PatchDeadStoryKill(int mapId, int id, [FromBody] KillStoryDTO killStoryDTO)
+        {
+            try
+            {
+                await _service.PatchDeadStoryKill(mapId, id, killStoryDTO.DeadStory);
+            }
+            catch (GameNotFoundException e)
+            {
+                return NotFound(new ProblemDetails
+                {
+                    Detail = e.Message
+                });
+            }
+            return NoContent();
+        }
+
+        [HttpPatch("{gameId}/kill/{id}/killer")]
+        public async Task<ActionResult> PatchKillerKill(int mapId, int id, [FromBody] KillKillerDTO killKillerDTO)
+        {
+            try
+            {
+                await _service.PatchKillerKill(mapId, id, killKillerDTO.KillerId);
+            }
+            catch (GameNotFoundException e)
+            {
+                return NotFound(new ProblemDetails
+                {
+                    Detail = e.Message
+                });
+            }
+            return NoContent();
+        }
+
+        [HttpPatch("{gameId}/kill/{id}/victim")]
+        public async Task<ActionResult> PatchVictimKill(int mapId, int id, [FromBody] KillVictimDTO killVictimDTO)
+        {
+            try
+            {
+                await _service.PatchVictimKill(mapId, id, killVictimDTO.VictimId);
+            }
+            catch (GameNotFoundException e)
+            {
+                return NotFound(new ProblemDetails
+                {
+                    Detail = e.Message
+                });
+            }
+            return NoContent();
+        }
+
         #endregion
 
         #region HTTP DELETE

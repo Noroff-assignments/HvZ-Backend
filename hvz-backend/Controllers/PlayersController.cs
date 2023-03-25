@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using hvz_backend.Exceptions;
 using hvz_backend.Models;
+using hvz_backend.Models.DTOs.Game;
 using hvz_backend.Models.DTOs.Player;
-using hvz_backend.Models.DTOs.Player;
-using hvz_backend.Services.PlayerServices;
+using hvz_backend.Services.GameServices;
 using hvz_backend.Services.PlayerServices;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Mime;
@@ -20,32 +20,42 @@ namespace hvz_backend.Controllers
         #region Fields & Constructor
         private readonly IPlayerService _service;
         private readonly IMapper _mapper;
+        private readonly IGameService _gameService;
+
 
         // Sets the service and mapper for this controller via constructor.
-        public PlayersController(IPlayerService service, IMapper mapper)
+        public PlayersController(IPlayerService service, IGameService gameService ,IMapper mapper)
         {
             _service = service;
+            _gameService = gameService;
             _mapper = mapper;
         }
         #endregion
 
+
         /// <summary>
         /// Create a player for the game
         /// </summary>
-        /// <param name="createPlayerDTO"></param>
+        /// <param name="gameId">Identifier for game.</param>
+        /// <param name="createPlayerDTO">the </param>
         /// <returns></returns>
         #region HTTP POST
         [HttpPost("{gameId}/player")]
-        public async Task<ActionResult<Player>> CreatePlayer(PlayerCreateDTO createPlayerDTO)
+        public async Task<ActionResult<Player>> CreatePlayer(int gameId, PlayerCreateDTO createPlayerDTO)
         {
             try
             {
                 var player = _mapper.Map<Player>(createPlayerDTO);
+                player.GameId = gameId;
                 await _service.CreatePlayer(player);
-                return CreatedAtAction(nameof(GetPlayerByIdInGame), new { gameId = player.GameId, id = player.Id }, player);
+                var game = await _gameService.GetGameById(gameId);
+                var amountPlayer = game.AmountPlayers.HasValue ? (int)game.AmountPlayers + 1 : 1;
+                await _gameService.PatchAmountGame(gameId, amountPlayer);
+                return Ok(player);
+                //return CreatedAtAction(nameof(GetPlayerByIdInGame), new { gameId = gameId, id = player.Id }, player);
             }
             catch (Exception ex)
-            {
+            { 
                 return BadRequest(ex.Message);
             }
         }
@@ -130,11 +140,19 @@ namespace hvz_backend.Controllers
         /// <param name="id">Identifier of player.</param>
         /// <returns></returns>
         [HttpDelete("{gameId}/player/{id}")]
-        public async Task<IActionResult> DeletePlayer(int id)
+        public async Task<IActionResult> DeletePlayer(int id, int gameId)
         {
             try
             {
+                var player = _service.GetPlayerByIdInMap(gameId, id);
+                if (player != null)
+                {
+                    var game = await _gameService.GetGameById(gameId);
+                    var amountPlayer = (int)game.AmountPlayers + 1;
+                    await _gameService.PatchAmountGame(gameId, amountPlayer);
+                }
                 await _service.DeletePlayer(id);
+
             }
             catch (Exception ex)
             {

@@ -22,6 +22,8 @@ namespace hvz_backend.Models
         [Required]
         public StateGame Status { get; set; }
 
+        public int? AmountPlayers { get; set; }
+
         //many to one
         public ICollection<Kill>? Kills { get; set;}
         public ICollection<Player>? Players { get;set;}

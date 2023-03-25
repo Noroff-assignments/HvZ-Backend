@@ -40,48 +40,6 @@ namespace hvz_backend.Services.GameServices
             return game;
         }
 
-        public async Task<Game> GetTitleGame(int id)
-        {
-            var game = await _context.Games.FindAsync(id);
-            if (game == null) throw new GameNotFoundException(id);
-            return game;
-        }
-
-        public async Task<string> GetDescriptionGame(int id)
-        {
-            var game = await _context.Games.FindAsync(id);
-            if (game == null) throw new GameNotFoundException(id);
-            return game.Description;
-        }
-
-        public async Task<string> GetAdminGame(int id)
-        {
-            var game = await _context.Games.FindAsync(id);
-            if (game == null) throw new GameNotFoundException(id);
-            return game.AdminID;
-        }
-
-        public async Task<DateTime> GetBeginTimeGame(int id)
-        {
-            var game = await _context.Games.FindAsync(id);
-            if (game == null) throw new GameNotFoundException(id);
-            return game.BeginTime;
-        }
-
-        public async Task<DateTime> GetEndTimeGame(int id)
-        {
-            var game = await _context.Games.FindAsync(id);
-            if (game == null) throw new GameNotFoundException(id);
-            return game.EndTime;
-        }
-
-        public async Task<string> GetStateGame(int id)
-        {
-            var game = await _context.Games.FindAsync(id);
-            if (game == null) throw new GameNotFoundException(id);
-            return game.Status.GetDisplayName();
-        }
-
         #endregion
 
         #region Update
@@ -142,6 +100,15 @@ namespace hvz_backend.Services.GameServices
             game.Status = state;
             await _context.SaveChangesAsync();
         }
+
+        public async Task PatchAmountGame(int id, int amountPlayer)
+        {
+            var game = await _context.Games.FindAsync(id);
+            if (game == null) throw new GameNotFoundException(id);
+            game.AmountPlayers = amountPlayer;
+            await _context.SaveChangesAsync();
+        }
+
 
         #endregion
 

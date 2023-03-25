@@ -9,5 +9,10 @@ namespace hvz_backend.Services.KillServices
         Task<Kill> GetKillByIdInMap(int mapId, int id);
         Task<Kill> UpdateKill(Kill kill);
         Task DeleteKill(int id);
+
+        Task PatchDeadStoryKill(int mapId, int id, string story);
+        Task PatchKillerKill(int mapId, int id, int killerId);
+        Task PatchVictimKill(int mapId, int id, int victimId);
+
     }
 }

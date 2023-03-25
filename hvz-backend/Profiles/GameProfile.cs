@@ -24,6 +24,7 @@ namespace hvz_backend.Profiles
             CreateMap<Game, GameEndTimeDTO>().ForMember(dto => dto.EndTime, opt => opt.MapFrom(game => game.EndTime));
             CreateMap<Game, GameStateDTO>().ForMember(dto => dto.Status, opt => opt.MapFrom(game => game.Status));
             CreateMap<Game, GameTitleDTO>().ForMember(dto => dto.Title, opt => opt.MapFrom(game => game.Title));
+            CreateMap<Game, GamePlayersDTO>().ForMember(dto => dto.Amount, opt => opt.MapFrom(game => game.AmountPlayers));
 
         }
     }

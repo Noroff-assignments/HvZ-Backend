@@ -188,6 +188,22 @@ namespace hvz_backend.Controllers
             }
         }
 
+        [HttpGet("{id}/amountplayers")]
+        public async Task<ActionResult<GamePlayersDTO>> GetAmountPlayerGame(int id)
+        {
+            try
+            {
+                return Ok(_mapper.Map<GamePlayersDTO>(await _service.GetGameById(id)));
+            }
+            catch (GameNotFoundException e)
+            {
+                return NotFound(new ProblemDetails
+                {
+                    Detail = e.Message
+                });
+            }
+        }
+
 
         #endregion
 
@@ -284,6 +300,23 @@ namespace hvz_backend.Controllers
             try
             {
                 await _service.PatchAdminGame(id, gameAdminDTO.AdminID);
+            }
+            catch (GameNotFoundException e)
+            {
+                return NotFound(new ProblemDetails
+                {
+                    Detail = e.Message
+                });
+            }
+            return NoContent();
+        }
+
+        [HttpPatch("{id}/amountplayers")]
+        public async Task<ActionResult> PatchAmountGame(int id, [FromBody] GamePlayersDTO gamePlayerDTO)
+        {
+            try
+            {
+                await _service.PatchAmountGame(id, gamePlayerDTO.Amount);
             }
             catch (GameNotFoundException e)
             {

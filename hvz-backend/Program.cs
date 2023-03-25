@@ -80,9 +80,9 @@ KeyVaultSecret secretPusher = secretPusherClient.GetSecret("PusherSecret");
 string secretPusherValue = secretPusher.Value;
 
 
-PusherConfig.ApiKey = builder.Configuration[secretPusherKeyValue];
-PusherConfig.ApiId = builder.Configuration[secretPusherIdValue];
-PusherConfig.ApiSecret = builder.Configuration[secretPusherValue];
+PusherConfig.ApiKey = secretPusherKeyValue;
+PusherConfig.ApiId = secretPusherIdValue;
+PusherConfig.ApiSecret = secretPusherValue;
 
 
 // Adds services to the builder

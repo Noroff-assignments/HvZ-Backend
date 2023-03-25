@@ -10,6 +10,7 @@ namespace hvz_backend.Models.DTOs.Game
         public DateTime BeginTime { get; set; }
         public DateTime EndTime { get; set; }
         public StateGame Status { get; set; }
+        public int AmountPlayers { get; set; }
         public List<string>? Kills { get; set; }
         public List<string>? Players { get; set; }
         public List<string>? Squads { get; set; }

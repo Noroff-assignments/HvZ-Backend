@@ -1,5 +1,4 @@
-﻿using hvz_backend.Models.Enums;
-
+﻿
 namespace hvz_backend.Models.DTOs.Game
 {
     public class GameCreateDTO

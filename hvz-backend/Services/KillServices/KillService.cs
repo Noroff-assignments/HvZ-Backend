@@ -49,6 +49,7 @@ namespace hvz_backend.Services.KillServices
             if (kill == null) throw new KillNotFoundException(id);
             return kill;
         }
+
         #endregion
 
 
@@ -62,6 +63,46 @@ namespace hvz_backend.Services.KillServices
             await _context.SaveChangesAsync();
             return kill;
         }
+
+        public async Task PatchDeadStoryKill(int gameId, int id, string story)
+        {
+            var game = await _context.Games
+                .Include(m => m.Kills)
+                .Where(k => k.Id == gameId)
+                .FirstOrDefaultAsync();
+            if (game == null) throw new GameNotFoundException(gameId);
+            var kill = game.Kills.FirstOrDefault(k => k.Id == id);
+            if (kill == null) throw new KillNotFoundException(id);
+            kill.DeadStory = story;
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task PatchKillerKill(int gameId, int id, int killerId)
+        {
+            var game = await _context.Games
+                .Include(m => m.Kills)
+                .Where(k => k.Id == gameId)
+                .FirstOrDefaultAsync();
+            if (game == null) throw new GameNotFoundException(gameId);
+            var kill = game.Kills.FirstOrDefault(k => k.Id == id);
+            if (kill == null) throw new KillNotFoundException(id);
+            kill.KillerId = killerId;
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task PatchVictimKill(int gameId, int id, int victimId)
+        {
+            var game = await _context.Games
+                .Include(m => m.Kills)
+                .Where(k => k.Id == gameId)
+                .FirstOrDefaultAsync();
+            if (game == null) throw new GameNotFoundException(gameId);
+            var kill = game.Kills.FirstOrDefault(k => k.Id == id);
+            if (kill == null) throw new KillNotFoundException(id);
+            kill.VictimId = victimId;
+            await _context.SaveChangesAsync();
+        }
+
         #endregion
 
         #region Delete

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using hvz_backend.Models;
 
@@ -11,9 +12,11 @@ using hvz_backend.Models;
 namespace hvz_backend.Migrations
 {
     [DbContext(typeof(HvZDbContext))]
-    partial class HvZDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230325143221_AddedAmountPlayerInGame")]
+    partial class AddedAmountPlayerInGame
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -59,7 +62,8 @@ namespace hvz_backend.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("MapId");
+                    b.HasIndex("MapId")
+                        .IsUnique();
 
                     b.ToTable("Games");
 
@@ -3009,8 +3013,8 @@ namespace hvz_backend.Migrations
             modelBuilder.Entity("hvz_backend.Models.Game", b =>
                 {
                     b.HasOne("hvz_backend.Models.Map", "Map")
-                        .WithMany("Games")
-                        .HasForeignKey("MapId")
+                        .WithOne("Game")
+                        .HasForeignKey("hvz_backend.Models.Game", "MapId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -3115,7 +3119,8 @@ namespace hvz_backend.Migrations
 
             modelBuilder.Entity("hvz_backend.Models.Map", b =>
                 {
-                    b.Navigation("Games");
+                    b.Navigation("Game")
+                        .IsRequired();
 
                     b.Navigation("Missions");
 
