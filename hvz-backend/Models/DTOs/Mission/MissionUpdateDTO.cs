@@ -11,5 +11,6 @@
         public DateTime? BeginTime { get; set; }
         public DateTime EndTime { get; set; }
         public int MapId { get; set; }
+        public int Radius { get; set; }
     }
 }

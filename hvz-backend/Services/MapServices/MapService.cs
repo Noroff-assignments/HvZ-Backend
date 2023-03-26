@@ -106,6 +106,14 @@ namespace hvz_backend.Services.MapServices
             map.Longitude = longtitude;
             await _context.SaveChangesAsync();
         }
+
+        public async Task PatchRadiusMap(int id, int radius)
+        {
+            var map = await _context.Maps.FindAsync(id);
+            if (map == null) throw new GameNotFoundException(id);
+            map.Radius = radius;
+            await _context.SaveChangesAsync();
+        }
         #endregion
 
         #region Delete

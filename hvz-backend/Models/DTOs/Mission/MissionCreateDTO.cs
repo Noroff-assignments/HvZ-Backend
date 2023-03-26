@@ -10,6 +10,7 @@ namespace hvz_backend.Models.DTOs.Mission
         public double Longitude { get; set; }
         public bool ZombieVisible { get; set; }
         public bool HumanVisible { get; set; }
+        public int Radius { get; set; }
         public DateTime? BeginTime { get; set; }
         public DateTime EndTime { get; set; }
         public int MapId { get; set; }

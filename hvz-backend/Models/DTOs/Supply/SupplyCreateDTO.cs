@@ -16,5 +16,6 @@ namespace hvz_backend.Models.DTOs.Supply
         public int MapId { get; set; }
         public ItemType Drop { get; set; }
         public int Amount { get; set; }
+        public int Radius { get; set; }
     }
 }

@@ -4,6 +4,8 @@ using hvz_backend.Models;
 using hvz_backend.Models.DTOs.Kill;
 using hvz_backend.Models.DTOs.Mission;
 using hvz_backend.Models.DTOs.Mission;
+using hvz_backend.Models.DTOs.Safezone;
+using hvz_backend.Models.DTOs.Supply;
 using hvz_backend.Services.MissionServices;
 using hvz_backend.Services.MissionServices;
 using Microsoft.AspNetCore.Mvc;
@@ -224,6 +226,22 @@ namespace hvz_backend.Controllers
             }
         }
 
+        [HttpGet("{mapId}/mission/{id}/radius")]
+        public async Task<ActionResult<MissionRadiusDTO>> GetRadiusMission(int mapId, int id)
+        {
+            try
+            {
+                return Ok(_mapper.Map<MissionRadiusDTO>(await _service.GetMissionByIdInMap(mapId, id)));
+            }
+            catch (KillNotFoundException e)
+            {
+                return NotFound(new ProblemDetails
+                {
+                    Detail = e.Message
+                });
+            }
+        }
+
         #endregion
 
 
@@ -353,6 +371,23 @@ namespace hvz_backend.Controllers
             try
             {
                 await _service.PatchBeginMission(mapId, id, missionBeginDTO.BeginTime);
+            }
+            catch (GameNotFoundException e)
+            {
+                return NotFound(new ProblemDetails
+                {
+                    Detail = e.Message
+                });
+            }
+            return NoContent();
+        }
+
+        [HttpPatch("{mapId}/mission/{id}/radius")]
+        public async Task<ActionResult> PatchRadiusMission(int mapId, int id, [FromBody] MissionRadiusDTO missionRadiusDTO)
+        {
+            try
+            {
+                await _service.PatchRadiusMission(mapId, id, missionRadiusDTO.Radius);
             }
             catch (GameNotFoundException e)
             {

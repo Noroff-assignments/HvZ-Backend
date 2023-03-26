@@ -21,6 +21,7 @@ namespace hvz_backend.Profiles
             CreateMap<Mission, MissionHumanDTO>().ForMember(dto => dto.HumanVisible, opt => opt.MapFrom(map => map.HumanVisible));
             CreateMap<Mission, MissionBeginDTO>().ForMember(dto => dto.BeginTime, opt => opt.MapFrom(map => map.BeginTime));
             CreateMap<Mission, MissionEndDTO>().ForMember(dto => dto.EndTime, opt => opt.MapFrom(map => map.EndTime));
+            CreateMap<Mission, MissionRadiusDTO>().ForMember(dto => dto.Radius, opt => opt.MapFrom(map => map.Radius));
 
 
 

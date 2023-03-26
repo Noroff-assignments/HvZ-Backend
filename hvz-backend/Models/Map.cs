@@ -13,6 +13,8 @@ namespace hvz_backend.Models
         [MaxLength(255)]
         public string? MapDescription { get; set; }
 
+        public int Radius { get; set; }
+
         [Required, Range(-90.0, 90.0, ErrorMessage = "Latitude must be between -90 and 90.")]
         public double Latitude { get; set; }
 

@@ -7,6 +7,7 @@
         public string? MapDescription { get; set; }
         public double Latitude { get; set; }
         public double Longitude { get; set; }
+        public int Radius { get; set; }
 
         public List<string>? Safezones { get; set; }
         public List<string>? Missions { get; set; }

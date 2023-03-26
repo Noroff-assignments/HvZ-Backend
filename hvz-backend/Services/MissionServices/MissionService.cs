@@ -166,6 +166,19 @@ namespace hvz_backend.Services.MissionServices
             await _context.SaveChangesAsync();
         }
 
+        public async Task PatchRadiusMission(int mapId, int id, int radius)
+        {
+            var map = await _context.Maps
+                .Include(m => m.Missions)
+                .Where(k => k.Id == mapId)
+                .FirstOrDefaultAsync();
+            if (map == null) throw new GameNotFoundException(mapId);
+            var mission = map.Missions.FirstOrDefault(k => k.Id == id);
+            if (mission == null) throw new KillNotFoundException(id);
+            mission.Radius = radius;
+            await _context.SaveChangesAsync();
+        }
+
         #endregion
 
         #region Delete

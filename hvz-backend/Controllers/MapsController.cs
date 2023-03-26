@@ -3,6 +3,7 @@ using hvz_backend.Exceptions;
 using hvz_backend.Models;
 using hvz_backend.Models.DTOs.Game;
 using hvz_backend.Models.DTOs.Map;
+using hvz_backend.Models.DTOs.Safezone;
 using hvz_backend.Models.DTOs.Supply;
 using hvz_backend.Services.MapServices;
 using Microsoft.AspNetCore.Mvc;
@@ -158,6 +159,22 @@ namespace hvz_backend.Controllers
             }
         }
 
+        [HttpGet("/{id}/radius")]
+        public async Task<ActionResult<MapRadiusDTO>> GetRadiusMap(int id)
+        {
+            try
+            {
+                return Ok(_mapper.Map<MapRadiusDTO>(await _service.GetMapById(id)));
+            }
+            catch (KillNotFoundException e)
+            {
+                return NotFound(new ProblemDetails
+                {
+                    Detail = e.Message
+                });
+            }
+        }
+
         #endregion
 
         #region HTTP PUT
@@ -250,6 +267,25 @@ namespace hvz_backend.Controllers
             }
             return NoContent();
         }
+
+        [HttpPatch("{id}/radius")]
+        public async Task<ActionResult> PatchRadiusMap(int id, [FromBody] MapRadiusDTO mapRadiusDTO)
+        {
+            try
+            {
+                await _service.PatchRadiusMap(id, mapRadiusDTO.Radius);
+            }
+            catch (GameNotFoundException e)
+            {
+                return NotFound(new ProblemDetails
+                {
+                    Detail = e.Message
+                });
+            }
+            return NoContent();
+        }
+
+
         #endregion
 
         #region HTTP DELETE

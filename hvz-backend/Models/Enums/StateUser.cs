@@ -4,8 +4,8 @@ namespace hvz_backend.Models.Enums
 {
     public enum StateUser
     {
-        PLAYING,
-        WAITING,
+        Playing,
+        Waiting,
         IDLE,
     }
 }

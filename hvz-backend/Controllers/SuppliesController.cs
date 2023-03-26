@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using hvz_backend.Exceptions;
 using hvz_backend.Models;
+using hvz_backend.Models.DTOs.Mission;
+using hvz_backend.Models.DTOs.Safezone;
 using hvz_backend.Models.DTOs.Supply;
 using hvz_backend.Models.DTOs.Supply;
 using hvz_backend.Services.SupplyServices;
@@ -253,11 +255,28 @@ namespace hvz_backend.Controllers
             }
         }
 
+        [HttpGet("{mapId}/supply/{id}/radius")]
+        public async Task<ActionResult<MissionRadiusDTO>> GetRadiusSupply(int mapId, int id)
+        {
+            try
+            {
+                return Ok(_mapper.Map<MissionRadiusDTO>(await _service.GetSupplyByIdInMap(mapId, id)));
+            }
+            catch (KillNotFoundException e)
+            {
+                return NotFound(new ProblemDetails
+                {
+                    Detail = e.Message
+                });
+            }
+        }
+
+
         #endregion
 
 
         #region HTTP PATCH
-        [HttpPatch("{mapId}/Supply/{id}/title")]
+        [HttpPatch("{mapId}/supply/{id}/title")]
         public async Task<ActionResult> PatchTitleSupply(int mapId, int id, [FromBody] SupplyTitleDTO supplyTitleDTO)
         {
             try
@@ -274,7 +293,7 @@ namespace hvz_backend.Controllers
             return NoContent();
         }
 
-        [HttpPatch("{mapId}/Supply/{id}/description")]
+        [HttpPatch("{mapId}/supply/{id}/description")]
         public async Task<ActionResult> PatchDescriptionSupply(int mapId, int id, [FromBody] SupplyDescriptionDTO supplyDescriptionDTO)
         {
             try
@@ -291,7 +310,7 @@ namespace hvz_backend.Controllers
             return NoContent();
         }
 
-        [HttpPatch("{mapId}/Supply/{id}/latitude")]
+        [HttpPatch("{mapId}/supply/{id}/latitude")]
         public async Task<ActionResult> PatchLatSupply(int mapId, int id, [FromBody] SupplyLatDTO supplyLatDTO)
         {
             try
@@ -308,7 +327,7 @@ namespace hvz_backend.Controllers
             return NoContent();
         }
 
-        [HttpPatch("{mapId}/Supply/{id}/longitude")]
+        [HttpPatch("{mapId}/supply/{id}/longitude")]
         public async Task<ActionResult> PatchLongSupply(int mapId, int id, [FromBody] SupplyLongDTO supplyLongDTO)
         {
             try
@@ -325,7 +344,7 @@ namespace hvz_backend.Controllers
             return NoContent();
         }
 
-        [HttpPatch("{mapId}/Supply/{id}/visible/human")]
+        [HttpPatch("{mapId}/supply/{id}/visible/human")]
         public async Task<ActionResult> PatchHumanSupply(int mapId, int id, [FromBody] SupplyHumanDTO supplyHumanDTO)
         {
             try
@@ -342,7 +361,7 @@ namespace hvz_backend.Controllers
             return NoContent();
         }
 
-        [HttpPatch("{mapId}/Supply/{id}/visible/zombie")]
+        [HttpPatch("{mapId}/supply/{id}/visible/zombie")]
         public async Task<ActionResult> PatchZombieSupply(int mapId, int id, [FromBody] SupplyZombieDTO supplyZombieDTO)
         {
             try
@@ -359,7 +378,7 @@ namespace hvz_backend.Controllers
             return NoContent();
         }
 
-        [HttpPatch("{mapId}/Supply/{id}/endtime")]
+        [HttpPatch("{mapId}/supply/{id}/endtime")]
         public async Task<ActionResult> PatchEndSupply(int mapId, int id, [FromBody] SupplyEndDTO supplyEndDTO)
         {
             try
@@ -376,7 +395,7 @@ namespace hvz_backend.Controllers
             return NoContent();
         }
 
-        [HttpPatch("{mapId}/Supply/{id}/begintime")]
+        [HttpPatch("{mapId}/supply/{id}/begintime")]
         public async Task<ActionResult> PatchBeginSupply(int mapId, int id, [FromBody] SupplyBeginDTO supplyBeginDTO)
         {
             try
@@ -393,7 +412,7 @@ namespace hvz_backend.Controllers
             return NoContent();
         }
 
-        [HttpPatch("{mapId}/Supply/{id}/drop")]
+        [HttpPatch("{mapId}/supply/{id}/drop")]
         public async Task<ActionResult> PatchDropSupply(int mapId, int id, [FromBody] SupplyDropDTO supplyDropDTO)
         {
             try
@@ -410,12 +429,29 @@ namespace hvz_backend.Controllers
             return NoContent();
         }
 
-        [HttpPatch("{mapId}/Supply/{id}/drop/amount")]
+        [HttpPatch("{mapId}/supply/{id}/drop/amount")]
         public async Task<ActionResult> PatchAmountSupply(int mapId, int id, [FromBody] SupplyAmountDTO supplyAmountDTO)
         {
             try
             {
                 await _service.PatchAmountSupply(mapId, id, supplyAmountDTO.Amount);
+            }
+            catch (GameNotFoundException e)
+            {
+                return NotFound(new ProblemDetails
+                {
+                    Detail = e.Message
+                });
+            }
+            return NoContent();
+        }
+
+        [HttpPatch("{mapId}/supply/{id}/radius")]
+        public async Task<ActionResult> PatchRadiusSupply(int mapId, int id, [FromBody] SupplyRadiusDTO supplyRadiusDTO)
+        {
+            try
+            {
+                await _service.PatchRadiusSupply(mapId, id, supplyRadiusDTO.Radius);
             }
             catch (GameNotFoundException e)
             {

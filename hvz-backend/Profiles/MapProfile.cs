@@ -24,6 +24,8 @@ namespace hvz_backend.Profiles
             CreateMap<Map, MapDescriptionDTO>().ForMember(dto => dto.MapDescription, opt => opt.MapFrom(map => map.MapDescription));
             CreateMap<Map, MapLatDTO>().ForMember(dto => dto.Latitude, opt => opt.MapFrom(map => map.Latitude));
             CreateMap<Map, MapLongDTO>().ForMember(dto => dto.Longitude, opt => opt.MapFrom(map => map.Longitude));
+            CreateMap<Map, MapRadiusDTO>().ForMember(dto => dto.Radius, opt => opt.MapFrom(map => map.Radius));
+
 
 
         }

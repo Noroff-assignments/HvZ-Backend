@@ -15,5 +15,6 @@ namespace hvz_backend.Models.DTOs.Supply
         public DateTime EndTime { get; set; }
         public ItemType Drop { get; set; }
         public int Amount { get; set; }
+        public int Radius { get; set; }
     }
 }

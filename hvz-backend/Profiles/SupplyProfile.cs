@@ -23,6 +23,8 @@ namespace hvz_backend.Profiles
             CreateMap<Supply, SupplyEndDTO>().ForMember(dto => dto.EndTime, opt => opt.MapFrom(map => map.EndTime));
             CreateMap<Supply, SupplyDropDTO>().ForMember(dto => dto.Drop, opt => opt.MapFrom(map => map.Drop));
             CreateMap<Supply, SupplyAmountDTO>().ForMember(dto => dto.Amount, opt => opt.MapFrom(map => map.Amount));
+            CreateMap<Supply, SupplyRadiusDTO>().ForMember(dto => dto.Radius, opt => opt.MapFrom(map => map.Radius));
+
 
         }
     }

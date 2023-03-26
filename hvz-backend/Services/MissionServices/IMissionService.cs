@@ -21,6 +21,7 @@ namespace hvz_backend.Services.MissionServices
 
         Task PatchBeginMission(int mapId, int id, DateTime beginTime);
         Task PatchEndMission(int mapId, int id, DateTime endTime);
+        Task PatchRadiusMission(int mapId, int id, int radius);
 
 
     }

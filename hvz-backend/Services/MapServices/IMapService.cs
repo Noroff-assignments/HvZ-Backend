@@ -14,5 +14,7 @@ namespace hvz_backend.Services.MapServices
         Task PatchDescriptionMap (int id, string description);
         Task PatchLatitudeMap (int id, double latitude);
         Task PatchLongitudeMap (int id, double longitude);
+        Task PatchRadiusMap(int mapId, int radius);
+
     }
 }

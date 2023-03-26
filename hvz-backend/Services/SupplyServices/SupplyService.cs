@@ -194,6 +194,19 @@ namespace hvz_backend.Services.SupplyServices
             await _context.SaveChangesAsync();
         }
 
+        public async Task PatchRadiusSupply(int mapId, int id, int radius)
+        {
+            var map = await _context.Maps
+                .Include(m => m.Supplies)
+                .Where(k => k.Id == mapId)
+                .FirstOrDefaultAsync();
+            if (map == null) throw new GameNotFoundException(mapId);
+            var supply = map.Supplies.FirstOrDefault(k => k.Id == id);
+            if (supply == null) throw new KillNotFoundException(id);
+            supply.Radius = radius;
+            await _context.SaveChangesAsync();
+        }
+
         #endregion
 
         #region Delete

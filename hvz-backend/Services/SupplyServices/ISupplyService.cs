@@ -25,6 +25,7 @@ namespace hvz_backend.Services.SupplyServices
 
         Task PatchDropSupply(int mapId, int id, ItemType drop);
         Task PatchAmountSupply(int mapId, int id, int Amount);
+        Task PatchRadiusSupply(int mapId, int id, int radius);
 
     }
 }
