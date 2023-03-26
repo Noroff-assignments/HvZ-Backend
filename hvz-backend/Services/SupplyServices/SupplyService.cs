@@ -1,5 +1,6 @@
 ﻿using hvz_backend.Exceptions;
 using hvz_backend.Models;
+using hvz_backend.Models.Enums;
 using Microsoft.EntityFrameworkCore;
 
 namespace hvz_backend.Services.SupplyServices
@@ -62,6 +63,137 @@ namespace hvz_backend.Services.SupplyServices
             await _context.SaveChangesAsync();
             return supply;
         }
+
+        public async Task PatchTitleSupply(int mapId, int id, string title)
+        {
+            var map = await _context.Maps
+                .Include(m => m.Supplies)
+                .Where(k => k.Id == mapId)
+                .FirstOrDefaultAsync();
+            if (map == null) throw new GameNotFoundException(mapId);
+            var supply = map.Supplies.FirstOrDefault(k => k.Id == id);
+            if (supply == null) throw new KillNotFoundException(id);
+            supply.Title = title;
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task PatchDescriptionSupply(int mapId, int id, string description)
+        {
+            var map = await _context.Maps
+                .Include(m => m.Supplies)
+                .Where(k => k.Id == mapId)
+                .FirstOrDefaultAsync();
+            if (map == null) throw new GameNotFoundException(mapId);
+            var supply = map.Supplies.FirstOrDefault(k => k.Id == id);
+            if (supply == null) throw new KillNotFoundException(id);
+            supply.Description = description;
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task PatchLatSupply(int mapId, int id, double lat)
+        {
+            var map = await _context.Maps
+                .Include(m => m.Supplies)
+                .Where(k => k.Id == mapId)
+                .FirstOrDefaultAsync();
+            if (map == null) throw new GameNotFoundException(mapId);
+            var supply = map.Supplies.FirstOrDefault(k => k.Id == id);
+            if (supply == null) throw new KillNotFoundException(id);
+            supply.Latitude = lat;
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task PatchLongSupply(int mapId, int id, double lon)
+        {
+            var map = await _context.Maps
+                .Include(m => m.Supplies)
+                .Where(k => k.Id == mapId)
+                .FirstOrDefaultAsync();
+            if (map == null) throw new GameNotFoundException(mapId);
+            var supply = map.Supplies.FirstOrDefault(k => k.Id == id);
+            if (supply == null) throw new KillNotFoundException(id);
+            supply.Longitude = lon;
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task PatchZombieSupply(int mapId, int id, bool zombieVisible)
+        {
+            var map = await _context.Maps
+                .Include(m => m.Supplies)
+                .Where(k => k.Id == mapId)
+                .FirstOrDefaultAsync();
+            if (map == null) throw new GameNotFoundException(mapId);
+            var supply = map.Supplies.FirstOrDefault(k => k.Id == id);
+            if (supply == null) throw new KillNotFoundException(id);
+            supply.ZombieVisible = zombieVisible;
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task PatchHumanSupply(int mapId, int id, bool humanVisible)
+        {
+            var map = await _context.Maps
+                .Include(m => m.Supplies)
+                .Where(k => k.Id == mapId)
+                .FirstOrDefaultAsync();
+            if (map == null) throw new GameNotFoundException(mapId);
+            var supply = map.Supplies.FirstOrDefault(k => k.Id == id);
+            if (supply == null) throw new KillNotFoundException(id);
+            supply.HumanVisible = humanVisible;
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task PatchBeginSupply(int mapId, int id, DateTime beginTime)
+        {
+            var map = await _context.Maps
+                .Include(m => m.Supplies)
+                .Where(k => k.Id == mapId)
+                .FirstOrDefaultAsync();
+            if (map == null) throw new GameNotFoundException(mapId);
+            var supply = map.Supplies.FirstOrDefault(k => k.Id == id);
+            if (supply == null) throw new KillNotFoundException(id);
+            supply.BeginTime = beginTime;
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task PatchEndSupply(int mapId, int id, DateTime endTime)
+        {
+            var map = await _context.Maps
+                .Include(m => m.Supplies)
+                .Where(k => k.Id == mapId)
+                .FirstOrDefaultAsync();
+            if (map == null) throw new GameNotFoundException(mapId);
+            var supply = map.Supplies.FirstOrDefault(k => k.Id == id);
+            if (supply == null) throw new KillNotFoundException(id);
+            supply.EndTime = endTime;
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task PatchDropSupply(int mapId, int id, ItemType drop)
+        {
+            var map = await _context.Maps
+                .Include(m => m.Supplies)
+                .Where(k => k.Id == mapId)
+                .FirstOrDefaultAsync();
+            if (map == null) throw new GameNotFoundException(mapId);
+            var supply = map.Supplies.FirstOrDefault(k => k.Id == id);
+            if (supply == null) throw new KillNotFoundException(id);
+            supply.Drop = drop;
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task PatchAmountSupply(int mapId, int id, int amount)
+        {
+            var map = await _context.Maps
+                .Include(m => m.Supplies)
+                .Where(k => k.Id == mapId)
+                .FirstOrDefaultAsync();
+            if (map == null) throw new GameNotFoundException(mapId);
+            var supply = map.Supplies.FirstOrDefault(k => k.Id == id);
+            if (supply == null) throw new KillNotFoundException(id);
+            supply.Amount = amount;
+            await _context.SaveChangesAsync();
+        }
+
         #endregion
 
         #region Delete

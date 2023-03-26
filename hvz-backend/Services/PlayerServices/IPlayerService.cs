@@ -5,9 +5,14 @@ namespace hvz_backend.Services.PlayerServices
     public interface IPlayerService
     {
         Task<Player> CreatePlayer(Player supply);
-        Task<IEnumerable<Player>> GetAllPlayersInMap(int mapId);
-        Task<Player> GetPlayerByIdInMap(int mapId, int id);
+        Task<IEnumerable<Player>> GetAllPlayersInGame(int gameId);
+        Task<Player> GetPlayerByIdInGame(int gameId, int id);
         Task<Player> UpdatePlayer(Player player);
         Task DeletePlayer(int id);
+
+        Task PatchLatPlayer(int gameId, int id, double lat);
+        Task PatchlongPlayer(int gameId, int id, double lon);
+        Task PatchSquadPlayer(int gameId, int id, int squadId);
+        Task PatchIsZombiePlayer(int gameId, int id, bool zombie);
     }
 }

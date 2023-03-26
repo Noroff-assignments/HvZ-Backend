@@ -2,7 +2,6 @@
 using hvz_backend.Models;
 using hvz_backend.Exceptions;
 using hvz_backend.Models.Enums;
-using Microsoft.OpenApi.Extensions;
 
 namespace hvz_backend.Services.GameServices
 {

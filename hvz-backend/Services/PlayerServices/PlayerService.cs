@@ -26,7 +26,7 @@ namespace hvz_backend.Services.PlayerServices
         #endregion
 
         #region Read
-        public async Task<IEnumerable<Player>> GetAllPlayersInMap(int gameId)
+        public async Task<IEnumerable<Player>> GetAllPlayersInGame(int gameId)
         {
             var game = await _context.Games
                 .Include(m => m.Players)
@@ -38,7 +38,7 @@ namespace hvz_backend.Services.PlayerServices
             return players;
         }
 
-        public async Task<Player> GetPlayerByIdInMap(int gameId, int id)
+        public async Task<Player> GetPlayerByIdInGame(int gameId, int id)
         {
             var game = await _context.Games
                 .Include(m => m.Players)
@@ -62,6 +62,62 @@ namespace hvz_backend.Services.PlayerServices
             await _context.SaveChangesAsync();
             return player;
         }
+       /* Task PatchLatPlayer(int gameId, int id, double lat);
+        Task PatchlongPlayer(int gameId, int id, double lon);
+        Task PatchSquadPlayer(int gameId, int id, int squadId);
+        Task PatchisZombiePlayer(int gameId, int id, bool zombie);*/
+        public async Task PatchLatPlayer(int gameId, int id, double lat)
+        {
+            var game = await _context.Games
+                .Include(m => m.Players)
+                .Where(k => k.Id == gameId)
+                .FirstOrDefaultAsync();
+            if (game == null) throw new GameNotFoundException(gameId);
+            var player = game.Players.FirstOrDefault(k => k.Id == id);
+            if (player == null) throw new KillNotFoundException(id);
+            player.Latitude = lat;
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task PatchlongPlayer(int gameId, int id, double lon)
+        {
+            var game = await _context.Games
+                .Include(m => m.Players)
+                .Where(k => k.Id == gameId)
+                .FirstOrDefaultAsync();
+            if (game == null) throw new GameNotFoundException(gameId);
+            var player = game.Players.FirstOrDefault(k => k.Id == id);
+            if (player == null) throw new KillNotFoundException(id);
+            player.Longitude = lon;
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task PatchSquadPlayer(int gameId, int id, int squadId)
+        {
+            var game = await _context.Games
+                .Include(m => m.Players)
+                .Where(k => k.Id == gameId)
+                .FirstOrDefaultAsync();
+            if (game == null) throw new GameNotFoundException(gameId);
+            var player = game.Players.FirstOrDefault(k => k.Id == id);
+            if (player == null) throw new KillNotFoundException(id);
+            player.SquadId = squadId;
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task PatchIsZombiePlayer(int gameId, int id, bool zombie)
+        {
+            var game = await _context.Games
+                .Include(m => m.Players)
+                .Where(k => k.Id == gameId)
+                .FirstOrDefaultAsync();
+            if (game == null) throw new GameNotFoundException(gameId);
+            var player = game.Players.FirstOrDefault(k => k.Id == id);
+            if (player == null) throw new KillNotFoundException(id);
+            player.IsZombie = zombie;
+            await _context.SaveChangesAsync();
+        }
+
         #endregion
 
         #region Delete

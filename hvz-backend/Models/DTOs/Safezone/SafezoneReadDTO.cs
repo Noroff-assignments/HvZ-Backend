@@ -9,7 +9,7 @@
         public double Longitude { get; set; }
         public bool ZombieVisible { get; set; }
         public bool HumanVisible { get; set; }
-        public DateTime? BeginTime { get; set; }
+        public DateTime BeginTime { get; set; }
         public DateTime EndTime { get; set; }
         public int Radius { get; set; }
     }

@@ -4,6 +4,7 @@ using hvz_backend.Models;
 using hvz_backend.Models.DTOs.Game;
 using hvz_backend.Models.DTOs.Kill;
 using hvz_backend.Services.KillServices;
+using hvz_backend.Services.PlayerServices;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Mime;
 
@@ -19,12 +20,13 @@ namespace hvz_backend.Controllers
         #region Fields & Constructor
         private readonly IKillService _service;
         private readonly IMapper _mapper;
-
+        private readonly IPlayerService _playerService;
         // Sets the service and mapper for this controller via constructor.
-        public KillsController(IKillService service, IMapper mapper)
+        public KillsController(IKillService service, IMapper mapper, IPlayerService playerService)
         {
             _service = service;
             _mapper = mapper;
+            _playerService = playerService;
         }
         #endregion
 
@@ -41,7 +43,9 @@ namespace hvz_backend.Controllers
             try
             {
                 var kill = _mapper.Map<Kill>(createKillDTO);
+                Player victim = kill.Victim;
                 await _service.CreateKill(kill);
+                await _playerService.PatchIsZombiePlayer(victim.GameId, victim.Id, true);
                 return CreatedAtAction(nameof(GetKillByIdInGame), new { gameId = kill.GameId, id = kill.Id }, kill);
             }
             catch (Exception ex)

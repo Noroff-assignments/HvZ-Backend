@@ -3,6 +3,7 @@ using hvz_backend.Exceptions;
 using hvz_backend.Models;
 using hvz_backend.Models.DTOs.Safezone;
 using hvz_backend.Models.DTOs.Safezone;
+using hvz_backend.Models.DTOs.Safezone;
 using hvz_backend.Services.SafezoneServices;
 using hvz_backend.Services.SafezoneServices;
 using Microsoft.AspNetCore.Mvc;
@@ -89,6 +90,306 @@ namespace hvz_backend.Controllers
                 });
             }
         }
+        [HttpGet("{mapId}/safezone/{id}/title")]
+        public async Task<ActionResult<SafezoneTitleDTO>> GetTitleSafezone(int mapId, int id)
+        {
+            try
+            {
+                return Ok(_mapper.Map<SafezoneTitleDTO>(await _service.GetSafezoneByIdInMap(mapId, id)));
+            }
+            catch (KillNotFoundException e)
+            {
+                return NotFound(new ProblemDetails
+                {
+                    Detail = e.Message
+                });
+            }
+        }
+
+        [HttpGet("{mapId}/safezone/{id}/description")]
+        public async Task<ActionResult<SafezoneDescriptionDTO>> GetDescriptionSafezone(int mapId, int id)
+        {
+            try
+            {
+                return Ok(_mapper.Map<SafezoneDescriptionDTO>(await _service.GetSafezoneByIdInMap(mapId, id)));
+            }
+            catch (KillNotFoundException e)
+            {
+                return NotFound(new ProblemDetails
+                {
+                    Detail = e.Message
+                });
+            }
+        }
+
+        [HttpGet("{mapId}/safezone/{id}/latitude")]
+        public async Task<ActionResult<SafezoneLatDTO>> GetLatitudeSafezone(int mapId, int id)
+        {
+            try
+            {
+                return Ok(_mapper.Map<SafezoneLatDTO>(await _service.GetSafezoneByIdInMap(mapId, id)));
+            }
+            catch (KillNotFoundException e)
+            {
+                return NotFound(new ProblemDetails
+                {
+                    Detail = e.Message
+                });
+            }
+        }
+
+        [HttpGet("{mapId}/safezone/{id}/longitude")]
+        public async Task<ActionResult<SafezoneLatDTO>> GetLongitudeSafezone(int mapId, int id)
+        {
+            try
+            {
+                return Ok(_mapper.Map<SafezoneLatDTO>(await _service.GetSafezoneByIdInMap(mapId, id)));
+            }
+            catch (KillNotFoundException e)
+            {
+                return NotFound(new ProblemDetails
+                {
+                    Detail = e.Message
+                });
+            }
+        }
+
+        [HttpGet("{mapId}/safezone/{id}/visible/zombie")]
+        public async Task<ActionResult<SafezoneZombieDTO>> GetZombieVisibleSafezone(int mapId, int id)
+        {
+            try
+            {
+                return Ok(_mapper.Map<SafezoneZombieDTO>(await _service.GetSafezoneByIdInMap(mapId, id)));
+            }
+            catch (KillNotFoundException e)
+            {
+                return NotFound(new ProblemDetails
+                {
+                    Detail = e.Message
+                });
+            }
+        }
+
+        [HttpGet("{mapId}/safezone/{id}/visible/human")]
+        public async Task<ActionResult<SafezoneHumanDTO>> GetHumanVisibleSafezone(int mapId, int id)
+        {
+            try
+            {
+                return Ok(_mapper.Map<SafezoneHumanDTO>(await _service.GetSafezoneByIdInMap(mapId, id)));
+            }
+            catch (KillNotFoundException e)
+            {
+                return NotFound(new ProblemDetails
+                {
+                    Detail = e.Message
+                });
+            }
+        }
+
+        [HttpGet("{mapId}/safezone/{id}/begintime")]
+        public async Task<ActionResult<SafezoneBeginDTO>> GetBeginTimeSafezone(int mapId, int id)
+        {
+            try
+            {
+                return Ok(_mapper.Map<SafezoneBeginDTO>(await _service.GetSafezoneByIdInMap(mapId, id)));
+            }
+            catch (KillNotFoundException e)
+            {
+                return NotFound(new ProblemDetails
+                {
+                    Detail = e.Message
+                });
+            }
+        }
+
+        [HttpGet("{mapId}/safezone/{id}/endtime")]
+        public async Task<ActionResult<SafezoneEndDTO>> GetEndTimeSafezone(int mapId, int id)
+        {
+            try
+            {
+                return Ok(_mapper.Map<SafezoneEndDTO>(await _service.GetSafezoneByIdInMap(mapId, id)));
+            }
+            catch (KillNotFoundException e)
+            {
+                return NotFound(new ProblemDetails
+                {
+                    Detail = e.Message
+                });
+            }
+        }
+
+        [HttpGet("{mapId}/safezone/{id}/radius")]
+        public async Task<ActionResult<SafezoneRadiusDTO>> GetRadiusSafezone(int mapId, int id)
+        {
+            try
+            {
+                return Ok(_mapper.Map<SafezoneRadiusDTO>(await _service.GetSafezoneByIdInMap(mapId, id)));
+            }
+            catch (KillNotFoundException e)
+            {
+                return NotFound(new ProblemDetails
+                {
+                    Detail = e.Message
+                });
+            }
+        }
+
+        #endregion
+
+        #region HTTP PATCH
+        [HttpPatch("{mapId}/safezone/{id}/title")]
+        public async Task<ActionResult> PatchTitleSafezone(int mapId, int id, [FromBody] SafezoneTitleDTO safezoneTitleDTO)
+        {
+            try
+            {
+                await _service.PatchTitleSafezone(mapId, id, safezoneTitleDTO.Title);
+            }
+            catch (GameNotFoundException e)
+            {
+                return NotFound(new ProblemDetails
+                {
+                    Detail = e.Message
+                });
+            }
+            return NoContent();
+        }
+
+        [HttpPatch("{mapId}/safezone/{id}/description")]
+        public async Task<ActionResult> PatchDescriptionSafezone(int mapId, int id, [FromBody] SafezoneDescriptionDTO safezoneDescriptionDTO)
+        {
+            try
+            {
+                await _service.PatchDescriptionSafezone(mapId, id, safezoneDescriptionDTO.Description);
+            }
+            catch (GameNotFoundException e)
+            {
+                return NotFound(new ProblemDetails
+                {
+                    Detail = e.Message
+                });
+            }
+            return NoContent();
+        }
+
+        [HttpPatch("{mapId}/safezone/{id}/latitude")]
+        public async Task<ActionResult> PatchLatSafezone(int mapId, int id, [FromBody] SafezoneLatDTO safezoneLatDTO)
+        {
+            try
+            {
+                await _service.PatchLatSafezone(mapId, id, safezoneLatDTO.Latitude);
+            }
+            catch (GameNotFoundException e)
+            {
+                return NotFound(new ProblemDetails
+                {
+                    Detail = e.Message
+                });
+            }
+            return NoContent();
+        }
+
+        [HttpPatch("{mapId}/safezone/{id}/longitude")]
+        public async Task<ActionResult> PatchLongSafezone(int mapId, int id, [FromBody] SafezoneLonDTO safezoneLongDTO)
+        {
+            try
+            {
+                await _service.PatchLongSafezone(mapId, id, safezoneLongDTO.Longitude);
+            }
+            catch (GameNotFoundException e)
+            {
+                return NotFound(new ProblemDetails
+                {
+                    Detail = e.Message
+                });
+            }
+            return NoContent();
+        }
+
+        [HttpPatch("{mapId}/safezone/{id}/visible/human")]
+        public async Task<ActionResult> PatchHumanSafezone(int mapId, int id, [FromBody] SafezoneHumanDTO safezoneHumanDTO)
+        {
+            try
+            {
+                await _service.PatchHumanSafezone(mapId, id, safezoneHumanDTO.HumanVisible);
+            }
+            catch (GameNotFoundException e)
+            {
+                return NotFound(new ProblemDetails
+                {
+                    Detail = e.Message
+                });
+            }
+            return NoContent();
+        }
+
+        [HttpPatch("{mapId}/safezone/{id}/visible/zombie")]
+        public async Task<ActionResult> PatchZombieSafezone(int mapId, int id, [FromBody] SafezoneZombieDTO safezoneZombieDTO)
+        {
+            try
+            {
+                await _service.PatchZombieSafezone(mapId, id, safezoneZombieDTO.ZombieVisible);
+            }
+            catch (GameNotFoundException e)
+            {
+                return NotFound(new ProblemDetails
+                {
+                    Detail = e.Message
+                });
+            }
+            return NoContent();
+        }
+
+        [HttpPatch("{mapId}/safezone/{id}/endtime")]
+        public async Task<ActionResult> PatchEndSafezone(int mapId, int id, [FromBody] SafezoneEndDTO safezoneEndDTO)
+        {
+            try
+            {
+                await _service.PatchEndSafezone(mapId, id, safezoneEndDTO.EndTime);
+            }
+            catch (GameNotFoundException e)
+            {
+                return NotFound(new ProblemDetails
+                {
+                    Detail = e.Message
+                });
+            }
+            return NoContent();
+        }
+
+        [HttpPatch("{mapId}/safezone/{id}/begintime")]
+        public async Task<ActionResult> PatchBeginSafezone(int mapId, int id, [FromBody] SafezoneBeginDTO safezoneBeginDTO)
+        {
+            try
+            {
+                await _service.PatchBeginSafezone(mapId, id, safezoneBeginDTO.BeginTime);
+            }
+            catch (GameNotFoundException e)
+            {
+                return NotFound(new ProblemDetails
+                {
+                    Detail = e.Message
+                });
+            }
+            return NoContent();
+        }
+
+        [HttpPatch("{mapId}/safezone/{id}/radius")]
+        public async Task<ActionResult> PatchRadiusSafezone(int mapId, int id, [FromBody] SafezoneRadiusDTO safezoneRadiusDTO)
+        {
+            try
+            {
+                await _service.PatchRadiusSafezone(mapId, id, safezoneRadiusDTO.Radius);
+            }
+            catch (GameNotFoundException e)
+            {
+                return NotFound(new ProblemDetails
+                {
+                    Detail = e.Message
+                });
+            }
+            return NoContent();
+        }
+
         #endregion
 
         #region HTTP PUT

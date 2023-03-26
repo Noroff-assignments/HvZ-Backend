@@ -11,7 +11,7 @@ namespace hvz_backend.Models.DTOs.Supply
         public double Longitude { get; set; }
         public bool ZombieVisible { get; set; }
         public bool HumanVisible { get; set; }
-        public DateTime? BeginTime { get; set; }
+        public DateTime BeginTime { get; set; }
         public DateTime EndTime { get; set; }
         public ItemType Drop { get; set; }
         public int Amount { get; set; }

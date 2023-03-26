@@ -99,7 +99,7 @@ namespace hvz_backend.Services.MapServices
             map.Latitude = latitude;
             await _context.SaveChangesAsync();
         }
-        public async Task PatchLongtitudeMap(int id, double longtitude)
+        public async Task PatchLongitudeMap(int id, double longtitude)
         {
             var map = await _context.Maps.FindAsync(id);
             if (map == null) throw new GameNotFoundException(id);

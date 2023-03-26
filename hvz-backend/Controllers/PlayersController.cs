@@ -2,6 +2,7 @@
 using hvz_backend.Exceptions;
 using hvz_backend.Models;
 using hvz_backend.Models.DTOs.Game;
+using hvz_backend.Models.DTOs.Kill;
 using hvz_backend.Models.DTOs.Player;
 using hvz_backend.Services.GameServices;
 using hvz_backend.Services.PlayerServices;
@@ -37,7 +38,7 @@ namespace hvz_backend.Controllers
         /// Create a player for the game
         /// </summary>
         /// <param name="gameId">Identifier for game.</param>
-        /// <param name="createPlayerDTO">the </param>
+        /// <param name="createPlayerDTO"></param>
         /// <returns></returns>
         #region HTTP POST
         [HttpPost("{gameId}/player")]
@@ -72,7 +73,7 @@ namespace hvz_backend.Controllers
         {
             try
             {
-                return Ok(_mapper.Map<IEnumerable<PlayerReadDTO>>(await _service.GetAllPlayersInMap(gameId)));
+                return Ok(_mapper.Map<IEnumerable<PlayerReadDTO>>(await _service.GetAllPlayersInGame(gameId)));
             }
             catch (PlayerNotFoundException e)
             {
@@ -94,7 +95,7 @@ namespace hvz_backend.Controllers
         {
             try
             {
-                return Ok(_mapper.Map<PlayerReadDTO>(await _service.GetPlayerByIdInMap(gameId, id)));
+                return Ok(_mapper.Map<PlayerReadDTO>(await _service.GetPlayerByIdInGame(gameId, id)));
             }
             catch (PlayerNotFoundException e)
             {
@@ -104,6 +105,119 @@ namespace hvz_backend.Controllers
                 });
             }
         }
+
+        [HttpGet("{gameId}/player/{id}/bitecode")]
+        public async Task<ActionResult<PlayerBiteDTO>> GetBitePlayer(int gameId, int id)
+        {
+            try
+            {
+                return Ok(_mapper.Map<PlayerBiteDTO>(await _service.GetPlayerByIdInGame(gameId, id)));
+            }
+            catch (KillNotFoundException e)
+            {
+                return NotFound(new ProblemDetails
+                {
+                    Detail = e.Message
+                });
+            }
+        }
+
+        [HttpGet("{gameId}/player/{id}/latitude")]
+        public async Task<ActionResult<PlayerBiteDTO>> GetLatPlayer(int gameId, int id)
+        {
+            try
+            {
+                return Ok(_mapper.Map<PlayerBiteDTO>(await _service.GetPlayerByIdInGame(gameId, id)));
+            }
+            catch (KillNotFoundException e)
+            {
+                return NotFound(new ProblemDetails
+                {
+                    Detail = e.Message
+                });
+            }
+        }
+
+        [HttpGet("{gameId}/player/{id}/longitude")]
+        public async Task<ActionResult<PlayerLongDTO>> GetLonPlayer(int gameId, int id)
+        {
+            try
+            {
+                return Ok(_mapper.Map<PlayerLongDTO>(await _service.GetPlayerByIdInGame(gameId, id)));
+            }
+            catch (KillNotFoundException e)
+            {
+                return NotFound(new ProblemDetails
+                {
+                    Detail = e.Message
+                });
+            }
+        }
+
+        [HttpGet("{gameId}/player/{id}/patientzero")]
+        public async Task<ActionResult<PlayerPatientDTO>> GetIsPatientZeroPlayer(int gameId, int id)
+        {
+            try
+            {
+                return Ok(_mapper.Map<PlayerPatientDTO>(await _service.GetPlayerByIdInGame(gameId, id)));
+            }
+            catch (KillNotFoundException e)
+            {
+                return NotFound(new ProblemDetails
+                {
+                    Detail = e.Message
+                });
+            }
+        }
+
+        [HttpGet("{gameId}/player/{id}/squadid")]
+        public async Task<ActionResult<PlayerSquadDTO>> GetSquadIdPlayer(int gameId, int id)
+        {
+            try
+            {
+                return Ok(_mapper.Map<PlayerSquadDTO>(await _service.GetPlayerByIdInGame(gameId, id)));
+            }
+            catch (KillNotFoundException e)
+            {
+                return NotFound(new ProblemDetails
+                {
+                    Detail = e.Message
+                });
+            }
+        }
+
+        [HttpGet("{gameId}/player/{id}/user")]
+        public async Task<ActionResult<PlayerUserDTO>> GetUserPlayer(int gameId, int id)
+        {
+            try
+            {
+                return Ok(_mapper.Map<PlayerUserDTO>(await _service.GetPlayerByIdInGame(gameId, id)));
+            }
+            catch (KillNotFoundException e)
+            {
+                return NotFound(new ProblemDetails
+                {
+                    Detail = e.Message
+                });
+            }
+        }
+
+        [HttpGet("{gameId}/player/{id}/iszombie")]
+        public async Task<ActionResult<PlayerZombieDTO>> GetIsZombiePlayer(int gameId, int id)
+        {
+            try
+            {
+                return Ok(_mapper.Map<PlayerZombieDTO>(await _service.GetPlayerByIdInGame(gameId, id)));
+            }
+            catch (KillNotFoundException e)
+            {
+                return NotFound(new ProblemDetails
+                {
+                    Detail = e.Message
+                });
+            }
+        }
+
         #endregion
 
         #region HTTP PUT
@@ -133,6 +247,87 @@ namespace hvz_backend.Controllers
         }
         #endregion
 
+
+        #region HTTP PATCH
+
+
+        [HttpPatch("{gameId}/player/{id}/latitude")]
+        public async Task<ActionResult> PatchLatPlayer(int mapId, int id, [FromBody] PlayerLatDTO playerLatDTO)
+        {
+            try
+            {
+                await _service.PatchLatPlayer(mapId, id, playerLatDTO.Latitude);
+            }
+            catch (KillNotFoundException e)
+            {
+                return NotFound(new ProblemDetails
+                {
+                    Detail = e.Message
+                });
+            }
+            return NoContent();
+
+        }
+
+        [HttpPatch("{gameId}/player/{id}/longitude")]
+        public async Task<ActionResult> PatchlongPlayer(int mapId, int id, [FromBody] PlayerLongDTO playerLongDTO)
+        {
+            try
+            {
+                await _service.PatchlongPlayer(mapId, id, playerLongDTO.Longitude);
+            }
+            catch (KillNotFoundException e)
+            {
+                return NotFound(new ProblemDetails
+                {
+                    Detail = e.Message
+                });
+            }
+            return NoContent();
+
+        }
+
+        [HttpPatch("{gameId}/player/{id}/squadid")]
+        public async Task<ActionResult> PatchSquadPlayer(int mapId, int id, [FromBody] PlayerSquadDTO playerSquadDTO)
+        {
+            try
+            {
+                await _service.PatchSquadPlayer(mapId, id, playerSquadDTO.SquadId);
+            }
+            catch (KillNotFoundException e)
+            {
+                return NotFound(new ProblemDetails
+                {
+                    Detail = e.Message
+                });
+            }
+            return NoContent();
+
+        }
+
+        [HttpPatch("{gameId}/player/{id}/iszombie")]
+        public async Task<ActionResult> PatchIsZombiePlayer(int mapId, int id, [FromBody] PlayerZombieDTO playerZombieDTO)
+        {
+            try
+            {
+                await _service.PatchIsZombiePlayer(mapId, id, playerZombieDTO.IsZombie);
+            }
+            catch (KillNotFoundException e)
+            {
+                return NotFound(new ProblemDetails
+                {
+                    Detail = e.Message
+                });
+            }
+            return NoContent();
+
+        }
+
+        #endregion
+
+
+
+
         #region HTTP DELETE
         /// <summary>
         /// Delete one player in a game.
@@ -144,7 +339,7 @@ namespace hvz_backend.Controllers
         {
             try
             {
-                var player = _service.GetPlayerByIdInMap(gameId, id);
+                var player = _service.GetPlayerByIdInGame(gameId, id);
                 if (player != null)
                 {
                     var game = await _gameService.GetGameById(gameId);
