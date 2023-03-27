@@ -38,6 +38,30 @@ namespace hvz_backend.Services.PlayerServices
             return players;
         }
 
+        public async Task<IEnumerable<Player>> GetAllZombiesInGame(int gameId)
+        {
+            var game = await _context.Games
+                .Include(m => m.Players)
+                .Where(k => k.Id == gameId)
+                .FirstOrDefaultAsync();
+            if (game == null) throw new GameNotFoundException(gameId);
+            var players = game.Players.Where(z => z.IsZombie==true);
+            if (players == null) throw new PlayerNotFoundException();
+            return players;
+        }
+
+        public async Task<IEnumerable<Player>> GetAllHumansInGame(int gameId)
+        {
+            var game = await _context.Games
+                .Include(m => m.Players)
+                .Where(k => k.Id == gameId)
+                .FirstOrDefaultAsync();
+            if (game == null) throw new GameNotFoundException(gameId);
+            var players = game.Players.Where(h => h.IsZombie==false);
+            if (players == null) throw new PlayerNotFoundException();
+            return players;
+        }
+
         public async Task<Player> GetPlayerByIdInGame(int gameId, int id)
         {
             var game = await _context.Games

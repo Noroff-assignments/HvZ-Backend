@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using hvz_backend.Models;
 
@@ -11,9 +12,11 @@ using hvz_backend.Models;
 namespace hvz_backend.Migrations
 {
     [DbContext(typeof(HvZDbContext))]
-    partial class HvZDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230327075640_UpdatedSeedingUnique")]
+    partial class UpdatedSeedingUnique
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -163,7 +166,7 @@ namespace hvz_backend.Migrations
                             GameId = 1,
                             KillerId = 1,
                             Latitude = 55.643099999999997,
-                            Longitude = 12.272270000000001,
+                            Longitude = 12.361269999999999,
                             TimeDead = new DateTime(2023, 3, 11, 9, 10, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 18
                         },
@@ -173,8 +176,8 @@ namespace hvz_backend.Migrations
                             DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie.",
                             GameId = 1,
                             KillerId = 1,
-                            Latitude = 55.643357000000002,
-                            Longitude = 12.27289,
+                            Latitude = 55.646357000000002,
+                            Longitude = 12.421889999999999,
                             TimeDead = new DateTime(2023, 3, 11, 9, 23, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 24
                         },
@@ -185,7 +188,7 @@ namespace hvz_backend.Migrations
                             GameId = 1,
                             KillerId = 18,
                             Latitude = 55.643881999999998,
-                            Longitude = 12.27256,
+                            Longitude = 12.637560000000001,
                             TimeDead = new DateTime(2023, 3, 11, 9, 43, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 3
                         },
@@ -195,8 +198,8 @@ namespace hvz_backend.Migrations
                             DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie.",
                             GameId = 1,
                             KillerId = 24,
-                            Latitude = 55.643599000000002,
-                            Longitude = 12.27281,
+                            Latitude = 55.647599,
+                            Longitude = 12.357810000000001,
                             TimeDead = new DateTime(2023, 3, 11, 9, 55, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 9
                         },
@@ -206,8 +209,8 @@ namespace hvz_backend.Migrations
                             DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie.",
                             GameId = 1,
                             KillerId = 1,
-                            Latitude = 55.643329000000001,
-                            Longitude = 12.27233,
+                            Latitude = 55.645328999999997,
+                            Longitude = 12.46233,
                             TimeDead = new DateTime(2023, 3, 11, 10, 10, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 7
                         },
@@ -217,8 +220,8 @@ namespace hvz_backend.Migrations
                             DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie.",
                             GameId = 1,
                             KillerId = 3,
-                            Latitude = 55.643678000000001,
-                            Longitude = 12.27275,
+                            Latitude = 55.642677999999997,
+                            Longitude = 12.59675,
                             TimeDead = new DateTime(2023, 3, 11, 10, 16, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 33
                         },
@@ -228,8 +231,8 @@ namespace hvz_backend.Migrations
                             DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie.",
                             GameId = 1,
                             KillerId = 3,
-                            Latitude = 55.643118000000001,
-                            Longitude = 12.27247,
+                            Latitude = 55.649118000000001,
+                            Longitude = 12.50047,
                             TimeDead = new DateTime(2023, 3, 11, 10, 33, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 13
                         },
@@ -239,8 +242,8 @@ namespace hvz_backend.Migrations
                             DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie.",
                             GameId = 1,
                             KillerId = 7,
-                            Latitude = 55.643287000000001,
-                            Longitude = 12.272819999999999,
+                            Latitude = 55.648287000000003,
+                            Longitude = 12.545820000000001,
                             TimeDead = new DateTime(2023, 3, 11, 10, 47, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 11
                         },
@@ -250,8 +253,8 @@ namespace hvz_backend.Migrations
                             DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie.",
                             GameId = 1,
                             KillerId = 9,
-                            Latitude = 55.643980999999997,
-                            Longitude = 12.27214,
+                            Latitude = 55.645980999999999,
+                            Longitude = 12.52614,
                             TimeDead = new DateTime(2023, 3, 11, 10, 56, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 16
                         },
@@ -261,8 +264,8 @@ namespace hvz_backend.Migrations
                             DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie.",
                             GameId = 1,
                             KillerId = 1,
-                            Latitude = 55.643777,
-                            Longitude = 12.27244,
+                            Latitude = 55.641776999999998,
+                            Longitude = 12.58544,
                             TimeDead = new DateTime(2023, 3, 11, 11, 17, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 22
                         },
@@ -272,8 +275,8 @@ namespace hvz_backend.Migrations
                             DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie.",
                             GameId = 1,
                             KillerId = 18,
-                            Latitude = 55.643194999999999,
-                            Longitude = 12.272259999999999,
+                            Latitude = 55.646194999999999,
+                            Longitude = 12.63626,
                             TimeDead = new DateTime(2023, 3, 11, 11, 22, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 24
                         },
@@ -283,8 +286,8 @@ namespace hvz_backend.Migrations
                             DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie.",
                             GameId = 1,
                             KillerId = 16,
-                            Latitude = 55.643768000000001,
-                            Longitude = 12.27256,
+                            Latitude = 55.642767999999997,
+                            Longitude = 12.463559999999999,
                             TimeDead = new DateTime(2023, 3, 11, 11, 38, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 31
                         },
@@ -294,8 +297,8 @@ namespace hvz_backend.Migrations
                             DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie.",
                             GameId = 1,
                             KillerId = 11,
-                            Latitude = 55.643718,
-                            Longitude = 12.27291,
+                            Latitude = 55.649718,
+                            Longitude = 12.62091,
                             TimeDead = new DateTime(2023, 3, 11, 11, 49, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 26
                         },
@@ -305,8 +308,8 @@ namespace hvz_backend.Migrations
                             DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie.",
                             GameId = 1,
                             KillerId = 13,
-                            Latitude = 55.643819000000001,
-                            Longitude = 12.272550000000001,
+                            Latitude = 55.647818999999998,
+                            Longitude = 12.66755,
                             TimeDead = new DateTime(2023, 3, 11, 11, 51, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 28
                         },
@@ -316,8 +319,8 @@ namespace hvz_backend.Migrations
                             DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie.",
                             GameId = 2,
                             KillerId = 36,
-                            Latitude = 55.643638000000003,
-                            Longitude = 12.272080000000001,
+                            Latitude = 55.648637999999998,
+                            Longitude = 12.445080000000001,
                             TimeDead = new DateTime(2023, 3, 12, 9, 19, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 66
                         },
@@ -327,8 +330,8 @@ namespace hvz_backend.Migrations
                             DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie.",
                             GameId = 2,
                             KillerId = 36,
-                            Latitude = 55.643389999999997,
-                            Longitude = 12.27242,
+                            Latitude = 55.646389999999997,
+                            Longitude = 12.67042,
                             TimeDead = new DateTime(2023, 3, 12, 9, 32, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 55
                         },
@@ -339,7 +342,7 @@ namespace hvz_backend.Migrations
                             GameId = 2,
                             KillerId = 55,
                             Latitude = 55.643956000000003,
-                            Longitude = 12.27215,
+                            Longitude = 12.510149999999999,
                             TimeDead = new DateTime(2023, 3, 12, 9, 44, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 50
                         },
@@ -349,8 +352,8 @@ namespace hvz_backend.Migrations
                             DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie.",
                             GameId = 2,
                             KillerId = 66,
-                            Latitude = 55.643735,
-                            Longitude = 12.27205,
+                            Latitude = 55.641734999999997,
+                            Longitude = 12.54105,
                             TimeDead = new DateTime(2023, 3, 12, 9, 58, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 38
                         },
@@ -360,8 +363,8 @@ namespace hvz_backend.Migrations
                             DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie.",
                             GameId = 2,
                             KillerId = 38,
-                            Latitude = 55.643441000000003,
-                            Longitude = 12.27211,
+                            Latitude = 55.642440999999998,
+                            Longitude = 12.629110000000001,
                             TimeDead = new DateTime(2023, 3, 12, 10, 16, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 40
                         },
@@ -371,8 +374,8 @@ namespace hvz_backend.Migrations
                             DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie.",
                             GameId = 2,
                             KillerId = 50,
-                            Latitude = 55.643543000000001,
-                            Longitude = 12.27237,
+                            Latitude = 55.648542999999997,
+                            Longitude = 12.682370000000001,
                             TimeDead = new DateTime(2023, 3, 12, 10, 23, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 68
                         },
@@ -382,8 +385,8 @@ namespace hvz_backend.Migrations
                             DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie.",
                             GameId = 2,
                             KillerId = 36,
-                            Latitude = 55.643738999999997,
-                            Longitude = 12.272080000000001,
+                            Latitude = 55.647739000000001,
+                            Longitude = 12.42708,
                             TimeDead = new DateTime(2023, 3, 12, 10, 47, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 43
                         },
@@ -393,8 +396,8 @@ namespace hvz_backend.Migrations
                             DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie.",
                             GameId = 2,
                             KillerId = 66,
-                            Latitude = 55.643782999999999,
-                            Longitude = 12.27262,
+                            Latitude = 55.641782999999997,
+                            Longitude = 12.623620000000001,
                             TimeDead = new DateTime(2023, 3, 12, 10, 50, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 52
                         },
@@ -405,7 +408,7 @@ namespace hvz_backend.Migrations
                             GameId = 2,
                             KillerId = 68,
                             Latitude = 55.643312999999999,
-                            Longitude = 12.272030000000001,
+                            Longitude = 12.660030000000001,
                             TimeDead = new DateTime(2023, 3, 12, 11, 7, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 60
                         },
@@ -415,8 +418,8 @@ namespace hvz_backend.Migrations
                             DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie.",
                             GameId = 2,
                             KillerId = 40,
-                            Latitude = 55.643886999999999,
-                            Longitude = 12.272550000000001,
+                            Latitude = 55.646887,
+                            Longitude = 12.43755,
                             TimeDead = new DateTime(2023, 3, 12, 11, 27, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 48
                         },
@@ -426,8 +429,8 @@ namespace hvz_backend.Migrations
                             DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie.",
                             GameId = 2,
                             KillerId = 60,
-                            Latitude = 55.643341999999997,
-                            Longitude = 12.27281,
+                            Latitude = 55.642341999999999,
+                            Longitude = 12.29481,
                             TimeDead = new DateTime(2023, 3, 12, 11, 33, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 65
                         },
@@ -437,8 +440,8 @@ namespace hvz_backend.Migrations
                             DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie.",
                             GameId = 2,
                             KillerId = 50,
-                            Latitude = 55.643901999999997,
-                            Longitude = 12.272180000000001,
+                            Latitude = 55.646901999999997,
+                            Longitude = 12.61218,
                             TimeDead = new DateTime(2023, 3, 12, 11, 41, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 57
                         },
@@ -448,8 +451,8 @@ namespace hvz_backend.Migrations
                             DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie.",
                             GameId = 2,
                             KillerId = 40,
-                            Latitude = 55.643400999999997,
-                            Longitude = 12.27206,
+                            Latitude = 55.644401000000002,
+                            Longitude = 12.33206,
                             TimeDead = new DateTime(2023, 3, 12, 11, 44, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 58
                         },
@@ -459,8 +462,8 @@ namespace hvz_backend.Migrations
                             DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie.",
                             GameId = 2,
                             KillerId = 68,
-                            Latitude = 55.643177000000001,
-                            Longitude = 12.27257,
+                            Latitude = 55.647176999999999,
+                            Longitude = 12.614570000000001,
                             TimeDead = new DateTime(2023, 3, 12, 11, 45, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 45
                         },
@@ -470,8 +473,8 @@ namespace hvz_backend.Migrations
                             DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie.",
                             GameId = 2,
                             KillerId = 57,
-                            Latitude = 55.643127,
-                            Longitude = 12.27294,
+                            Latitude = 55.647126999999998,
+                            Longitude = 12.347939999999999,
                             TimeDead = new DateTime(2023, 3, 12, 11, 52, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 63
                         },
@@ -481,8 +484,8 @@ namespace hvz_backend.Migrations
                             DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie.",
                             GameId = 3,
                             KillerId = 2,
-                            Latitude = 55.643954999999998,
-                            Longitude = 12.27286,
+                            Latitude = 55.645955000000001,
+                            Longitude = 12.405860000000001,
                             TimeDead = new DateTime(2023, 3, 29, 9, 13, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 12
                         },
@@ -492,8 +495,8 @@ namespace hvz_backend.Migrations
                             DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie.",
                             GameId = 3,
                             KillerId = 2,
-                            Latitude = 55.643526000000001,
-                            Longitude = 12.27228,
+                            Latitude = 55.646526000000001,
+                            Longitude = 12.662280000000001,
                             TimeDead = new DateTime(2023, 3, 29, 9, 24, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 15
                         },
@@ -503,8 +506,8 @@ namespace hvz_backend.Migrations
                             DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie.",
                             GameId = 3,
                             KillerId = 12,
-                            Latitude = 55.643023999999997,
-                            Longitude = 12.27224,
+                            Latitude = 55.645023999999999,
+                            Longitude = 12.60324,
                             TimeDead = new DateTime(2023, 3, 29, 9, 39, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 20
                         },
@@ -514,8 +517,8 @@ namespace hvz_backend.Migrations
                             DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie.",
                             GameId = 3,
                             KillerId = 2,
-                            Latitude = 55.643785000000001,
-                            Longitude = 12.27275,
+                            Latitude = 55.646785000000001,
+                            Longitude = 12.65475,
                             TimeDead = new DateTime(2023, 3, 29, 9, 55, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 25
                         },
@@ -525,8 +528,8 @@ namespace hvz_backend.Migrations
                             DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie.",
                             GameId = 3,
                             KillerId = 15,
-                            Latitude = 55.643183999999998,
-                            Longitude = 12.272679999999999,
+                            Latitude = 55.645184,
+                            Longitude = 12.269679999999999,
                             TimeDead = new DateTime(2023, 3, 29, 10, 7, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 8
                         },
@@ -536,8 +539,8 @@ namespace hvz_backend.Migrations
                             DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie.",
                             GameId = 3,
                             KillerId = 20,
-                            Latitude = 55.643258000000003,
-                            Longitude = 12.272320000000001,
+                            Latitude = 55.644258000000001,
+                            Longitude = 12.49132,
                             TimeDead = new DateTime(2023, 3, 29, 10, 15, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 44
                         },
@@ -547,8 +550,8 @@ namespace hvz_backend.Migrations
                             DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie.",
                             GameId = 3,
                             KillerId = 25,
-                            Latitude = 55.643796999999999,
-                            Longitude = 12.27257,
+                            Latitude = 55.645797000000002,
+                            Longitude = 12.661569999999999,
                             TimeDead = new DateTime(2023, 3, 29, 10, 20, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 70
                         },
@@ -558,8 +561,8 @@ namespace hvz_backend.Migrations
                             DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie.",
                             GameId = 3,
                             KillerId = 2,
-                            Latitude = 55.643923999999998,
-                            Longitude = 12.27229,
+                            Latitude = 55.646923999999999,
+                            Longitude = 12.56429,
                             TimeDead = new DateTime(2023, 3, 29, 10, 35, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 64
                         },
@@ -569,8 +572,8 @@ namespace hvz_backend.Migrations
                             DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie.",
                             GameId = 3,
                             KillerId = 8,
-                            Latitude = 55.643616000000002,
-                            Longitude = 12.272220000000001,
+                            Latitude = 55.649616000000002,
+                            Longitude = 12.500220000000001,
                             TimeDead = new DateTime(2023, 3, 29, 10, 40, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 49
                         },
@@ -580,8 +583,8 @@ namespace hvz_backend.Migrations
                             DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie.",
                             GameId = 3,
                             KillerId = 15,
-                            Latitude = 55.643492000000002,
-                            Longitude = 12.27276,
+                            Latitude = 55.649492000000002,
+                            Longitude = 12.62576,
                             TimeDead = new DateTime(2023, 3, 29, 10, 47, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 6
                         },
@@ -591,8 +594,8 @@ namespace hvz_backend.Migrations
                             DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie.",
                             GameId = 3,
                             KillerId = 44,
-                            Latitude = 55.643042000000001,
-                            Longitude = 12.272209999999999,
+                            Latitude = 55.645041999999997,
+                            Longitude = 12.346209999999999,
                             TimeDead = new DateTime(2023, 3, 29, 11, 2, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 39
                         },
@@ -602,8 +605,8 @@ namespace hvz_backend.Migrations
                             DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie.",
                             GameId = 3,
                             KillerId = 70,
-                            Latitude = 55.643858000000002,
-                            Longitude = 12.27244,
+                            Latitude = 55.647857999999999,
+                            Longitude = 12.577439999999999,
                             TimeDead = new DateTime(2023, 3, 29, 11, 16, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 27
                         },
@@ -613,8 +616,8 @@ namespace hvz_backend.Migrations
                             DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie.",
                             GameId = 3,
                             KillerId = 64,
-                            Latitude = 55.643763,
-                            Longitude = 12.272959999999999,
+                            Latitude = 55.645763000000002,
+                            Longitude = 12.263960000000001,
                             TimeDead = new DateTime(2023, 3, 29, 11, 24, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 14
                         },
@@ -624,8 +627,8 @@ namespace hvz_backend.Migrations
                             DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie.",
                             GameId = 3,
                             KillerId = 6,
-                            Latitude = 55.643745000000003,
-                            Longitude = 12.272679999999999,
+                            Latitude = 55.644745,
+                            Longitude = 12.583679999999999,
                             TimeDead = new DateTime(2023, 3, 29, 11, 41, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 61
                         },
@@ -635,8 +638,8 @@ namespace hvz_backend.Migrations
                             DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie.",
                             GameId = 3,
                             KillerId = 27,
-                            Latitude = 55.643788000000001,
-                            Longitude = 12.272779999999999,
+                            Latitude = 55.648788000000003,
+                            Longitude = 12.62778,
                             TimeDead = new DateTime(2023, 3, 29, 11, 49, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 54
                         });
@@ -1036,7 +1039,7 @@ namespace hvz_backend.Migrations
                             IsPatientZero = true,
                             IsZombie = true,
                             Latitude = 55.643500000000003,
-                            Longitude = 12.272679999999999,
+                            Longitude = 12.237679999999999,
                             UserID = "acc85530-f88c-4de6-86e2-083bc5f86641"
                         },
                         new
@@ -1046,8 +1049,8 @@ namespace hvz_backend.Migrations
                             GameId = 1,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.643799999999999,
-                            Longitude = 12.272130000000001,
+                            Latitude = 55.644799999999996,
+                            Longitude = 12.287129999999999,
                             SquadId = 2,
                             UserID = "d19c226a-22fb-4e6f-81a4-c1d153f929b7"
                         },
@@ -1058,8 +1061,8 @@ namespace hvz_backend.Migrations
                             GameId = 1,
                             IsPatientZero = false,
                             IsZombie = true,
-                            Latitude = 55.643099999999997,
-                            Longitude = 12.27257,
+                            Latitude = 55.647100000000002,
+                            Longitude = 12.43557,
                             SquadId = 2,
                             UserID = "40885ab0-a5bb-4d76-a5d5-5db34156912b"
                         },
@@ -1070,8 +1073,8 @@ namespace hvz_backend.Migrations
                             GameId = 1,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.643900000000002,
-                            Longitude = 12.272959999999999,
+                            Latitude = 55.645899999999997,
+                            Longitude = 12.48296,
                             SquadId = 3,
                             UserID = "70a4f7b8-a619-438f-b309-fd333a9e8577"
                         },
@@ -1083,7 +1086,7 @@ namespace hvz_backend.Migrations
                             IsPatientZero = false,
                             IsZombie = false,
                             Latitude = 55.6432,
-                            Longitude = 12.272220000000001,
+                            Longitude = 12.25722,
                             SquadId = 3,
                             UserID = "1861c804-6669-49bb-b35b-5b2c191b850c"
                         },
@@ -1094,8 +1097,8 @@ namespace hvz_backend.Migrations
                             GameId = 1,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.643799999999999,
-                            Longitude = 12.2728,
+                            Latitude = 55.646799999999999,
+                            Longitude = 12.347799999999999,
                             UserID = "245b9d79-0aa1-435d-9878-4896744f221b"
                         },
                         new
@@ -1106,7 +1109,7 @@ namespace hvz_backend.Migrations
                             IsPatientZero = false,
                             IsZombie = true,
                             Latitude = 55.643900000000002,
-                            Longitude = 12.27247,
+                            Longitude = 12.469469999999999,
                             SquadId = 4,
                             UserID = "25b14121-60e7-4126-9926-34ccefc08ec2"
                         },
@@ -1117,8 +1120,8 @@ namespace hvz_backend.Migrations
                             GameId = 1,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.643599999999999,
-                            Longitude = 12.272360000000001,
+                            Latitude = 55.647599999999997,
+                            Longitude = 12.42536,
                             SquadId = 2,
                             UserID = "f52236fb-2ab2-4345-bfe5-bfa82b776cf1"
                         },
@@ -1129,8 +1132,8 @@ namespace hvz_backend.Migrations
                             GameId = 1,
                             IsPatientZero = false,
                             IsZombie = true,
-                            Latitude = 55.643599999999999,
-                            Longitude = 12.27295,
+                            Latitude = 55.642600000000002,
+                            Longitude = 12.35295,
                             SquadId = 1,
                             UserID = "1e660e8f-893c-4224-82af-8f80d332d4a6"
                         },
@@ -1141,8 +1144,8 @@ namespace hvz_backend.Migrations
                             GameId = 1,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.643099999999997,
-                            Longitude = 12.272779999999999,
+                            Latitude = 55.645099999999999,
+                            Longitude = 12.54678,
                             UserID = "fb55b851-bfeb-4781-8e8a-bc2af03fea63"
                         },
                         new
@@ -1152,8 +1155,8 @@ namespace hvz_backend.Migrations
                             GameId = 1,
                             IsPatientZero = false,
                             IsZombie = true,
-                            Latitude = 55.643900000000002,
-                            Longitude = 12.272,
+                            Latitude = 55.642899999999997,
+                            Longitude = 12.67,
                             UserID = "f8c97264f-0c1b-4dca-9cc3-fe786f8f0962"
                         },
                         new
@@ -1163,8 +1166,8 @@ namespace hvz_backend.Migrations
                             GameId = 1,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.643500000000003,
-                            Longitude = 12.27289,
+                            Latitude = 55.645499999999998,
+                            Longitude = 12.62989,
                             SquadId = 2,
                             UserID = "203837e7-29b9-400f-bdd8-5094abb4f3ab"
                         },
@@ -1175,8 +1178,8 @@ namespace hvz_backend.Migrations
                             GameId = 1,
                             IsPatientZero = false,
                             IsZombie = true,
-                            Latitude = 55.643700000000003,
-                            Longitude = 12.27238,
+                            Latitude = 55.646700000000003,
+                            Longitude = 12.56438,
                             SquadId = 4,
                             UserID = "f0ecd9f5-ee43-4fbf-bc01-7a6f6d6e52a2"
                         },
@@ -1187,8 +1190,8 @@ namespace hvz_backend.Migrations
                             GameId = 1,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.643700000000003,
-                            Longitude = 12.272790000000001,
+                            Latitude = 55.6447,
+                            Longitude = 12.643789999999999,
                             UserID = "1ca26c1d-7737-44aa-abc3-4120d1e84cde"
                         },
                         new
@@ -1198,8 +1201,8 @@ namespace hvz_backend.Migrations
                             GameId = 1,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.643500000000003,
-                            Longitude = 12.272500000000001,
+                            Latitude = 55.646500000000003,
+                            Longitude = 12.2925,
                             SquadId = 5,
                             UserID = "87e22096-fce7-413d-a9e7-1ae785ef39ac"
                         },
@@ -1210,8 +1213,8 @@ namespace hvz_backend.Migrations
                             GameId = 1,
                             IsPatientZero = false,
                             IsZombie = true,
-                            Latitude = 55.643500000000003,
-                            Longitude = 12.272130000000001,
+                            Latitude = 55.642499999999998,
+                            Longitude = 12.460129999999999,
                             SquadId = 3,
                             UserID = "da02dda1-0510-4f20-8cd7-1e22c6e4321e"
                         },
@@ -1222,8 +1225,8 @@ namespace hvz_backend.Migrations
                             GameId = 1,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.643500000000003,
-                            Longitude = 12.272169999999999,
+                            Latitude = 55.648499999999999,
+                            Longitude = 12.63017,
                             UserID = "61bb9ef9-9f9e-4ce5-b466-4add87940ed8"
                         },
                         new
@@ -1233,8 +1236,8 @@ namespace hvz_backend.Migrations
                             GameId = 1,
                             IsPatientZero = false,
                             IsZombie = true,
-                            Latitude = 55.643799999999999,
-                            Longitude = 12.27215,
+                            Latitude = 55.641800000000003,
+                            Longitude = 12.50915,
                             SquadId = 1,
                             UserID = "ed860bdc-50ff-4637-81c2-af42cba90f54"
                         },
@@ -1245,8 +1248,8 @@ namespace hvz_backend.Migrations
                             GameId = 1,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.643799999999999,
-                            Longitude = 12.272030000000001,
+                            Latitude = 55.645800000000001,
+                            Longitude = 12.625030000000001,
                             SquadId = 5,
                             UserID = "db7df012-1f85-44f4-a6b8-6bf95bc9b715"
                         },
@@ -1257,8 +1260,8 @@ namespace hvz_backend.Migrations
                             GameId = 1,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.643700000000003,
-                            Longitude = 12.2729,
+                            Latitude = 55.6417,
+                            Longitude = 12.4069,
                             UserID = "d676b8d0-8353-4e0e-900c-335719b031eb"
                         },
                         new
@@ -1268,8 +1271,8 @@ namespace hvz_backend.Migrations
                             GameId = 1,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.6432,
-                            Longitude = 12.27272,
+                            Latitude = 55.642200000000003,
+                            Longitude = 12.43872,
                             SquadId = 3,
                             UserID = "7c303786-36f5-410d-bae1-8fbcb92c6603"
                         },
@@ -1280,8 +1283,8 @@ namespace hvz_backend.Migrations
                             GameId = 1,
                             IsPatientZero = false,
                             IsZombie = true,
-                            Latitude = 55.643099999999997,
-                            Longitude = 12.272600000000001,
+                            Latitude = 55.649099999999997,
+                            Longitude = 12.602600000000001,
                             SquadId = 5,
                             UserID = "1d270eb6-53bf-440b-8eb9-c71feedf49dd"
                         },
@@ -1292,8 +1295,8 @@ namespace hvz_backend.Migrations
                             GameId = 1,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.6432,
-                            Longitude = 12.27261,
+                            Latitude = 55.645200000000003,
+                            Longitude = 12.32761,
                             SquadId = 4,
                             UserID = "ba89254d-974f-4d64-abe8-8c2ddeabc1b7"
                         },
@@ -1304,8 +1307,8 @@ namespace hvz_backend.Migrations
                             GameId = 1,
                             IsPatientZero = false,
                             IsZombie = true,
-                            Latitude = 55.643500000000003,
-                            Longitude = 12.272259999999999,
+                            Latitude = 55.641500000000001,
+                            Longitude = 12.49126,
                             UserID = "49c024eb-d205-4587-bfd6-e5dbfb1702f3"
                         },
                         new
@@ -1315,8 +1318,8 @@ namespace hvz_backend.Migrations
                             GameId = 1,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.6432,
-                            Longitude = 12.27289,
+                            Latitude = 55.6462,
+                            Longitude = 12.23889,
                             SquadId = 4,
                             UserID = "43f44f34-5ee1-4b80-95c2-0cf2c2cb0776"
                         },
@@ -1327,8 +1330,8 @@ namespace hvz_backend.Migrations
                             GameId = 1,
                             IsPatientZero = false,
                             IsZombie = true,
-                            Latitude = 55.643700000000003,
-                            Longitude = 12.272069999999999,
+                            Latitude = 55.649700000000003,
+                            Longitude = 12.439069999999999,
                             UserID = "b25e5332-0308-4e1c-b137-dae33588ea6c"
                         },
                         new
@@ -1338,8 +1341,8 @@ namespace hvz_backend.Migrations
                             GameId = 1,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.6432,
-                            Longitude = 12.27295,
+                            Latitude = 55.644199999999998,
+                            Longitude = 12.63495,
                             SquadId = 1,
                             UserID = "0920e3c1-f978-4b70-a7f5-9c766595b475"
                         },
@@ -1351,7 +1354,7 @@ namespace hvz_backend.Migrations
                             IsPatientZero = false,
                             IsZombie = true,
                             Latitude = 55.643099999999997,
-                            Longitude = 12.272180000000001,
+                            Longitude = 12.403180000000001,
                             SquadId = 4,
                             UserID = "7b6371fd-a26f-41b0-9056-c793ff7e07d6"
                         },
@@ -1362,8 +1365,8 @@ namespace hvz_backend.Migrations
                             GameId = 1,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.6434,
-                            Longitude = 12.2722,
+                            Latitude = 55.6494,
+                            Longitude = 12.5962,
                             UserID = "6251cd7b-0a79-49e6-b4f2-b153bf21ac97"
                         },
                         new
@@ -1373,8 +1376,8 @@ namespace hvz_backend.Migrations
                             GameId = 1,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.643599999999999,
-                            Longitude = 12.27276,
+                            Latitude = 55.648600000000002,
+                            Longitude = 12.526759999999999,
                             SquadId = 3,
                             UserID = "a56481e5-9c6a-4aef-9e07-c534a33f0097"
                         },
@@ -1385,8 +1388,8 @@ namespace hvz_backend.Migrations
                             GameId = 1,
                             IsPatientZero = false,
                             IsZombie = true,
-                            Latitude = 55.643500000000003,
-                            Longitude = 12.27234,
+                            Latitude = 55.644500000000001,
+                            Longitude = 12.65934,
                             SquadId = 5,
                             UserID = "2454c85a-b5b1-4c08-b265-e8e5a7ced4b7"
                         },
@@ -1397,8 +1400,8 @@ namespace hvz_backend.Migrations
                             GameId = 1,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.643599999999999,
-                            Longitude = 12.272040000000001,
+                            Latitude = 55.641599999999997,
+                            Longitude = 12.300039999999999,
                             SquadId = 2,
                             UserID = "10db85db-9750-415f-b6f3-333bdd678758"
                         },
@@ -1409,8 +1412,8 @@ namespace hvz_backend.Migrations
                             GameId = 1,
                             IsPatientZero = false,
                             IsZombie = true,
-                            Latitude = 55.643500000000003,
-                            Longitude = 12.272220000000001,
+                            Latitude = 55.647500000000001,
+                            Longitude = 12.615220000000001,
                             UserID = "e386781a-bda7-4dba-a504-10999ed91267"
                         },
                         new
@@ -1420,8 +1423,8 @@ namespace hvz_backend.Migrations
                             GameId = 1,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.643000000000001,
-                            Longitude = 12.27266,
+                            Latitude = 55.643999999999998,
+                            Longitude = 12.59066,
                             SquadId = 2,
                             UserID = "01731ab5-8f28-4a7b-afe7-c892fc5bd8d9"
                         },
@@ -1432,8 +1435,8 @@ namespace hvz_backend.Migrations
                             GameId = 1,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.643900000000002,
-                            Longitude = 12.27247,
+                            Latitude = 55.6479,
+                            Longitude = 12.255470000000001,
                             SquadId = 3,
                             UserID = "a7551a99-7573-4abc-afae-b7186d35fb5a"
                         },
@@ -1445,7 +1448,7 @@ namespace hvz_backend.Migrations
                             IsPatientZero = true,
                             IsZombie = true,
                             Latitude = 55.643500000000003,
-                            Longitude = 12.272679999999999,
+                            Longitude = 12.237679999999999,
                             UserID = "542189b8-9df5-41d4-aece-5bff052a53f9"
                         },
                         new
@@ -1455,8 +1458,8 @@ namespace hvz_backend.Migrations
                             GameId = 2,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.643799999999999,
-                            Longitude = 12.272130000000001,
+                            Latitude = 55.644799999999996,
+                            Longitude = 12.287129999999999,
                             SquadId = 7,
                             UserID = "bbf55298-5e22-49a3-945c-b4d79346a3ed"
                         },
@@ -1467,8 +1470,8 @@ namespace hvz_backend.Migrations
                             GameId = 2,
                             IsPatientZero = false,
                             IsZombie = true,
-                            Latitude = 55.643099999999997,
-                            Longitude = 12.27257,
+                            Latitude = 55.647100000000002,
+                            Longitude = 12.43557,
                             SquadId = 9,
                             UserID = "dba845f7-fd61-4f1a-b8a6-4c67de2e8612"
                         },
@@ -1479,8 +1482,8 @@ namespace hvz_backend.Migrations
                             GameId = 2,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.643900000000002,
-                            Longitude = 12.272959999999999,
+                            Latitude = 55.645899999999997,
+                            Longitude = 12.48296,
                             SquadId = 10,
                             UserID = "02e94a01-3d77-477f-8598-a87a0a91ea1a"
                         },
@@ -1492,7 +1495,7 @@ namespace hvz_backend.Migrations
                             IsPatientZero = false,
                             IsZombie = true,
                             Latitude = 55.6432,
-                            Longitude = 12.272220000000001,
+                            Longitude = 12.25722,
                             SquadId = 8,
                             UserID = "430d1e90-27d9-47ca-afa9-8f6c41d1e272"
                         },
@@ -1503,8 +1506,8 @@ namespace hvz_backend.Migrations
                             GameId = 2,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.643799999999999,
-                            Longitude = 12.2728,
+                            Latitude = 55.646799999999999,
+                            Longitude = 12.347799999999999,
                             SquadId = 9,
                             UserID = "7596aaf8-c8a6-449a-be88-e2e0263e51de"
                         },
@@ -1516,7 +1519,7 @@ namespace hvz_backend.Migrations
                             IsPatientZero = false,
                             IsZombie = false,
                             Latitude = 55.643900000000002,
-                            Longitude = 12.27247,
+                            Longitude = 12.469469999999999,
                             SquadId = 9,
                             UserID = "eb78fe31-2baf-495c-bf32-6ac91a050d7e"
                         },
@@ -1527,8 +1530,8 @@ namespace hvz_backend.Migrations
                             GameId = 2,
                             IsPatientZero = false,
                             IsZombie = true,
-                            Latitude = 55.643599999999999,
-                            Longitude = 12.272360000000001,
+                            Latitude = 55.647599999999997,
+                            Longitude = 12.42536,
                             SquadId = 6,
                             UserID = "56e015d1-9ddf-4b6b-bc56-47b481696b04"
                         },
@@ -1539,8 +1542,8 @@ namespace hvz_backend.Migrations
                             GameId = 2,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.643599999999999,
-                            Longitude = 12.27295,
+                            Latitude = 55.642600000000002,
+                            Longitude = 12.35295,
                             SquadId = 10,
                             UserID = "587e6433-36f0-4ec3-825f-318aecf427fb"
                         },
@@ -1551,8 +1554,8 @@ namespace hvz_backend.Migrations
                             GameId = 2,
                             IsPatientZero = false,
                             IsZombie = true,
-                            Latitude = 55.643099999999997,
-                            Longitude = 12.272779999999999,
+                            Latitude = 55.645099999999999,
+                            Longitude = 12.54678,
                             SquadId = 6,
                             UserID = "726f19c4-d67e-4584-aaf9-eb74eb9a6309"
                         },
@@ -1563,8 +1566,8 @@ namespace hvz_backend.Migrations
                             GameId = 2,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.643900000000002,
-                            Longitude = 12.272,
+                            Latitude = 55.642899999999997,
+                            Longitude = 12.67,
                             SquadId = 8,
                             UserID = "98ae3b89-2b66-4113-b369-b06e7af7960e"
                         },
@@ -1575,8 +1578,8 @@ namespace hvz_backend.Migrations
                             GameId = 2,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.643500000000003,
-                            Longitude = 12.27289,
+                            Latitude = 55.645499999999998,
+                            Longitude = 12.62989,
                             SquadId = 6,
                             UserID = "c6561be2-a927-4cb4-86ad-42867a09f06d"
                         },
@@ -1587,8 +1590,8 @@ namespace hvz_backend.Migrations
                             GameId = 2,
                             IsPatientZero = false,
                             IsZombie = true,
-                            Latitude = 55.643700000000003,
-                            Longitude = 12.27238,
+                            Latitude = 55.646700000000003,
+                            Longitude = 12.56438,
                             SquadId = 7,
                             UserID = "247cb94a-606a-44b2-968f-244f26544797"
                         },
@@ -1599,8 +1602,8 @@ namespace hvz_backend.Migrations
                             GameId = 2,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.643700000000003,
-                            Longitude = 12.272790000000001,
+                            Latitude = 55.6447,
+                            Longitude = 12.643789999999999,
                             SquadId = 7,
                             UserID = "38de1747-35cf-41d0-a275-e6a5e84b0b2e"
                         },
@@ -1611,8 +1614,8 @@ namespace hvz_backend.Migrations
                             GameId = 2,
                             IsPatientZero = false,
                             IsZombie = true,
-                            Latitude = 55.643500000000003,
-                            Longitude = 12.272500000000001,
+                            Latitude = 55.646500000000003,
+                            Longitude = 12.2925,
                             SquadId = 9,
                             UserID = "9ce13bc9-7f8b-4be8-97c7-bd8d9370deb0"
                         },
@@ -1623,8 +1626,8 @@ namespace hvz_backend.Migrations
                             GameId = 2,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.643500000000003,
-                            Longitude = 12.272130000000001,
+                            Latitude = 55.642499999999998,
+                            Longitude = 12.460129999999999,
                             UserID = "9d394a75-27a0-4a21-b5f3-e0938da2725c"
                         },
                         new
@@ -1634,8 +1637,8 @@ namespace hvz_backend.Migrations
                             GameId = 2,
                             IsPatientZero = false,
                             IsZombie = true,
-                            Latitude = 55.643500000000003,
-                            Longitude = 12.272169999999999,
+                            Latitude = 55.648499999999999,
+                            Longitude = 12.63017,
                             UserID = "99000a0c-b069-4f61-9edd-0fc69a8accce"
                         },
                         new
@@ -1645,8 +1648,8 @@ namespace hvz_backend.Migrations
                             GameId = 2,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.643799999999999,
-                            Longitude = 12.27215,
+                            Latitude = 55.641800000000003,
+                            Longitude = 12.50915,
                             SquadId = 10,
                             UserID = "4afba9be-cd98-4070-9cb2-de3aa91e7203"
                         },
@@ -1657,8 +1660,8 @@ namespace hvz_backend.Migrations
                             GameId = 2,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.643799999999999,
-                            Longitude = 12.272030000000001,
+                            Latitude = 55.645800000000001,
+                            Longitude = 12.625030000000001,
                             SquadId = 9,
                             UserID = "8e942c88-8b46-451c-a594-1029e59ffffe"
                         },
@@ -1669,8 +1672,8 @@ namespace hvz_backend.Migrations
                             GameId = 2,
                             IsPatientZero = false,
                             IsZombie = true,
-                            Latitude = 55.643700000000003,
-                            Longitude = 12.2729,
+                            Latitude = 55.6417,
+                            Longitude = 12.4069,
                             SquadId = 9,
                             UserID = "bf84285f-8bea-4639-bff5-404812e17e02"
                         },
@@ -1681,8 +1684,8 @@ namespace hvz_backend.Migrations
                             GameId = 2,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.6432,
-                            Longitude = 12.27272,
+                            Latitude = 55.642200000000003,
+                            Longitude = 12.43872,
                             SquadId = 8,
                             UserID = "6f90589f-df6b-4e3e-8adb-3986b1b1ae20"
                         },
@@ -1693,8 +1696,8 @@ namespace hvz_backend.Migrations
                             GameId = 2,
                             IsPatientZero = false,
                             IsZombie = true,
-                            Latitude = 55.643099999999997,
-                            Longitude = 12.272600000000001,
+                            Latitude = 55.649099999999997,
+                            Longitude = 12.602600000000001,
                             UserID = "c1dec74f-fc72-4f64-8cd1-4c35c48dba4b"
                         },
                         new
@@ -1704,8 +1707,8 @@ namespace hvz_backend.Migrations
                             GameId = 2,
                             IsPatientZero = false,
                             IsZombie = true,
-                            Latitude = 55.6432,
-                            Longitude = 12.27261,
+                            Latitude = 55.645200000000003,
+                            Longitude = 12.32761,
                             UserID = "00a13984-f498-4161-b448-ada0d47b86d4"
                         },
                         new
@@ -1715,8 +1718,8 @@ namespace hvz_backend.Migrations
                             GameId = 2,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.643500000000003,
-                            Longitude = 12.272259999999999,
+                            Latitude = 55.641500000000001,
+                            Longitude = 12.49126,
                             SquadId = 6,
                             UserID = "4306cf6f-f263-4bcc-a5af-5a4083bf2700"
                         },
@@ -1727,8 +1730,8 @@ namespace hvz_backend.Migrations
                             GameId = 2,
                             IsPatientZero = false,
                             IsZombie = true,
-                            Latitude = 55.6432,
-                            Longitude = 12.27289,
+                            Latitude = 55.6462,
+                            Longitude = 12.23889,
                             SquadId = 10,
                             UserID = "4655a760-e6b2-4035-b39c-cf1156f4a0fa"
                         },
@@ -1739,8 +1742,8 @@ namespace hvz_backend.Migrations
                             GameId = 2,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.643700000000003,
-                            Longitude = 12.272069999999999,
+                            Latitude = 55.649700000000003,
+                            Longitude = 12.439069999999999,
                             UserID = "8fd9439a-d6f1-42e0-9d7e-04c8e8a0554b"
                         },
                         new
@@ -1750,8 +1753,8 @@ namespace hvz_backend.Migrations
                             GameId = 2,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.6432,
-                            Longitude = 12.27295,
+                            Latitude = 55.644199999999998,
+                            Longitude = 12.63495,
                             UserID = "4fef8bff-b177-4919-a3b1-8d5b81bccedd"
                         },
                         new
@@ -1762,7 +1765,7 @@ namespace hvz_backend.Migrations
                             IsPatientZero = false,
                             IsZombie = true,
                             Latitude = 55.643099999999997,
-                            Longitude = 12.272180000000001,
+                            Longitude = 12.403180000000001,
                             UserID = "82f60c88-dfcf-4993-96ca-a68188a6a109"
                         },
                         new
@@ -1772,8 +1775,8 @@ namespace hvz_backend.Migrations
                             GameId = 2,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.6434,
-                            Longitude = 12.2722,
+                            Latitude = 55.6494,
+                            Longitude = 12.5962,
                             UserID = "135ac31d-9dd8-4ebf-b1ea-8e530e86dfc3"
                         },
                         new
@@ -1783,8 +1786,8 @@ namespace hvz_backend.Migrations
                             GameId = 2,
                             IsPatientZero = false,
                             IsZombie = true,
-                            Latitude = 55.643599999999999,
-                            Longitude = 12.27276,
+                            Latitude = 55.648600000000002,
+                            Longitude = 12.526759999999999,
                             SquadId = 7,
                             UserID = "fd9ea2b3-f9a3-447b-a614-ef6c44f4b0c6"
                         },
@@ -1795,8 +1798,8 @@ namespace hvz_backend.Migrations
                             GameId = 2,
                             IsPatientZero = false,
                             IsZombie = true,
-                            Latitude = 55.643500000000003,
-                            Longitude = 12.27234,
+                            Latitude = 55.644500000000001,
+                            Longitude = 12.65934,
                             SquadId = 10,
                             UserID = "b12a9834-293d-47d3-b6b4-5f8f57c1d092"
                         },
@@ -1807,8 +1810,8 @@ namespace hvz_backend.Migrations
                             GameId = 2,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.643599999999999,
-                            Longitude = 12.272040000000001,
+                            Latitude = 55.641599999999997,
+                            Longitude = 12.300039999999999,
                             SquadId = 10,
                             UserID = "75eaa26a-6552-4822-8973-94948ccafb22"
                         },
@@ -1819,8 +1822,8 @@ namespace hvz_backend.Migrations
                             GameId = 2,
                             IsPatientZero = false,
                             IsZombie = true,
-                            Latitude = 55.643500000000003,
-                            Longitude = 12.272220000000001,
+                            Latitude = 55.647500000000001,
+                            Longitude = 12.615220000000001,
                             SquadId = 8,
                             UserID = "1a91b5d0-06df-4eb6-911d-2ce1a9766a9b"
                         },
@@ -1831,8 +1834,8 @@ namespace hvz_backend.Migrations
                             GameId = 2,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.643000000000001,
-                            Longitude = 12.27266,
+                            Latitude = 55.643999999999998,
+                            Longitude = 12.59066,
                             SquadId = 6,
                             UserID = "215a49a4-d9b5-4e86-86ba-35d69781649e"
                         },
@@ -1843,8 +1846,8 @@ namespace hvz_backend.Migrations
                             GameId = 2,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.643900000000002,
-                            Longitude = 12.27247,
+                            Latitude = 55.6479,
+                            Longitude = 12.255470000000001,
                             UserID = "5f70e435-d750-4961-a790-704312ae1336"
                         },
                         new
@@ -1854,8 +1857,8 @@ namespace hvz_backend.Migrations
                             GameId = 3,
                             IsPatientZero = true,
                             IsZombie = true,
-                            Latitude = 55.643281000000002,
-                            Longitude = 12.27284,
+                            Latitude = 55.644280999999999,
+                            Longitude = 12.560840000000001,
                             UserID = "d19c226a-22fb-4e6f-81a4-c1d153f929b7"
                         },
                         new
@@ -1865,8 +1868,8 @@ namespace hvz_backend.Migrations
                             GameId = 3,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.643011999999999,
-                            Longitude = 12.27298,
+                            Latitude = 55.647011999999997,
+                            Longitude = 12.531980000000001,
                             SquadId = 11,
                             UserID = "70a4f7b8-a619-438f-b309-fd333a9e8577"
                         },
@@ -1877,8 +1880,8 @@ namespace hvz_backend.Migrations
                             GameId = 3,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.643459,
-                            Longitude = 12.27234,
+                            Latitude = 55.641458999999998,
+                            Longitude = 12.68234,
                             SquadId = 12,
                             UserID = "1861c804-6669-49bb-b35b-5b2c191b850c"
                         },
@@ -1889,8 +1892,8 @@ namespace hvz_backend.Migrations
                             GameId = 3,
                             IsPatientZero = false,
                             IsZombie = true,
-                            Latitude = 55.643614999999997,
-                            Longitude = 12.27267,
+                            Latitude = 55.649614999999997,
+                            Longitude = 12.29467,
                             UserID = "245b9d79-0aa1-435d-9878-4896744f221b"
                         },
                         new
@@ -1900,8 +1903,8 @@ namespace hvz_backend.Migrations
                             GameId = 3,
                             IsPatientZero = false,
                             IsZombie = true,
-                            Latitude = 55.643872999999999,
-                            Longitude = 12.27256,
+                            Latitude = 55.645873000000002,
+                            Longitude = 12.646559999999999,
                             UserID = "f52236fb-2ab2-4345-bfe5-bfa82b776cf1"
                         },
                         new
@@ -1911,8 +1914,8 @@ namespace hvz_backend.Migrations
                             GameId = 3,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.643377000000001,
-                            Longitude = 12.27252,
+                            Latitude = 55.642377000000003,
+                            Longitude = 12.421519999999999,
                             UserID = "fb55b851-bfeb-4781-8e8a-bc2af03fea63"
                         },
                         new
@@ -1922,8 +1925,8 @@ namespace hvz_backend.Migrations
                             GameId = 3,
                             IsPatientZero = false,
                             IsZombie = true,
-                            Latitude = 55.643180000000001,
-                            Longitude = 12.272690000000001,
+                            Latitude = 55.645180000000003,
+                            Longitude = 12.50769,
                             SquadId = 13,
                             UserID = "203837e7-29b9-400f-bdd8-5094abb4f3ab"
                         },
@@ -1934,8 +1937,8 @@ namespace hvz_backend.Migrations
                             GameId = 3,
                             IsPatientZero = false,
                             IsZombie = true,
-                            Latitude = 55.643549999999998,
-                            Longitude = 12.272869999999999,
+                            Latitude = 55.646549999999998,
+                            Longitude = 12.36387,
                             SquadId = 14,
                             UserID = "1ca26c1d-7737-44aa-abc3-4120d1e84cde"
                         },
@@ -1946,8 +1949,8 @@ namespace hvz_backend.Migrations
                             GameId = 3,
                             IsPatientZero = false,
                             IsZombie = true,
-                            Latitude = 55.643304000000001,
-                            Longitude = 12.27206,
+                            Latitude = 55.642304000000003,
+                            Longitude = 12.574059999999999,
                             UserID = "87e22096-fce7-413d-a9e7-1ae785ef39ac"
                         },
                         new
@@ -1957,8 +1960,8 @@ namespace hvz_backend.Migrations
                             GameId = 3,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.643596000000002,
-                            Longitude = 12.272959999999999,
+                            Latitude = 55.649596000000003,
+                            Longitude = 12.26496,
                             UserID = "61bb9ef9-9f9e-4ce5-b466-4add87940ed8"
                         },
                         new
@@ -1968,8 +1971,8 @@ namespace hvz_backend.Migrations
                             GameId = 3,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.643009999999997,
-                            Longitude = 12.272259999999999,
+                            Latitude = 55.645009999999999,
+                            Longitude = 12.64626,
                             UserID = "db7df012-1f85-44f4-a6b8-6bf95bc9b715"
                         },
                         new
@@ -1979,8 +1982,8 @@ namespace hvz_backend.Migrations
                             GameId = 3,
                             IsPatientZero = false,
                             IsZombie = true,
-                            Latitude = 55.643233000000002,
-                            Longitude = 12.272489999999999,
+                            Latitude = 55.642232999999997,
+                            Longitude = 12.536490000000001,
                             UserID = "d676b8d0-8353-4e0e-900c-335719b031eb"
                         },
                         new
@@ -1990,8 +1993,8 @@ namespace hvz_backend.Migrations
                             GameId = 3,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.643129000000002,
-                            Longitude = 12.27298,
+                            Latitude = 55.644129,
+                            Longitude = 12.34498,
                             SquadId = 11,
                             UserID = "7c303786-36f5-410d-bae1-8fbcb92c6603"
                         },
@@ -2002,8 +2005,8 @@ namespace hvz_backend.Migrations
                             GameId = 3,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.643794,
-                            Longitude = 12.272640000000001,
+                            Latitude = 55.646794,
+                            Longitude = 12.670640000000001,
                             SquadId = 13,
                             UserID = "ba89254d-974f-4d64-abe8-8c2ddeabc1b7"
                         },
@@ -2014,8 +2017,8 @@ namespace hvz_backend.Migrations
                             GameId = 3,
                             IsPatientZero = false,
                             IsZombie = true,
-                            Latitude = 55.643804000000003,
-                            Longitude = 12.27211,
+                            Latitude = 55.648803999999998,
+                            Longitude = 12.546110000000001,
                             SquadId = 13,
                             UserID = "43f44f34-5ee1-4b80-95c2-0cf2c2cb0776"
                         },
@@ -2026,8 +2029,8 @@ namespace hvz_backend.Migrations
                             GameId = 3,
                             IsPatientZero = false,
                             IsZombie = true,
-                            Latitude = 55.643416999999999,
-                            Longitude = 12.27253,
+                            Latitude = 55.645417000000002,
+                            Longitude = 12.369529999999999,
                             UserID = "0920e3c1-f978-4b70-a7f5-9c766595b475"
                         },
                         new
@@ -2037,8 +2040,8 @@ namespace hvz_backend.Migrations
                             GameId = 3,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.643355,
-                            Longitude = 12.272209999999999,
+                            Latitude = 55.644354999999997,
+                            Longitude = 12.439209999999999,
                             SquadId = 14,
                             UserID = "6251cd7b-0a79-49e6-b4f2-b153bf21ac97"
                         },
@@ -2049,8 +2052,8 @@ namespace hvz_backend.Migrations
                             GameId = 3,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.643571000000001,
-                            Longitude = 12.27223,
+                            Latitude = 55.645570999999997,
+                            Longitude = 12.40523,
                             UserID = "a56481e5-9c6a-4aef-9e07-c534a33f0097"
                         },
                         new
@@ -2061,7 +2064,7 @@ namespace hvz_backend.Migrations
                             IsPatientZero = false,
                             IsZombie = false,
                             Latitude = 55.643405000000001,
-                            Longitude = 12.27256,
+                            Longitude = 12.457560000000001,
                             SquadId = 12,
                             UserID = "10db85db-9750-415f-b6f3-333bdd678758"
                         },
@@ -2072,8 +2075,8 @@ namespace hvz_backend.Migrations
                             GameId = 3,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.643138999999998,
-                            Longitude = 12.2727,
+                            Latitude = 55.647139000000003,
+                            Longitude = 12.4757,
                             SquadId = 12,
                             UserID = "01731ab5-8f28-4a7b-afe7-c892fc5bd8d9"
                         },
@@ -2084,8 +2087,8 @@ namespace hvz_backend.Migrations
                             GameId = 3,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.643838000000002,
-                            Longitude = 12.27205,
+                            Latitude = 55.644838,
+                            Longitude = 12.31005,
                             SquadId = 12,
                             UserID = "a7551a99-7573-4abc-afae-b7186d35fb5a"
                         },
@@ -2096,8 +2099,8 @@ namespace hvz_backend.Migrations
                             GameId = 3,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.643135000000001,
-                            Longitude = 12.272679999999999,
+                            Latitude = 55.648135000000003,
+                            Longitude = 12.46468,
                             UserID = "bbf55298-5e22-49a3-945c-b4d79346a3ed"
                         },
                         new
@@ -2107,8 +2110,8 @@ namespace hvz_backend.Migrations
                             GameId = 3,
                             IsPatientZero = false,
                             IsZombie = true,
-                            Latitude = 55.643616999999999,
-                            Longitude = 12.27294,
+                            Latitude = 55.641616999999997,
+                            Longitude = 12.572939999999999,
                             SquadId = 13,
                             UserID = "02e94a01-3d77-477f-8598-a87a0a91ea1a"
                         },
@@ -2119,8 +2122,8 @@ namespace hvz_backend.Migrations
                             GameId = 3,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.643734000000002,
-                            Longitude = 12.27234,
+                            Latitude = 55.648733999999997,
+                            Longitude = 12.63134,
                             SquadId = 11,
                             UserID = "7596aaf8-c8a6-449a-be88-e2e0263e51de"
                         },
@@ -2131,8 +2134,8 @@ namespace hvz_backend.Migrations
                             GameId = 3,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.643774999999998,
-                            Longitude = 12.27247,
+                            Latitude = 55.646774999999998,
+                            Longitude = 12.64447,
                             UserID = "eb78fe31-2baf-495c-bf32-6ac91a050d7e"
                         },
                         new
@@ -2142,8 +2145,8 @@ namespace hvz_backend.Migrations
                             GameId = 3,
                             IsPatientZero = false,
                             IsZombie = true,
-                            Latitude = 55.643523999999999,
-                            Longitude = 12.27276,
+                            Latitude = 55.642524000000002,
+                            Longitude = 12.29176,
                             UserID = "587e6433-36f0-4ec3-825f-318aecf427fb"
                         },
                         new
@@ -2153,8 +2156,8 @@ namespace hvz_backend.Migrations
                             GameId = 3,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.643042000000001,
-                            Longitude = 12.2729,
+                            Latitude = 55.647041999999999,
+                            Longitude = 12.511900000000001,
                             SquadId = 11,
                             UserID = "98ae3b89-2b66-4113-b369-b06e7af7960e"
                         },
@@ -2165,8 +2168,8 @@ namespace hvz_backend.Migrations
                             GameId = 3,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.643455000000003,
-                            Longitude = 12.27256,
+                            Latitude = 55.646455000000003,
+                            Longitude = 12.425560000000001,
                             SquadId = 13,
                             UserID = "c6561be2-a927-4cb4-86ad-42867a09f06d"
                         },
@@ -2177,8 +2180,8 @@ namespace hvz_backend.Migrations
                             GameId = 3,
                             IsPatientZero = false,
                             IsZombie = true,
-                            Latitude = 55.643731000000002,
-                            Longitude = 12.27257,
+                            Latitude = 55.648730999999998,
+                            Longitude = 12.28857,
                             UserID = "38de1747-35cf-41d0-a275-e6a5e84b0b2e"
                         },
                         new
@@ -2188,8 +2191,8 @@ namespace hvz_backend.Migrations
                             GameId = 3,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.643256000000001,
-                            Longitude = 12.27205,
+                            Latitude = 55.647255999999999,
+                            Longitude = 12.251049999999999,
                             SquadId = 13,
                             UserID = "9d394a75-27a0-4a21-b5f3-e0938da2725c"
                         },
@@ -2200,8 +2203,8 @@ namespace hvz_backend.Migrations
                             GameId = 3,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.643222999999999,
-                            Longitude = 12.27216,
+                            Latitude = 55.642223000000001,
+                            Longitude = 12.38616,
                             UserID = "4afba9be-cd98-4070-9cb2-de3aa91e7203"
                         },
                         new
@@ -2211,8 +2214,8 @@ namespace hvz_backend.Migrations
                             GameId = 3,
                             IsPatientZero = false,
                             IsZombie = true,
-                            Latitude = 55.643436999999999,
-                            Longitude = 12.272209999999999,
+                            Latitude = 55.642437000000001,
+                            Longitude = 12.564209999999999,
                             SquadId = 14,
                             UserID = "8e942c88-8b46-451c-a594-1029e59ffffe"
                         },
@@ -2223,8 +2226,8 @@ namespace hvz_backend.Migrations
                             GameId = 3,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.643275000000003,
-                            Longitude = 12.272270000000001,
+                            Latitude = 55.647275,
+                            Longitude = 12.35027,
                             UserID = "6f90589f-df6b-4e3e-8adb-3986b1b1ae20"
                         },
                         new
@@ -2234,8 +2237,8 @@ namespace hvz_backend.Migrations
                             GameId = 3,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.643447999999999,
-                            Longitude = 12.272270000000001,
+                            Latitude = 55.641447999999997,
+                            Longitude = 12.38627,
                             UserID = "4306cf6f-f263-4bcc-a5af-5a4083bf2700"
                         },
                         new
@@ -2245,8 +2248,8 @@ namespace hvz_backend.Migrations
                             GameId = 3,
                             IsPatientZero = false,
                             IsZombie = true,
-                            Latitude = 55.643225000000001,
-                            Longitude = 12.272589999999999,
+                            Latitude = 55.648224999999996,
+                            Longitude = 12.65559,
                             SquadId = 11,
                             UserID = "8fd9439a-d6f1-42e0-9d7e-04c8e8a0554b"
                         },
@@ -2257,8 +2260,8 @@ namespace hvz_backend.Migrations
                             GameId = 3,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.643881999999998,
-                            Longitude = 12.272410000000001,
+                            Latitude = 55.649881999999998,
+                            Longitude = 12.63941,
                             UserID = "4fef8bff-b177-4919-a3b1-8d5b81bccedd"
                         },
                         new
@@ -2268,8 +2271,8 @@ namespace hvz_backend.Migrations
                             GameId = 3,
                             IsPatientZero = false,
                             IsZombie = true,
-                            Latitude = 55.643596000000002,
-                            Longitude = 12.27233,
+                            Latitude = 55.644596,
+                            Longitude = 12.54533,
                             SquadId = 13,
                             UserID = "135ac31d-9dd8-4ebf-b1ea-8e530e86dfc3"
                         },
@@ -2280,8 +2283,8 @@ namespace hvz_backend.Migrations
                             GameId = 3,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.643923999999998,
-                            Longitude = 12.27285,
+                            Latitude = 55.647924000000003,
+                            Longitude = 12.649850000000001,
                             UserID = "75eaa26a-6552-4822-8973-94948ccafb22"
                         },
                         new
@@ -2292,7 +2295,7 @@ namespace hvz_backend.Migrations
                             IsPatientZero = false,
                             IsZombie = false,
                             Latitude = 55.643099999999997,
-                            Longitude = 12.272119999999999,
+                            Longitude = 12.67812,
                             SquadId = 14,
                             UserID = "215a49a4-d9b5-4e86-86ba-35d69781649e"
                         },
@@ -2304,7 +2307,7 @@ namespace hvz_backend.Migrations
                             IsPatientZero = false,
                             IsZombie = true,
                             Latitude = 55.643085999999997,
-                            Longitude = 12.27214,
+                            Longitude = 12.62214,
                             SquadId = 13,
                             UserID = "5f70e435-d750-4961-a790-704312ae1336"
                         },
@@ -2315,8 +2318,8 @@ namespace hvz_backend.Migrations
                             GameId = 4,
                             IsPatientZero = true,
                             IsZombie = true,
-                            Latitude = 55.643067000000002,
-                            Longitude = 12.272650000000001,
+                            Latitude = 55.648066999999998,
+                            Longitude = 12.58765,
                             UserID = "70a4f7b8-a619-438f-b309-fd333a9e8577"
                         },
                         new
@@ -2326,8 +2329,8 @@ namespace hvz_backend.Migrations
                             GameId = 4,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.643945000000002,
-                            Longitude = 12.27242,
+                            Latitude = 55.647945,
+                            Longitude = 12.537419999999999,
                             UserID = "1861c804-6669-49bb-b35b-5b2c191b850c"
                         },
                         new
@@ -2337,8 +2340,8 @@ namespace hvz_backend.Migrations
                             GameId = 4,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.643982000000001,
-                            Longitude = 12.27294,
+                            Latitude = 55.646982000000001,
+                            Longitude = 12.32794,
                             UserID = "fb55b851-bfeb-4781-8e8a-bc2af03fea63"
                         },
                         new
@@ -2348,8 +2351,8 @@ namespace hvz_backend.Migrations
                             GameId = 4,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.643377000000001,
-                            Longitude = 12.272130000000001,
+                            Latitude = 55.648377000000004,
+                            Longitude = 12.502129999999999,
                             UserID = "61bb9ef9-9f9e-4ce5-b466-4add87940ed8"
                         },
                         new
@@ -2359,8 +2362,8 @@ namespace hvz_backend.Migrations
                             GameId = 4,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.643231,
-                            Longitude = 12.27291,
+                            Latitude = 55.646231,
+                            Longitude = 12.47391,
                             UserID = "db7df012-1f85-44f4-a6b8-6bf95bc9b715"
                         },
                         new
@@ -2370,8 +2373,8 @@ namespace hvz_backend.Migrations
                             GameId = 4,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.643923999999998,
-                            Longitude = 12.272349999999999,
+                            Latitude = 55.648924000000001,
+                            Longitude = 12.62735,
                             UserID = "7c303786-36f5-410d-bae1-8fbcb92c6603"
                         },
                         new
@@ -2381,8 +2384,8 @@ namespace hvz_backend.Migrations
                             GameId = 4,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.643220999999997,
-                            Longitude = 12.27281,
+                            Latitude = 55.646220999999997,
+                            Longitude = 12.43281,
                             UserID = "ba89254d-974f-4d64-abe8-8c2ddeabc1b7"
                         },
                         new
@@ -2392,8 +2395,8 @@ namespace hvz_backend.Migrations
                             GameId = 4,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.643253999999999,
-                            Longitude = 12.272270000000001,
+                            Latitude = 55.649253999999999,
+                            Longitude = 12.63527,
                             UserID = "6251cd7b-0a79-49e6-b4f2-b153bf21ac97"
                         },
                         new
@@ -2403,8 +2406,8 @@ namespace hvz_backend.Migrations
                             GameId = 4,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.643450000000001,
-                            Longitude = 12.27234,
+                            Latitude = 55.647449999999999,
+                            Longitude = 12.558339999999999,
                             UserID = "a56481e5-9c6a-4aef-9e07-c534a33f0097"
                         },
                         new
@@ -2414,8 +2417,8 @@ namespace hvz_backend.Migrations
                             GameId = 4,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.643313999999997,
-                            Longitude = 12.27295,
+                            Latitude = 55.648313999999999,
+                            Longitude = 12.28895,
                             UserID = "10db85db-9750-415f-b6f3-333bdd678758"
                         },
                         new
@@ -2425,8 +2428,8 @@ namespace hvz_backend.Migrations
                             GameId = 4,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.643791,
-                            Longitude = 12.272019999999999,
+                            Latitude = 55.648791000000003,
+                            Longitude = 12.53702,
                             UserID = "01731ab5-8f28-4a7b-afe7-c892fc5bd8d9"
                         },
                         new
@@ -2436,8 +2439,8 @@ namespace hvz_backend.Migrations
                             GameId = 4,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.643718999999997,
-                            Longitude = 12.272880000000001,
+                            Latitude = 55.644719000000002,
+                            Longitude = 12.67788,
                             UserID = "a7551a99-7573-4abc-afae-b7186d35fb5a"
                         },
                         new
@@ -2447,8 +2450,8 @@ namespace hvz_backend.Migrations
                             GameId = 4,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.643616999999999,
-                            Longitude = 12.27229,
+                            Latitude = 55.648617000000002,
+                            Longitude = 12.57329,
                             UserID = "bbf55298-5e22-49a3-945c-b4d79346a3ed"
                         },
                         new
@@ -2458,8 +2461,8 @@ namespace hvz_backend.Migrations
                             GameId = 4,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.643906999999999,
-                            Longitude = 12.27298,
+                            Latitude = 55.646906999999999,
+                            Longitude = 12.525980000000001,
                             UserID = "7596aaf8-c8a6-449a-be88-e2e0263e51de"
                         },
                         new
@@ -2469,8 +2472,8 @@ namespace hvz_backend.Migrations
                             GameId = 4,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.643917999999999,
-                            Longitude = 12.272779999999999,
+                            Latitude = 55.647917999999997,
+                            Longitude = 12.506779999999999,
                             UserID = "eb78fe31-2baf-495c-bf32-6ac91a050d7e"
                         },
                         new
@@ -2480,8 +2483,8 @@ namespace hvz_backend.Migrations
                             GameId = 4,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.643428,
-                            Longitude = 12.27247,
+                            Latitude = 55.646428,
+                            Longitude = 12.57047,
                             UserID = "98ae3b89-2b66-4113-b369-b06e7af7960e"
                         },
                         new
@@ -2491,8 +2494,8 @@ namespace hvz_backend.Migrations
                             GameId = 4,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.643943999999998,
-                            Longitude = 12.27201,
+                            Latitude = 55.648944,
+                            Longitude = 12.260009999999999,
                             UserID = "c6561be2-a927-4cb4-86ad-42867a09f06d"
                         },
                         new
@@ -2502,8 +2505,8 @@ namespace hvz_backend.Migrations
                             GameId = 4,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.643839999999997,
-                            Longitude = 12.27233,
+                            Latitude = 55.647840000000002,
+                            Longitude = 12.62533,
                             UserID = "9d394a75-27a0-4a21-b5f3-e0938da2725c"
                         },
                         new
@@ -2513,8 +2516,8 @@ namespace hvz_backend.Migrations
                             GameId = 4,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.643926999999998,
-                            Longitude = 12.27219,
+                            Latitude = 55.645927,
+                            Longitude = 12.642189999999999,
                             UserID = "4afba9be-cd98-4070-9cb2-de3aa91e7203"
                         },
                         new
@@ -2524,8 +2527,8 @@ namespace hvz_backend.Migrations
                             GameId = 4,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.643431999999997,
-                            Longitude = 12.272019999999999,
+                            Latitude = 55.648432,
+                            Longitude = 12.475020000000001,
                             UserID = "6f90589f-df6b-4e3e-8adb-3986b1b1ae20"
                         },
                         new
@@ -2535,8 +2538,8 @@ namespace hvz_backend.Migrations
                             GameId = 4,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.643721999999997,
-                            Longitude = 12.27291,
+                            Latitude = 55.645721999999999,
+                            Longitude = 12.360910000000001,
                             UserID = "4306cf6f-f263-4bcc-a5af-5a4083bf2700"
                         },
                         new
@@ -2546,8 +2549,8 @@ namespace hvz_backend.Migrations
                             GameId = 4,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.643462999999997,
-                            Longitude = 12.272790000000001,
+                            Latitude = 55.648463,
+                            Longitude = 12.438789999999999,
                             UserID = "4fef8bff-b177-4919-a3b1-8d5b81bccedd"
                         },
                         new
@@ -2557,8 +2560,8 @@ namespace hvz_backend.Migrations
                             GameId = 4,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.643875000000001,
-                            Longitude = 12.27205,
+                            Latitude = 55.648874999999997,
+                            Longitude = 12.37205,
                             UserID = "75eaa26a-6552-4822-8973-94948ccafb22"
                         },
                         new
@@ -2568,8 +2571,8 @@ namespace hvz_backend.Migrations
                             GameId = 4,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.643205000000002,
-                            Longitude = 12.27275,
+                            Latitude = 55.644204999999999,
+                            Longitude = 12.28575,
                             UserID = "215a49a4-d9b5-4e86-86ba-35d69781649e"
                         });
                 });
