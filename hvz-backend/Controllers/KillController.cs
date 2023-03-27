@@ -66,7 +66,7 @@ namespace hvz_backend.Controllers
         {
             try
             {
-                return Ok(_mapper.Map<IEnumerable<KillReadDTO>>(await _service.GetAllKillsInMap(gameId)));
+                return Ok(_mapper.Map<IEnumerable<KillReadDTO>>(await _service.GetAllKillsInGame(gameId)));
             }
             catch (KillNotFoundException e)
             {
@@ -88,7 +88,7 @@ namespace hvz_backend.Controllers
         {
             try
             {
-                return Ok(_mapper.Map<KillReadDTO>(await _service.GetKillByIdInMap(gameId, id)));
+                return Ok(_mapper.Map<KillReadDTO>(await _service.GetKillByIdInGame(gameId, id)));
             }
             catch (KillNotFoundException e)
             {
@@ -104,7 +104,7 @@ namespace hvz_backend.Controllers
         {
             try
             {
-                return Ok(_mapper.Map<KillTimeDeadDTO>(await _service.GetKillByIdInMap(gameId, id)));
+                return Ok(_mapper.Map<KillTimeDeadDTO>(await _service.GetKillByIdInGame(gameId, id)));
             }
             catch (KillNotFoundException e)
             {
@@ -120,7 +120,7 @@ namespace hvz_backend.Controllers
         {
             try
             {
-                return Ok(_mapper.Map<KillKillerDTO>(await _service.GetKillByIdInMap(gameId, id)));
+                return Ok(_mapper.Map<KillKillerDTO>(await _service.GetKillByIdInGame(gameId, id)));
             }
             catch (KillNotFoundException e)
             {
@@ -136,7 +136,7 @@ namespace hvz_backend.Controllers
         {
             try
             {
-                return Ok(_mapper.Map<KillLatDTO>(await _service.GetKillByIdInMap(gameId, id)));
+                return Ok(_mapper.Map<KillLatDTO>(await _service.GetKillByIdInGame(gameId, id)));
             }
             catch (KillNotFoundException e)
             {
@@ -152,7 +152,7 @@ namespace hvz_backend.Controllers
         {
             try
             {
-                return Ok(_mapper.Map<KillLongDTO>(await _service.GetKillByIdInMap(gameId, id)));
+                return Ok(_mapper.Map<KillLongDTO>(await _service.GetKillByIdInGame(gameId, id)));
             }
             catch (KillNotFoundException e)
             {
@@ -168,7 +168,7 @@ namespace hvz_backend.Controllers
         {
             try
             {
-                return Ok(_mapper.Map<KillStoryDTO>(await _service.GetKillByIdInMap(gameId, id)));
+                return Ok(_mapper.Map<KillStoryDTO>(await _service.GetKillByIdInGame(gameId, id)));
             }
             catch (KillNotFoundException e)
             {
@@ -184,7 +184,7 @@ namespace hvz_backend.Controllers
         {
             try
             {
-                return Ok(_mapper.Map<KillVictimDTO>(await _service.GetKillByIdInMap(gameId, id)));
+                return Ok(_mapper.Map<KillVictimDTO>(await _service.GetKillByIdInGame(gameId, id)));
             }
             catch (KillNotFoundException e)
             {
@@ -225,11 +225,11 @@ namespace hvz_backend.Controllers
 
         #region HTTP PATCH
         [HttpPatch("{gameId}/kill/{id}/story")]
-        public async Task<ActionResult> PatchDeadStoryKill(int mapId, int id, [FromBody] KillStoryDTO killStoryDTO)
+        public async Task<ActionResult> PatchDeadStoryKill(int gameId, int id, [FromBody] KillStoryDTO killStoryDTO)
         {
             try
             {
-                await _service.PatchDeadStoryKill(mapId, id, killStoryDTO.DeadStory);
+                await _service.PatchDeadStoryKill(gameId, id, killStoryDTO.DeadStory);
             }
             catch (GameNotFoundException e)
             {
@@ -242,11 +242,11 @@ namespace hvz_backend.Controllers
         }
 
         [HttpPatch("{gameId}/kill/{id}/killer")]
-        public async Task<ActionResult> PatchKillerKill(int mapId, int id, [FromBody] KillKillerDTO killKillerDTO)
+        public async Task<ActionResult> PatchKillerKill(int gameId, int id, [FromBody] KillKillerDTO killKillerDTO)
         {
             try
             {
-                await _service.PatchKillerKill(mapId, id, killKillerDTO.KillerId);
+                await _service.PatchKillerKill(gameId, id, killKillerDTO.KillerId);
             }
             catch (GameNotFoundException e)
             {
@@ -259,11 +259,11 @@ namespace hvz_backend.Controllers
         }
 
         [HttpPatch("{gameId}/kill/{id}/victim")]
-        public async Task<ActionResult> PatchVictimKill(int mapId, int id, [FromBody] KillVictimDTO killVictimDTO)
+        public async Task<ActionResult> PatchVictimKill(int gameId, int id, [FromBody] KillVictimDTO killVictimDTO)
         {
             try
             {
-                await _service.PatchVictimKill(mapId, id, killVictimDTO.VictimId);
+                await _service.PatchVictimKill(gameId, id, killVictimDTO.VictimId);
             }
             catch (GameNotFoundException e)
             {

@@ -6,8 +6,10 @@ using hvz_backend.Models.DTOs.Kill;
 using hvz_backend.Models.DTOs.Player;
 using hvz_backend.Services.GameServices;
 using hvz_backend.Services.PlayerServices;
+using hvz_backend.Services.SquadServices;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Mime;
+using System.Numerics;
 
 namespace hvz_backend.Controllers
 {
@@ -22,13 +24,15 @@ namespace hvz_backend.Controllers
         private readonly IPlayerService _service;
         private readonly IMapper _mapper;
         private readonly IGameService _gameService;
+        private readonly ISquadService _squadService;
 
 
         // Sets the service and mapper for this controller via constructor.
-        public PlayersController(IPlayerService service, IGameService gameService ,IMapper mapper)
+        public PlayersController(IPlayerService service, IGameService gameService, ISquadService squadService, IMapper mapper)
         {
             _service = service;
             _gameService = gameService;
+            _squadService = squadService;
             _mapper = mapper;
         }
         #endregion
@@ -145,7 +149,7 @@ namespace hvz_backend.Controllers
             {
                 return Ok(_mapper.Map<PlayerBiteDTO>(await _service.GetPlayerByIdInGame(gameId, id)));
             }
-            catch (KillNotFoundException e)
+            catch (PlayerNotFoundException e)
             {
                 return NotFound(new ProblemDetails
                 {
@@ -161,7 +165,7 @@ namespace hvz_backend.Controllers
             {
                 return Ok(_mapper.Map<PlayerBiteDTO>(await _service.GetPlayerByIdInGame(gameId, id)));
             }
-            catch (KillNotFoundException e)
+            catch (PlayerNotFoundException e)
             {
                 return NotFound(new ProblemDetails
                 {
@@ -177,7 +181,7 @@ namespace hvz_backend.Controllers
             {
                 return Ok(_mapper.Map<PlayerLongDTO>(await _service.GetPlayerByIdInGame(gameId, id)));
             }
-            catch (KillNotFoundException e)
+            catch (PlayerNotFoundException e)
             {
                 return NotFound(new ProblemDetails
                 {
@@ -193,7 +197,7 @@ namespace hvz_backend.Controllers
             {
                 return Ok(_mapper.Map<PlayerPatientDTO>(await _service.GetPlayerByIdInGame(gameId, id)));
             }
-            catch (KillNotFoundException e)
+            catch (PlayerNotFoundException e)
             {
                 return NotFound(new ProblemDetails
                 {
@@ -209,7 +213,7 @@ namespace hvz_backend.Controllers
             {
                 return Ok(_mapper.Map<PlayerSquadDTO>(await _service.GetPlayerByIdInGame(gameId, id)));
             }
-            catch (KillNotFoundException e)
+            catch (PlayerNotFoundException e)
             {
                 return NotFound(new ProblemDetails
                 {
@@ -225,7 +229,7 @@ namespace hvz_backend.Controllers
             {
                 return Ok(_mapper.Map<PlayerUserDTO>(await _service.GetPlayerByIdInGame(gameId, id)));
             }
-            catch (KillNotFoundException e)
+            catch (PlayerNotFoundException e)
             {
                 return NotFound(new ProblemDetails
                 {
@@ -241,7 +245,7 @@ namespace hvz_backend.Controllers
             {
                 return Ok(_mapper.Map<PlayerZombieDTO>(await _service.GetPlayerByIdInGame(gameId, id)));
             }
-            catch (KillNotFoundException e)
+            catch (PlayerNotFoundException e)
             {
                 return NotFound(new ProblemDetails
                 {
@@ -257,16 +261,28 @@ namespace hvz_backend.Controllers
         /// Possible to update one player.
         /// </summary>
         /// <param name="id">Identifier of the player.</param>
-        /// <param name="playerDTO"></param>
+        /// <param name="playerUpdateDTO"></param>
         /// <returns></returns>
         [HttpPut("{gameId}/player/{id}")]
-        public async Task<IActionResult> PutPlayer(int id, PlayerUpdateDTO playerDTO)
+        public async Task<IActionResult> PutPlayer(int gameId, int id, PlayerUpdateDTO playerUpdateDTO)
         {
             try
             {
-                var player = _mapper.Map<Player>(playerDTO);
+                var player = await _service.GetPlayerByIdInGame(gameId, id);
+                if (player == null) throw new PlayerNotFoundException(id);
+                var oldSquad = await _squadService.GetSquadByIdInGame(gameId, player.Id);
+                if (oldSquad != null)
+                {
+                    int oldSquadAmount = oldSquad.TotalPlayer - 1;
+                    await _squadService.PatchTotalPlayerSquad(gameId, oldSquad.Id, oldSquadAmount);
+                }
+                var newSquad = await _squadService.GetSquadByIdInGame(gameId, playerUpdateDTO.SquadId);
+                if (newSquad == null) throw new SquadNotFoundException(playerUpdateDTO.SquadId);
+                int newSquadAmount = newSquad.TotalPlayer + 1;
+                await _squadService.PatchTotalPlayerSquad(gameId, newSquad.Id, newSquadAmount);
+                var playerUpdated = _mapper.Map<Player>(playerUpdateDTO);
                 player.Id = id;
-                await _service.UpdatePlayer(player);
+                await _service.UpdatePlayer(playerUpdated);
             }
             catch (PlayerNotFoundException e)
             {
@@ -284,13 +300,13 @@ namespace hvz_backend.Controllers
 
 
         [HttpPatch("{gameId}/player/{id}/latitude")]
-        public async Task<ActionResult> PatchLatPlayer(int mapId, int id, [FromBody] PlayerLatDTO playerLatDTO)
+        public async Task<ActionResult> PatchLatPlayer(int gameId, int id, [FromBody] PlayerLatDTO playerLatDTO)
         {
             try
             {
-                await _service.PatchLatPlayer(mapId, id, playerLatDTO.Latitude);
+                await _service.PatchLatPlayer(gameId, id, playerLatDTO.Latitude);
             }
-            catch (KillNotFoundException e)
+            catch (PlayerNotFoundException e)
             {
                 return NotFound(new ProblemDetails
                 {
@@ -302,13 +318,13 @@ namespace hvz_backend.Controllers
         }
 
         [HttpPatch("{gameId}/player/{id}/longitude")]
-        public async Task<ActionResult> PatchlongPlayer(int mapId, int id, [FromBody] PlayerLongDTO playerLongDTO)
+        public async Task<ActionResult> PatchlongPlayer(int gameId, int id, [FromBody] PlayerLongDTO playerLongDTO)
         {
             try
             {
-                await _service.PatchlongPlayer(mapId, id, playerLongDTO.Longitude);
+                await _service.PatchlongPlayer(gameId, id, playerLongDTO.Longitude);
             }
-            catch (KillNotFoundException e)
+            catch (PlayerNotFoundException e)
             {
                 return NotFound(new ProblemDetails
                 {
@@ -320,13 +336,30 @@ namespace hvz_backend.Controllers
         }
 
         [HttpPatch("{gameId}/player/{id}/squadid")]
-        public async Task<ActionResult> PatchSquadPlayer(int mapId, int id, [FromBody] PlayerSquadDTO playerSquadDTO)
+        public async Task<ActionResult> PatchSquadPlayer(int gameId, int id, [FromBody] PlayerSquadDTO playerSquadDTO)
         {
             try
             {
-                await _service.PatchSquadPlayer(mapId, id, playerSquadDTO.SquadId);
+                var player = await _service.GetPlayerByIdInGame(gameId, id);
+                var oldSquad = await _squadService.GetSquadByIdInGame(gameId, player.Id);
+                if (oldSquad != null) 
+                {
+                    int oldSquadAmount = oldSquad.TotalPlayer - 1;
+                    await _squadService.PatchTotalPlayerSquad(gameId, oldSquad.Id, oldSquadAmount);
+                }
+                var newSquad = await _squadService.GetSquadByIdInGame(gameId, playerSquadDTO.SquadId);
+                int newSquadAmount = newSquad.TotalPlayer+1;
+                await _squadService.PatchTotalPlayerSquad(gameId, newSquad.Id, newSquadAmount);
+                await _service.PatchSquadPlayer(gameId, id, playerSquadDTO.SquadId);
             }
-            catch (KillNotFoundException e)
+            catch (PlayerNotFoundException e)
+            {
+                return NotFound(new ProblemDetails
+                {
+                    Detail = e.Message
+                });
+            }
+            catch(SquadNotFoundException e)
             {
                 return NotFound(new ProblemDetails
                 {
@@ -337,14 +370,14 @@ namespace hvz_backend.Controllers
 
         }
 
-        [HttpPatch("{gameId}/player/{id}/iszombie")]
-        public async Task<ActionResult> PatchIsZombiePlayer(int mapId, int id, [FromBody] PlayerZombieDTO playerZombieDTO)
+        [HttpPatch("{gameId}/player/{id}/iszimboie")]
+        public async Task<ActionResult> PatchIsZombiePlayer(int gameId, int id, [FromBody] PlayerZombieDTO playerZombieDTO)
         {
             try
             {
-                await _service.PatchIsZombiePlayer(mapId, id, playerZombieDTO.IsZombie);
+                await _service.PatchIsZombiePlayer(gameId, id, playerZombieDTO.IsZombie);
             }
-            catch (KillNotFoundException e)
+            catch (PlayerNotFoundException e)
             {
                 return NotFound(new ProblemDetails
                 {
@@ -371,11 +404,17 @@ namespace hvz_backend.Controllers
         {
             try
             {
-                var player = _service.GetPlayerByIdInGame(gameId, id);
+                var player = await _service.GetPlayerByIdInGame(gameId, id);
                 if (player != null)
                 {
+                    var oldSquad = await _squadService.GetSquadByIdInGame(gameId, player.Id);
+                    if (oldSquad != null)
+                    {
+                        int oldSquadAmount = oldSquad.TotalPlayer - 1;
+                        await _squadService.PatchTotalPlayerSquad(gameId, oldSquad.Id, oldSquadAmount);
+                    }
                     var game = await _gameService.GetGameById(gameId);
-                    var amountPlayer = (int)game.AmountPlayers + 1;
+                    var amountPlayer = (int)game.AmountPlayers - 1;
                     await _gameService.PatchAmountGame(gameId, amountPlayer);
                 }
                 await _service.DeletePlayer(id);

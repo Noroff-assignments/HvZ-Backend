@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using hvz_backend.Exceptions;
 using hvz_backend.Models;
+using hvz_backend.Models.DTOs.Kill;
 using hvz_backend.Models.DTOs.Squad;
+using hvz_backend.Services.PlayerServices;
 using hvz_backend.Services.SquadServices;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Mime;
@@ -17,12 +19,14 @@ namespace hvz_backend.Controllers
     {
         #region Fields & Constructor
         private readonly ISquadService _service;
+        private readonly IPlayerService _playerService;
         private readonly IMapper _mapper;
 
         // Sets the service and mapper for this controller via constructor.
-        public SquadsController(ISquadService service, IMapper mapper)
+        public SquadsController(ISquadService service, IPlayerService playerService, IMapper mapper)
         {
             _service = service;
+            _playerService = playerService;
             _mapper = mapper;
         }
         #endregion
@@ -34,12 +38,15 @@ namespace hvz_backend.Controllers
         /// <returns></returns>
         #region HTTP POST
         [HttpPost("{gameId}/squad")]
-        public async Task<ActionResult<Squad>> CreateSquad(SquadCreateDTO createSquadDTO)
+        public async Task<ActionResult<Squad>> CreateSquad(SquadCreateDTO createSquadDTO, int playerId)
         {
             try
             {
                 var squad = _mapper.Map<Squad>(createSquadDTO);
                 await _service.CreateSquad(squad);
+                squad.TotalPlayer = 1;
+                var founder = await _playerService.GetPlayerByIdInGame(squad.GameId,playerId);
+                if (founder != null) throw new PlayerNotFoundException(playerId);
                 return CreatedAtAction(nameof(GetSquadByIdInGame), new { gameId = squad.GameId, id = squad.Id }, squad);
             }
             catch (Exception ex)
@@ -60,7 +67,7 @@ namespace hvz_backend.Controllers
         {
             try
             {
-                return Ok(_mapper.Map<IEnumerable<SquadReadDTO>>(await _service.GetAllSquadsInMap(gameId)));
+                return Ok(_mapper.Map<IEnumerable<SquadReadDTO>>(await _service.GetAllSquadsInGame(gameId)));
             }
             catch (SquadNotFoundException e)
             {
@@ -82,7 +89,7 @@ namespace hvz_backend.Controllers
         {
             try
             {
-                return Ok(_mapper.Map<SquadReadDTO>(await _service.GetSquadByIdInMap(gameId, id)));
+                return Ok(_mapper.Map<SquadReadDTO>(await _service.GetSquadByIdInGame(gameId, id)));
             }
             catch (SquadNotFoundException e)
             {
@@ -92,6 +99,142 @@ namespace hvz_backend.Controllers
                 });
             }
         }
+
+        [HttpGet("{gameId}/squad/{id}/name")]
+        public async Task<ActionResult<SquadNameDTO>> GetNameSquad(int gameId, int id)
+        {
+            try
+            {
+                return Ok(_mapper.Map<SquadNameDTO>(await _service.GetSquadByIdInGame(gameId, id)));
+            }
+            catch (KillNotFoundException e)
+            {
+                return NotFound(new ProblemDetails
+                {
+                    Detail = e.Message
+                });
+            }
+        }
+
+        [HttpGet("{gameId}/squad/{id}/description")]
+        public async Task<ActionResult<SquadDescriptionDTO>> GetDescriptionSquad(int gameId, int id)
+        {
+            try
+            {
+                return Ok(_mapper.Map<SquadDescriptionDTO>(await _service.GetSquadByIdInGame(gameId, id)));
+            }
+            catch (KillNotFoundException e)
+            {
+                return NotFound(new ProblemDetails
+                {
+                    Detail = e.Message
+                });
+            }
+        }
+
+        [HttpGet("{gameId}/squad/{id}/totalplayer")]
+        public async Task<ActionResult<SquadTotalPlayerDTO>> GetTotalPlayerSquad(int gameId, int id)
+        {
+            try
+            {
+                return Ok(_mapper.Map<SquadTotalPlayerDTO>(await _service.GetSquadByIdInGame(gameId, id)));
+            }
+            catch (KillNotFoundException e)
+            {
+                return NotFound(new ProblemDetails
+                {
+                    Detail = e.Message
+                });
+            }
+        }
+
+        [HttpGet("{gameId}/squad/{id}/totaldead")]
+        public async Task<ActionResult<SquadTotalDeadDTO>> GetTotalDeadSquad(int gameId, int id)
+        {
+            try
+            {
+                return Ok(_mapper.Map<SquadTotalDeadDTO>(await _service.GetSquadByIdInGame(gameId, id)));
+            }
+            catch (KillNotFoundException e)
+            {
+                return NotFound(new ProblemDetails
+                {
+                    Detail = e.Message
+                });
+            }
+        }
+
+        #endregion
+
+        #region HTTP PATCH
+        [HttpPatch("{gameId}/squad/{id}/name")]
+        public async Task<ActionResult> PatchNameSquad(int gameId, int id, [FromBody] SquadNameDTO squadNameDTO)
+        {
+            try
+            {
+                await _service.PatchNameSquad(gameId, id, squadNameDTO.Name);
+            }
+            catch (GameNotFoundException e)
+            {
+                return NotFound(new ProblemDetails
+                {
+                    Detail = e.Message
+                });
+            }
+            return NoContent();
+        }
+
+        [HttpPatch("{gameId}/squad/{id}/description")]
+        public async Task<ActionResult> PatchDescriptionSquad(int gameId, int id, [FromBody] SquadDescriptionDTO squadDescriptionDTO)
+        {
+            try
+            {
+                await _service.PatchDescriptionSquad(gameId, id, squadDescriptionDTO.Description);
+            }
+            catch (GameNotFoundException e)
+            {
+                return NotFound(new ProblemDetails
+                {
+                    Detail = e.Message
+                });
+            }
+            return NoContent();
+        }
+
+        [HttpPatch("{gameId}/squad/{id}/totalplayer")]
+        public async Task<ActionResult> PatchTotalPlayerSquad(int gameId, int id, [FromBody] SquadTotalPlayerDTO squadTotalPlayerDTO)
+        {
+            try
+            {
+                await _service.PatchTotalPlayerSquad(gameId, id, squadTotalPlayerDTO.TotalPlayer);
+            }
+            catch (GameNotFoundException e)
+            {
+                return NotFound(new ProblemDetails
+                {
+                    Detail = e.Message
+                });
+            }
+            return NoContent();
+        }
+
+        [HttpPatch("{gameId}/squad/{id}/totaldead")]
+        public async Task<ActionResult> PatchTotalDeadSquad(int gameId, int id, [FromBody] SquadTotalDeadDTO squadTotalDeadDTO)
+        {
+            try
+            {
+                await _service.PatchTotalDeadSquad(gameId, id, squadTotalDeadDTO.TotalDead);
+            }
+            catch (GameNotFoundException e)
+            {
+                return NotFound(new ProblemDetails
+                {
+                    Detail = e.Message
+                });
+            }
+            return NoContent();
+        }
+
         #endregion
 
         #region HTTP PUT

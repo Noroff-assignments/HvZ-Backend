@@ -26,7 +26,7 @@ namespace hvz_backend.Services.SquadServices
         #endregion
 
         #region Read
-        public async Task<IEnumerable<Squad>> GetAllSquadsInMap(int gameId)
+        public async Task<IEnumerable<Squad>> GetAllSquadsInGame(int gameId)
         {
             var game = await _context.Games
                 .Include(m => m.Squads)
@@ -38,7 +38,7 @@ namespace hvz_backend.Services.SquadServices
             return squads;
         }
 
-        public async Task<Squad> GetSquadByIdInMap(int gameId, int id)
+        public async Task<Squad> GetSquadByIdInGame(int gameId, int id)
         {
             var game = await _context.Games
                 .Include(m => m.Squads)
@@ -62,6 +62,59 @@ namespace hvz_backend.Services.SquadServices
             await _context.SaveChangesAsync();
             return squad;
         }
+
+        public async Task PatchNameSquad(int gameId, int id, string name)
+        {
+            var game = await _context.Games
+                .Include(m => m.Squads)
+                .Where(k => k.Id == gameId)
+                .FirstOrDefaultAsync();
+            if (game == null) throw new GameNotFoundException(gameId);
+            var squad = game.Squads.FirstOrDefault(k => k.Id == id);
+            if (squad == null) throw new KillNotFoundException(id);
+            squad.Name = name;
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task PatchDescriptionSquad(int gameId, int id, string description)
+        {
+            var game = await _context.Games
+                .Include(m => m.Squads)
+                .Where(k => k.Id == gameId)
+                .FirstOrDefaultAsync();
+            if (game == null) throw new GameNotFoundException(gameId);
+            var squad = game.Squads.FirstOrDefault(k => k.Id == id);
+            if (squad == null) throw new KillNotFoundException(id);
+            squad.Description = description;
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task PatchTotalDeadSquad(int gameId, int id, int totalDead)
+        {
+            var game = await _context.Games
+                .Include(m => m.Squads)
+                .Where(k => k.Id == gameId)
+                .FirstOrDefaultAsync();
+            if (game == null) throw new GameNotFoundException(gameId);
+            var squad = game.Squads.FirstOrDefault(k => k.Id == id);
+            if (squad == null) throw new KillNotFoundException(id);
+            squad.TotalDead = totalDead;
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task PatchTotalPlayerSquad(int gameId, int id, int totalPlayer)
+        {
+            var game = await _context.Games
+                .Include(m => m.Squads)
+                .Where(k => k.Id == gameId)
+                .FirstOrDefaultAsync();
+            if (game == null) throw new GameNotFoundException(gameId);
+            var squad = game.Squads.FirstOrDefault(k => k.Id == id);
+            if (squad == null) throw new KillNotFoundException(id);
+            squad.TotalPlayer = totalPlayer;
+            await _context.SaveChangesAsync();
+        }
+
         #endregion
 
         #region Delete

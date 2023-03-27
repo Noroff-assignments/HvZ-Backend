@@ -26,7 +26,7 @@ namespace hvz_backend.Services.KillServices
         #endregion
 
         #region Read
-        public async Task<IEnumerable<Kill>> GetAllKillsInMap(int gameId)
+        public async Task<IEnumerable<Kill>> GetAllKillsInGame(int gameId)
         {
             var game = await _context.Games
                 .Include(m => m.Kills)
@@ -38,7 +38,7 @@ namespace hvz_backend.Services.KillServices
             return kills;
         }
 
-        public async Task<Kill> GetKillByIdInMap(int gameId, int id)
+        public async Task<Kill> GetKillByIdInGame(int gameId, int id)
         {
             var game = await _context.Games
                 .Include(m => m.Kills)

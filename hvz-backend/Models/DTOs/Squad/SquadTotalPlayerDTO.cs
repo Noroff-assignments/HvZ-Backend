@@ -2,6 +2,6 @@
 {
     public class SquadTotalPlayerDTO
     {
-        public int? TotalPlayer { get; set; }
+        public int TotalPlayer { get; set; }
     }
 }

@@ -2,6 +2,6 @@
 {
     public class SquadTotalDeadDTO
     {
-        public int? TotalDead { get; set; }
+        public int TotalDead { get; set; }
     }
 }
