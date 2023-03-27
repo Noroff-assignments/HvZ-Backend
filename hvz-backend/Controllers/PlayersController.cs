@@ -84,6 +84,38 @@ namespace hvz_backend.Controllers
             }
         }
 
+        [HttpGet("{gameId}/zombies")]
+        public async Task<ActionResult<IEnumerable<PlayerReadDTO>>> GetAllZombiesInGame(int gameId)
+        {
+            try
+            {
+                return Ok(_mapper.Map<IEnumerable<PlayerReadDTO>>(await _service.GetAllZombiesInGame(gameId)));
+            }
+            catch (PlayerNotFoundException e)
+            {
+                return NotFound(new ProblemDetails
+                {
+                    Detail = e.Message
+                });
+            }
+        }
+
+        [HttpGet("{gameId}/humans")]
+        public async Task<ActionResult<IEnumerable<PlayerReadDTO>>> GetAllHumansInGame(int gameId)
+        {
+            try
+            {
+                return Ok(_mapper.Map<IEnumerable<PlayerReadDTO>>(await _service.GetAllHumansInGame(gameId)));
+            }
+            catch (PlayerNotFoundException e)
+            {
+                return NotFound(new ProblemDetails
+                {
+                    Detail = e.Message
+                });
+            }
+        }
+
         /// <summary>
         /// Get one specific player in a specific game.
         /// </summary>

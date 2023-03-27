@@ -6,6 +6,8 @@ namespace hvz_backend.Services.PlayerServices
     {
         Task<Player> CreatePlayer(Player supply);
         Task<IEnumerable<Player>> GetAllPlayersInGame(int gameId);
+        Task<IEnumerable<Player>> GetAllZombiesInGame(int gameId);
+        Task<IEnumerable<Player>> GetAllHumansInGame(int gameId);
         Task<Player> GetPlayerByIdInGame(int gameId, int id);
         Task<Player> UpdatePlayer(Player player);
         Task DeletePlayer(int id);

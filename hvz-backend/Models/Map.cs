@@ -21,7 +21,7 @@ namespace hvz_backend.Models
         [Required, Range(-180.0, 180.0, ErrorMessage = "Longitude must be between -180 and 180.")]
         public double Longitude { get; set; }
 
-        public ICollection<Game>? Games { get; set; }
+        public Game Game { get; set; }
 
         public ICollection<Safezone>? Safezones { get; set;}
         public ICollection<Mission>? Missions { get; set; }
