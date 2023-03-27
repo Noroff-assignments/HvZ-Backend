@@ -1,11 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using hvz_backend.Models.DTOs;
+using Microsoft.AspNetCore.Mvc;
 using PusherServer;
 using System.Net.Mime;
 
 namespace hvz_backend.Controllers
 {
 
-    [Route("api/v1/game/chat")]
+    [Route("api/v1/chat")]
     [ApiController]
     [Produces(MediaTypeNames.Application.Json)]
     [Consumes(MediaTypeNames.Application.Json)]
@@ -31,9 +32,9 @@ namespace hvz_backend.Controllers
 
         [HttpPost]
         // 
-        public async Task<ActionResult> Message(string message, string eventName) 
+        public async Task<ActionResult> Message(ChatCreateDTO createChatDto) 
         {
-            return Ok(await pusher.TriggerAsync("HvZApp",eventName,message));
+            return Ok(await pusher.TriggerAsync("HvZApp",createChatDto.EventName,createChatDto.Message));
         }
     }
 }
