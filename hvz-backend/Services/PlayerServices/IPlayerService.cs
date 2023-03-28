@@ -8,8 +8,10 @@ namespace hvz_backend.Services.PlayerServices
         Task<IEnumerable<Player>> GetAllPlayersInGame(int gameId);
         Task<IEnumerable<Player>> GetAllZombiesInGame(int gameId);
         Task<IEnumerable<Player>> GetAllHumansInGame(int gameId);
-        Task<IEnumerable<string>> GetAllBiteCodeInGame(int gameId);
+        Task<List<string>> GetAllBiteCodeInGame(int gameId);
         Task<Player> GetPlayerByIdInGame(int gameId, int id);
+
+        Task<Player> GetPlayerByBiteCodeInGame(int gameId, string biteCode);
 
         Task<Player> GetPlayerByUserIdInGame(int gameId, string userId);
 

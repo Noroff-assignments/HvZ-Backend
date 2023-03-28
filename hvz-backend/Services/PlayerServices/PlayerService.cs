@@ -62,7 +62,7 @@ namespace hvz_backend.Services.PlayerServices
             return players;
         }
 
-        public async Task<IEnumerable<string>> GetAllBiteCodeInGame(int gameId)
+        public async Task<List<string>> GetAllBiteCodeInGame(int gameId)
         {
             var game = await _context.Games
                 .Include(m => m.Players)
@@ -72,8 +72,8 @@ namespace hvz_backend.Services.PlayerServices
             if (game == null) throw new GameNotFoundException(gameId);
 
             var players = game.Players;
-            if (!players.Any()) throw new PlayerNotFoundException();
-            return players.Select(p => p.BiteCode);
+            if (!players.Any()) return new List<string>() { };
+            return players.Select(p => p.BiteCode).ToList();
         }
 
         public async Task<Player> GetPlayerByIdInGame(int gameId, int id)
@@ -85,6 +85,18 @@ namespace hvz_backend.Services.PlayerServices
             if (game == null) throw new GameNotFoundException(gameId);
             var player = game.Players.FirstOrDefault(k => k.Id == id);
             if (player == null) throw new PlayerNotFoundException(id);
+            return player;
+        }
+
+        public async Task<Player> GetPlayerByBiteCodeInGame(int gameId, string biteCode)
+        {
+            var game = await _context.Games
+                .Include(m => m.Players)
+                .Where(k => k.Id == gameId)
+                .FirstOrDefaultAsync();
+            if (game == null) throw new GameNotFoundException(gameId);
+            var player = game.Players.FirstOrDefault(k => k.BiteCode == biteCode);
+            if (player == null) throw new PlayerNotFoundException();
             return player;
         }
 
@@ -112,10 +124,7 @@ namespace hvz_backend.Services.PlayerServices
             await _context.SaveChangesAsync();
             return player;
         }
-       /* Task PatchLatPlayer(int gameId, int id, double lat);
-        Task PatchlongPlayer(int gameId, int id, double lon);
-        Task PatchSquadPlayer(int gameId, int id, int squadId);
-        Task PatchisZombiePlayer(int gameId, int id, bool zombie);*/
+
         public async Task PatchLatPlayer(int gameId, int id, double lat)
         {
             var game = await _context.Games

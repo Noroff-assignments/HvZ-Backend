@@ -43,10 +43,12 @@ namespace hvz_backend.Controllers
             try
             {
                 var squad = _mapper.Map<Squad>(createSquadDTO);
-                await _service.CreateSquad(squad);
                 squad.TotalPlayer = 1;
+                await _service.CreateSquad(squad);
                 var founder = await _playerService.GetPlayerByIdInGame(squad.GameId,playerId);
-                if (founder != null) throw new PlayerNotFoundException(playerId);
+                if (founder == null) throw new PlayerNotFoundException(playerId);
+                founder.SquadId = squad.Id;
+                await _playerService.UpdatePlayer(founder);
                 return CreatedAtAction(nameof(GetSquadByIdInGame), new { gameId = squad.GameId, id = squad.Id }, squad);
             }
             catch (Exception ex)

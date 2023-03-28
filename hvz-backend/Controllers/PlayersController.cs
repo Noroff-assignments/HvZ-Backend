@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Net.Mime;
 using System;
 using System.Linq;
+using System.Data;
 
 namespace hvz_backend.Controllers
 {
@@ -44,15 +45,20 @@ namespace hvz_backend.Controllers
             try
             {
                 var player = _mapper.Map<Player>(createPlayerDTO);
+                //var newUser = player.UserID;
+                //var UserExist = await _service.GetPlayerByUserIdInGame(gameId, newUser);
+                //if (UserExist == null)
+               // {
                 player.GameId = gameId;
                 var ExistingBiteCode = await _service.GetAllBiteCodeInGame(gameId);
                 player.BiteCode = BiteCodeGenerator(ExistingBiteCode);
-                await _service.CreatePlayer(player);
+                var createdPlayer = await _service.CreatePlayer(player);
                 var game = await _gameService.GetGameById(gameId);
                 var amountPlayer = game.AmountPlayers.HasValue ? (int)game.AmountPlayers + 1 : 1;
                 await _gameService.PatchAmountGame(gameId, amountPlayer);
-                return Ok();
-                //return CreatedAtAction(nameof(GetPlayerByIdInGame), new { gameId = gameId, id = player.Id }, player);
+                int playerId = createdPlayer.Id;
+                return Ok(createdPlayer);
+                //}
             }
             catch (Exception ex)
             {
@@ -60,16 +66,18 @@ namespace hvz_backend.Controllers
             }
         }
 
-        private static string BiteCodeGenerator(IEnumerable<string> existingBiteCode)
+        private static string BiteCodeGenerator(List<string> existingBiteCode)
         {
-            string charSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+-=[]{}|;':\",./<>?";
+            string charSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
             string code = "";
             while (!existingBiteCode.Contains(code))
             {
+                code = "";
                 // Generate a new code
                 var random = new Random();
                 code = new string(Enumerable.Repeat(charSet, 15)
                     .Select(s => s[random.Next(s.Length)]).ToArray());
+                if (!existingBiteCode.Contains(code)) existingBiteCode.Add(code);
             }
             return code;
         }
@@ -395,7 +403,7 @@ namespace hvz_backend.Controllers
 
         }
 
-        [HttpPatch("{gameId}/player/{id}/iszimboie")]
+        [HttpPatch("{gameId}/player/{id}/iszombie")]
         public async Task<ActionResult> PatchIsZombiePlayer(int gameId, int id, [FromBody] PlayerZombieDTO playerZombieDTO)
         {
             try

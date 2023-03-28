@@ -3,8 +3,10 @@ using hvz_backend.Exceptions;
 using hvz_backend.Models;
 using hvz_backend.Models.DTOs.Game;
 using hvz_backend.Models.DTOs.Kill;
+using hvz_backend.Services.GameServices;
 using hvz_backend.Services.KillServices;
 using hvz_backend.Services.PlayerServices;
+using hvz_backend.Services.SquadServices;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Mime;
 
@@ -21,12 +23,16 @@ namespace hvz_backend.Controllers
         private readonly IKillService _service;
         private readonly IMapper _mapper;
         private readonly IPlayerService _playerService;
+        private readonly ISquadService _squadService;
+        private readonly IGameService _gameService;
         // Sets the service and mapper for this controller via constructor.
-        public KillsController(IKillService service, IMapper mapper, IPlayerService playerService)
+        public KillsController(IKillService service, IMapper mapper, IPlayerService playerService, ISquadService squadService, IGameService gameService)
         {
             _service = service;
             _mapper = mapper;
             _playerService = playerService;
+            _squadService = squadService;
+            _gameService = gameService;
         }
         #endregion
 
@@ -34,23 +40,51 @@ namespace hvz_backend.Controllers
         /// <summary>
         /// Create a kill for the game
         /// </summary>
+        /// <param name="killCode"></param>
         /// <param name="createKillDTO"></param>
         /// <returns></returns>
 
         [HttpPost("{gameId}/kill")]
-        public async Task<ActionResult<Kill>> CreateKill(KillCreateDTO createKillDTO)
+        public async Task<ActionResult<Kill>> CreateKill(string killCode,KillCreateDTO createKillDTO)
         {
             try
             {
+                //map the kill
                 var kill = _mapper.Map<Kill>(createKillDTO);
-                Player victim = kill.Victim;
+                int killId = kill.Id;
+                // get the two parter in the kill
+                Player killer = kill.Killer;
+                int gameId = killer.GameId;
+                Player victim = await _playerService.GetPlayerByBiteCodeInGame(gameId, killCode);
+
+                if (victim == null) throw new PlayerNotFoundException();
+                int victimId = victim.Id;
+                var victimSquadId = victim.SquadId;
+                // Check if both player in same game
+                if (victim.GameId != killer.GameId) throw new DifferentGameUsedException();
                 await _service.CreateKill(kill);
-                await _playerService.PatchIsZombiePlayer(victim.GameId, victim.Id, true);
-                return CreatedAtAction(nameof(GetKillByIdInGame), new { gameId = kill.GameId, id = kill.Id }, kill);
+                Squad squad = await _squadService.GetSquadByIdInGame(victimId, (int)victimSquadId);
+
+                if (victimSquadId != null) squad.TotalDead += 1;
+                victim.SquadId = null;
+                victim.IsZombie = true;
+                await _squadService.UpdateSquad(squad);
+                await _playerService.UpdatePlayer(victim);
+                return CreatedAtAction(nameof(GetKillByIdInGame), new { gameId, killId }, kill);
             }
-            catch (Exception ex)
+            catch (DifferentGameUsedException e)
             {
-                return BadRequest(ex.Message);
+                return NotFound(new ProblemDetails
+                {
+                    Detail = e.Message
+                });
+            }
+            catch (PlayerNotFoundException e)
+            {
+                return NotFound(new ProblemDetails
+                {
+                    Detail = e.Message
+                });
             }
         }
         #endregion

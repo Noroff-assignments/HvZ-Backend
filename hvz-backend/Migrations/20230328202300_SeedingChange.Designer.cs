@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using hvz_backend.Models;
 
@@ -11,9 +12,11 @@ using hvz_backend.Models;
 namespace hvz_backend.Migrations
 {
     [DbContext(typeof(HvZDbContext))]
-    partial class HvZDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230328202300_SeedingChange")]
+    partial class SeedingChange
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -162,8 +165,8 @@ namespace hvz_backend.Migrations
                             DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie.",
                             GameId = 1,
                             KillerId = 1,
-                            Latitude = 55.642727000000001,
-                            Longitude = 12.27154,
+                            Latitude = 55.643099999999997,
+                            Longitude = 12.272270000000001,
                             TimeDead = new DateTime(2023, 3, 11, 9, 10, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 18
                         },
@@ -172,8 +175,8 @@ namespace hvz_backend.Migrations
                             Id = 2,
                             GameId = 1,
                             KillerId = 1,
-                            Latitude = 55.642727999999998,
-                            Longitude = 12.271447,
+                            Latitude = 55.643357000000002,
+                            Longitude = 12.27289,
                             TimeDead = new DateTime(2023, 3, 11, 9, 23, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 24
                         },
@@ -182,8 +185,8 @@ namespace hvz_backend.Migrations
                             Id = 3,
                             GameId = 1,
                             KillerId = 18,
-                            Latitude = 55.642727999999998,
-                            Longitude = 12.271345,
+                            Latitude = 55.643881999999998,
+                            Longitude = 12.27256,
                             TimeDead = new DateTime(2023, 3, 11, 9, 43, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 3
                         },
@@ -192,8 +195,8 @@ namespace hvz_backend.Migrations
                             Id = 4,
                             GameId = 1,
                             KillerId = 24,
-                            Latitude = 55.642727999999998,
-                            Longitude = 12.271400999999999,
+                            Latitude = 55.643599000000002,
+                            Longitude = 12.27281,
                             TimeDead = new DateTime(2023, 3, 11, 9, 55, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 9
                         },
@@ -202,8 +205,8 @@ namespace hvz_backend.Migrations
                             Id = 5,
                             GameId = 1,
                             KillerId = 1,
-                            Latitude = 55.642729000000003,
-                            Longitude = 12.271425000000001,
+                            Latitude = 55.643329000000001,
+                            Longitude = 12.27233,
                             TimeDead = new DateTime(2023, 3, 11, 10, 10, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 7
                         },
@@ -212,8 +215,8 @@ namespace hvz_backend.Migrations
                             Id = 6,
                             GameId = 1,
                             KillerId = 3,
-                            Latitude = 55.64273,
-                            Longitude = 12.271402,
+                            Latitude = 55.643678000000001,
+                            Longitude = 12.27275,
                             TimeDead = new DateTime(2023, 3, 11, 10, 16, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 33
                         },
@@ -222,8 +225,8 @@ namespace hvz_backend.Migrations
                             Id = 7,
                             GameId = 1,
                             KillerId = 3,
-                            Latitude = 55.642730999999998,
-                            Longitude = 12.271420000000001,
+                            Latitude = 55.643118000000001,
+                            Longitude = 12.27247,
                             TimeDead = new DateTime(2023, 3, 11, 10, 33, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 13
                         },
@@ -232,8 +235,8 @@ namespace hvz_backend.Migrations
                             Id = 8,
                             GameId = 1,
                             KillerId = 7,
-                            Latitude = 55.642730999999998,
-                            Longitude = 12.271394000000001,
+                            Latitude = 55.643287000000001,
+                            Longitude = 12.272819999999999,
                             TimeDead = new DateTime(2023, 3, 11, 10, 47, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 11
                         },
@@ -242,8 +245,8 @@ namespace hvz_backend.Migrations
                             Id = 9,
                             GameId = 1,
                             KillerId = 9,
-                            Latitude = 55.642732000000002,
-                            Longitude = 12.271547,
+                            Latitude = 55.643980999999997,
+                            Longitude = 12.27214,
                             TimeDead = new DateTime(2023, 3, 11, 10, 56, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 16
                         },
@@ -252,8 +255,8 @@ namespace hvz_backend.Migrations
                             Id = 10,
                             GameId = 1,
                             KillerId = 1,
-                            Latitude = 55.642733,
-                            Longitude = 12.271537,
+                            Latitude = 55.643777,
+                            Longitude = 12.27244,
                             TimeDead = new DateTime(2023, 3, 11, 11, 17, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 22
                         },
@@ -262,8 +265,8 @@ namespace hvz_backend.Migrations
                             Id = 11,
                             GameId = 1,
                             KillerId = 18,
-                            Latitude = 55.642733999999997,
-                            Longitude = 12.271338,
+                            Latitude = 55.643194999999999,
+                            Longitude = 12.272259999999999,
                             TimeDead = new DateTime(2023, 3, 11, 11, 22, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 24
                         },
@@ -272,8 +275,8 @@ namespace hvz_backend.Migrations
                             Id = 12,
                             GameId = 1,
                             KillerId = 16,
-                            Latitude = 55.642733999999997,
-                            Longitude = 12.271570000000001,
+                            Latitude = 55.643768000000001,
+                            Longitude = 12.27256,
                             TimeDead = new DateTime(2023, 3, 11, 11, 38, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 31
                         },
@@ -282,8 +285,8 @@ namespace hvz_backend.Migrations
                             Id = 13,
                             GameId = 1,
                             KillerId = 11,
-                            Latitude = 55.642735000000002,
-                            Longitude = 12.271347,
+                            Latitude = 55.643718,
+                            Longitude = 12.27291,
                             TimeDead = new DateTime(2023, 3, 11, 11, 49, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 26
                         },
@@ -292,8 +295,8 @@ namespace hvz_backend.Migrations
                             Id = 14,
                             GameId = 1,
                             KillerId = 13,
-                            Latitude = 55.642735999999999,
-                            Longitude = 12.271573,
+                            Latitude = 55.643819000000001,
+                            Longitude = 12.272550000000001,
                             TimeDead = new DateTime(2023, 3, 11, 11, 51, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 28
                         },
@@ -303,8 +306,8 @@ namespace hvz_backend.Migrations
                             DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie.",
                             GameId = 2,
                             KillerId = 36,
-                            Latitude = 55.642735999999999,
-                            Longitude = 12.271371,
+                            Latitude = 55.643638000000003,
+                            Longitude = 12.272080000000001,
                             TimeDead = new DateTime(2023, 3, 12, 9, 19, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 66
                         },
@@ -313,8 +316,8 @@ namespace hvz_backend.Migrations
                             Id = 16,
                             GameId = 2,
                             KillerId = 36,
-                            Latitude = 55.642736999999997,
-                            Longitude = 12.271497999999999,
+                            Latitude = 55.643389999999997,
+                            Longitude = 12.27242,
                             TimeDead = new DateTime(2023, 3, 12, 9, 32, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 55
                         },
@@ -323,8 +326,8 @@ namespace hvz_backend.Migrations
                             Id = 17,
                             GameId = 2,
                             KillerId = 55,
-                            Latitude = 55.642736999999997,
-                            Longitude = 12.271421,
+                            Latitude = 55.643956000000003,
+                            Longitude = 12.27215,
                             TimeDead = new DateTime(2023, 3, 12, 9, 44, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 50
                         },
@@ -333,8 +336,8 @@ namespace hvz_backend.Migrations
                             Id = 18,
                             GameId = 2,
                             KillerId = 66,
-                            Latitude = 55.642738000000001,
-                            Longitude = 12.271466,
+                            Latitude = 55.643735,
+                            Longitude = 12.27205,
                             TimeDead = new DateTime(2023, 3, 12, 9, 58, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 38
                         },
@@ -343,8 +346,8 @@ namespace hvz_backend.Migrations
                             Id = 19,
                             GameId = 2,
                             KillerId = 38,
-                            Latitude = 55.642738999999999,
-                            Longitude = 12.271509,
+                            Latitude = 55.643441000000003,
+                            Longitude = 12.27211,
                             TimeDead = new DateTime(2023, 3, 12, 10, 16, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 40
                         },
@@ -353,8 +356,8 @@ namespace hvz_backend.Migrations
                             Id = 20,
                             GameId = 2,
                             KillerId = 50,
-                            Latitude = 55.642740000000003,
-                            Longitude = 12.271539000000001,
+                            Latitude = 55.643543000000001,
+                            Longitude = 12.27237,
                             TimeDead = new DateTime(2023, 3, 12, 10, 23, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 68
                         },
@@ -363,8 +366,8 @@ namespace hvz_backend.Migrations
                             Id = 21,
                             GameId = 2,
                             KillerId = 36,
-                            Latitude = 55.642741000000001,
-                            Longitude = 12.271417,
+                            Latitude = 55.643738999999997,
+                            Longitude = 12.272080000000001,
                             TimeDead = new DateTime(2023, 3, 12, 10, 47, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 43
                         },
@@ -373,8 +376,8 @@ namespace hvz_backend.Migrations
                             Id = 22,
                             GameId = 2,
                             KillerId = 66,
-                            Latitude = 55.642741000000001,
-                            Longitude = 12.271414,
+                            Latitude = 55.643782999999999,
+                            Longitude = 12.27262,
                             TimeDead = new DateTime(2023, 3, 12, 10, 50, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 52
                         },
@@ -383,8 +386,8 @@ namespace hvz_backend.Migrations
                             Id = 23,
                             GameId = 2,
                             KillerId = 68,
-                            Latitude = 55.642741999999998,
-                            Longitude = 12.271414999999999,
+                            Latitude = 55.643312999999999,
+                            Longitude = 12.272030000000001,
                             TimeDead = new DateTime(2023, 3, 12, 11, 7, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 60
                         },
@@ -393,8 +396,8 @@ namespace hvz_backend.Migrations
                             Id = 24,
                             GameId = 2,
                             KillerId = 40,
-                            Latitude = 55.642743000000003,
-                            Longitude = 12.271449,
+                            Latitude = 55.643886999999999,
+                            Longitude = 12.272550000000001,
                             TimeDead = new DateTime(2023, 3, 12, 11, 27, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 48
                         },
@@ -403,8 +406,8 @@ namespace hvz_backend.Migrations
                             Id = 25,
                             GameId = 2,
                             KillerId = 60,
-                            Latitude = 55.642743000000003,
-                            Longitude = 12.271535999999999,
+                            Latitude = 55.643341999999997,
+                            Longitude = 12.27281,
                             TimeDead = new DateTime(2023, 3, 12, 11, 33, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 65
                         },
@@ -413,8 +416,8 @@ namespace hvz_backend.Migrations
                             Id = 26,
                             GameId = 2,
                             KillerId = 50,
-                            Latitude = 55.642744,
-                            Longitude = 12.271342000000001,
+                            Latitude = 55.643901999999997,
+                            Longitude = 12.272180000000001,
                             TimeDead = new DateTime(2023, 3, 12, 11, 41, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 57
                         },
@@ -423,8 +426,8 @@ namespace hvz_backend.Migrations
                             Id = 27,
                             GameId = 2,
                             KillerId = 40,
-                            Latitude = 55.642744999999998,
-                            Longitude = 12.271573,
+                            Latitude = 55.643400999999997,
+                            Longitude = 12.27206,
                             TimeDead = new DateTime(2023, 3, 12, 11, 44, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 58
                         },
@@ -433,8 +436,8 @@ namespace hvz_backend.Migrations
                             Id = 28,
                             GameId = 2,
                             KillerId = 68,
-                            Latitude = 55.642744999999998,
-                            Longitude = 12.271461,
+                            Latitude = 55.643177000000001,
+                            Longitude = 12.27257,
                             TimeDead = new DateTime(2023, 3, 12, 11, 45, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 45
                         },
@@ -443,8 +446,8 @@ namespace hvz_backend.Migrations
                             Id = 29,
                             GameId = 2,
                             KillerId = 57,
-                            Latitude = 55.642746000000002,
-                            Longitude = 12.271355,
+                            Latitude = 55.643127,
+                            Longitude = 12.27294,
                             TimeDead = new DateTime(2023, 3, 12, 11, 52, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 63
                         },
@@ -454,8 +457,8 @@ namespace hvz_backend.Migrations
                             DeadStory = "A lone human is hunted down and brutally killed by a ravenous zombie.",
                             GameId = 3,
                             KillerId = 2,
-                            Latitude = 55.642747,
-                            Longitude = 12.271383999999999,
+                            Latitude = 55.643954999999998,
+                            Longitude = 12.27286,
                             TimeDead = new DateTime(2023, 3, 29, 9, 13, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 12
                         },
@@ -464,8 +467,8 @@ namespace hvz_backend.Migrations
                             Id = 31,
                             GameId = 3,
                             KillerId = 2,
-                            Latitude = 55.642747999999997,
-                            Longitude = 12.271388999999999,
+                            Latitude = 55.643526000000001,
+                            Longitude = 12.27228,
                             TimeDead = new DateTime(2023, 3, 29, 9, 24, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 15
                         },
@@ -474,8 +477,8 @@ namespace hvz_backend.Migrations
                             Id = 32,
                             GameId = 3,
                             KillerId = 12,
-                            Latitude = 55.642747999999997,
-                            Longitude = 12.271451000000001,
+                            Latitude = 55.643023999999997,
+                            Longitude = 12.27224,
                             TimeDead = new DateTime(2023, 3, 29, 9, 39, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 20
                         },
@@ -484,8 +487,8 @@ namespace hvz_backend.Migrations
                             Id = 33,
                             GameId = 3,
                             KillerId = 2,
-                            Latitude = 55.642749000000002,
-                            Longitude = 12.271488,
+                            Latitude = 55.643785000000001,
+                            Longitude = 12.27275,
                             TimeDead = new DateTime(2023, 3, 29, 9, 55, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 25
                         },
@@ -494,8 +497,8 @@ namespace hvz_backend.Migrations
                             Id = 34,
                             GameId = 3,
                             KillerId = 15,
-                            Latitude = 55.642749999999999,
-                            Longitude = 12.271437000000001,
+                            Latitude = 55.643183999999998,
+                            Longitude = 12.272679999999999,
                             TimeDead = new DateTime(2023, 3, 29, 10, 7, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 8
                         },
@@ -504,8 +507,8 @@ namespace hvz_backend.Migrations
                             Id = 35,
                             GameId = 3,
                             KillerId = 20,
-                            Latitude = 55.642749999999999,
-                            Longitude = 12.271362,
+                            Latitude = 55.643258000000003,
+                            Longitude = 12.272320000000001,
                             TimeDead = new DateTime(2023, 3, 29, 10, 15, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 44
                         },
@@ -514,8 +517,8 @@ namespace hvz_backend.Migrations
                             Id = 36,
                             GameId = 3,
                             KillerId = 25,
-                            Latitude = 55.642750999999997,
-                            Longitude = 12.271426999999999,
+                            Latitude = 55.643796999999999,
+                            Longitude = 12.27257,
                             TimeDead = new DateTime(2023, 3, 29, 10, 20, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 70
                         },
@@ -524,8 +527,8 @@ namespace hvz_backend.Migrations
                             Id = 37,
                             GameId = 3,
                             KillerId = 2,
-                            Latitude = 55.642752000000002,
-                            Longitude = 12.271528,
+                            Latitude = 55.643923999999998,
+                            Longitude = 12.27229,
                             TimeDead = new DateTime(2023, 3, 29, 10, 35, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 64
                         },
@@ -534,8 +537,8 @@ namespace hvz_backend.Migrations
                             Id = 38,
                             GameId = 3,
                             KillerId = 8,
-                            Latitude = 55.642752999999999,
-                            Longitude = 12.27145,
+                            Latitude = 55.643616000000002,
+                            Longitude = 12.272220000000001,
                             TimeDead = new DateTime(2023, 3, 29, 10, 40, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 49
                         },
@@ -544,8 +547,8 @@ namespace hvz_backend.Migrations
                             Id = 39,
                             GameId = 3,
                             KillerId = 15,
-                            Latitude = 55.642752999999999,
-                            Longitude = 12.271402999999999,
+                            Latitude = 55.643492000000002,
+                            Longitude = 12.27276,
                             TimeDead = new DateTime(2023, 3, 29, 10, 47, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 6
                         },
@@ -554,8 +557,8 @@ namespace hvz_backend.Migrations
                             Id = 40,
                             GameId = 3,
                             KillerId = 44,
-                            Latitude = 55.642753999999996,
-                            Longitude = 12.271335000000001,
+                            Latitude = 55.643042000000001,
+                            Longitude = 12.272209999999999,
                             TimeDead = new DateTime(2023, 3, 29, 11, 2, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 39
                         },
@@ -564,8 +567,8 @@ namespace hvz_backend.Migrations
                             Id = 41,
                             GameId = 3,
                             KillerId = 70,
-                            Latitude = 55.642755000000001,
-                            Longitude = 12.271423,
+                            Latitude = 55.643858000000002,
+                            Longitude = 12.27244,
                             TimeDead = new DateTime(2023, 3, 29, 11, 16, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 27
                         },
@@ -574,8 +577,8 @@ namespace hvz_backend.Migrations
                             Id = 42,
                             GameId = 3,
                             KillerId = 64,
-                            Latitude = 55.642755000000001,
-                            Longitude = 12.27145,
+                            Latitude = 55.643763,
+                            Longitude = 12.272959999999999,
                             TimeDead = new DateTime(2023, 3, 29, 11, 24, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 14
                         },
@@ -584,8 +587,8 @@ namespace hvz_backend.Migrations
                             Id = 43,
                             GameId = 3,
                             KillerId = 6,
-                            Latitude = 55.642755999999999,
-                            Longitude = 12.271471,
+                            Latitude = 55.643745000000003,
+                            Longitude = 12.272679999999999,
                             TimeDead = new DateTime(2023, 3, 29, 11, 41, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 61
                         },
@@ -594,8 +597,8 @@ namespace hvz_backend.Migrations
                             Id = 44,
                             GameId = 3,
                             KillerId = 27,
-                            Latitude = 55.642547999999998,
-                            Longitude = 12.27154,
+                            Latitude = 55.643788000000001,
+                            Longitude = 12.272779999999999,
                             TimeDead = new DateTime(2023, 3, 29, 11, 49, 0, 0, DateTimeKind.Unspecified),
                             VictimId = 54
                         });
@@ -991,1545 +994,1545 @@ namespace hvz_backend.Migrations
                         new
                         {
                             Id = 1,
-                            BiteCode = "HoV7SyzEfUa3xjb",
+                            BiteCode = "1543",
                             GameId = 1,
                             IsPatientZero = true,
                             IsZombie = true,
-                            Latitude = 55.643054999999997,
-                            Longitude = 12.270901,
+                            Latitude = 55.643500000000003,
+                            Longitude = 12.272679999999999,
                             UserID = "acc85530-f88c-4de6-86e2-083bc5f86641"
                         },
                         new
                         {
                             Id = 2,
-                            BiteCode = "p6Aqf4XkW9KOyLD",
+                            BiteCode = "2804",
                             GameId = 1,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.642476000000002,
-                            Longitude = 12.272244000000001,
+                            Latitude = 55.643799999999999,
+                            Longitude = 12.272130000000001,
                             SquadId = 2,
                             UserID = "d19c226a-22fb-4e6f-81a4-c1d153f929b7"
                         },
                         new
                         {
                             Id = 3,
-                            BiteCode = "TI23R4Y8sAelPfH",
+                            BiteCode = "3110",
                             GameId = 1,
                             IsPatientZero = false,
                             IsZombie = true,
-                            Latitude = 55.642691999999997,
-                            Longitude = 12.271266000000001,
+                            Latitude = 55.643099999999997,
+                            Longitude = 12.27257,
                             SquadId = 2,
                             UserID = "40885ab0-a5bb-4d76-a5d5-5db34156912b"
                         },
                         new
                         {
                             Id = 4,
-                            BiteCode = "ZPyCJUmK6O1M0Xv",
+                            BiteCode = "4975",
                             GameId = 1,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.643146999999999,
-                            Longitude = 12.271146999999999,
+                            Latitude = 55.643900000000002,
+                            Longitude = 12.272959999999999,
                             SquadId = 3,
                             UserID = "70a4f7b8-a619-438f-b309-fd333a9e8577"
                         },
                         new
                         {
                             Id = 5,
-                            BiteCode = "GFnTjzDfKv7ZuUb",
+                            BiteCode = "5368",
                             GameId = 1,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.642716999999998,
-                            Longitude = 12.270315,
+                            Latitude = 55.6432,
+                            Longitude = 12.272220000000001,
                             SquadId = 3,
                             UserID = "1861c804-6669-49bb-b35b-5b2c191b850c"
                         },
                         new
                         {
                             Id = 6,
-                            BiteCode = "e7l0OL12zpNZvFy",
+                            BiteCode = "6729",
                             GameId = 1,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.64284,
-                            Longitude = 12.272197999999999,
+                            Latitude = 55.643799999999999,
+                            Longitude = 12.2728,
                             UserID = "245b9d79-0aa1-435d-9878-4896744f221b"
                         },
                         new
                         {
                             Id = 7,
-                            BiteCode = "kYdwnpjzvyERKx5",
+                            BiteCode = "7462",
                             GameId = 1,
                             IsPatientZero = false,
                             IsZombie = true,
-                            Latitude = 55.643191000000002,
-                            Longitude = 12.271176000000001,
+                            Latitude = 55.643900000000002,
+                            Longitude = 12.27247,
                             SquadId = 4,
                             UserID = "25b14121-60e7-4126-9926-34ccefc08ec2"
                         },
                         new
                         {
                             Id = 8,
-                            BiteCode = "VH0Jtn68qwQ2bPG",
+                            BiteCode = "8901",
                             GameId = 1,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.642690000000002,
-                            Longitude = 12.271509,
+                            Latitude = 55.643599999999999,
+                            Longitude = 12.272360000000001,
                             SquadId = 2,
                             UserID = "f52236fb-2ab2-4345-bfe5-bfa82b776cf1"
                         },
                         new
                         {
                             Id = 9,
-                            BiteCode = "u8yxaWzqB7M3smI",
+                            BiteCode = "9012",
                             GameId = 1,
                             IsPatientZero = false,
                             IsZombie = true,
-                            Latitude = 55.642532000000003,
-                            Longitude = 12.270716,
+                            Latitude = 55.643599999999999,
+                            Longitude = 12.27295,
                             SquadId = 1,
                             UserID = "1e660e8f-893c-4224-82af-8f80d332d4a6"
                         },
                         new
                         {
                             Id = 10,
-                            BiteCode = "ZS0Pw6ujKp3q1Uv",
+                            BiteCode = "1098",
                             GameId = 1,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.642878000000003,
-                            Longitude = 12.272601,
+                            Latitude = 55.643099999999997,
+                            Longitude = 12.272779999999999,
                             UserID = "fb55b851-bfeb-4781-8e8a-bc2af03fea63"
                         },
                         new
                         {
                             Id = 11,
-                            BiteCode = "f4nUjKquE2eRzIo",
+                            BiteCode = "2109",
                             GameId = 1,
                             IsPatientZero = false,
                             IsZombie = true,
-                            Latitude = 55.642626,
-                            Longitude = 12.272239000000001,
+                            Latitude = 55.643900000000002,
+                            Longitude = 12.272,
                             UserID = "f8c97264f-0c1b-4dca-9cc3-fe786f8f0962"
                         },
                         new
                         {
                             Id = 12,
-                            BiteCode = "gCXcZBql1mKjJhM",
+                            BiteCode = "3210",
                             GameId = 1,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.642980000000001,
-                            Longitude = 12.271063,
+                            Latitude = 55.643500000000003,
+                            Longitude = 12.27289,
                             SquadId = 2,
                             UserID = "203837e7-29b9-400f-bdd8-5094abb4f3ab"
                         },
                         new
                         {
                             Id = 13,
-                            BiteCode = "R8IrL6Mz7GJjKsT",
+                            BiteCode = "8049",
                             GameId = 1,
                             IsPatientZero = false,
                             IsZombie = true,
-                            Latitude = 55.642668999999998,
-                            Longitude = 12.270611000000001,
+                            Latitude = 55.643700000000003,
+                            Longitude = 12.27238,
                             SquadId = 4,
                             UserID = "f0ecd9f5-ee43-4fbf-bc01-7a6f6d6e52a2"
                         },
                         new
                         {
                             Id = 14,
-                            BiteCode = "Vwmsi6bOjK0JXNh",
+                            BiteCode = "9127",
                             GameId = 1,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.642563000000003,
-                            Longitude = 12.270936000000001,
+                            Latitude = 55.643700000000003,
+                            Longitude = 12.272790000000001,
                             UserID = "1ca26c1d-7737-44aa-abc3-4120d1e84cde"
                         },
                         new
                         {
                             Id = 15,
-                            BiteCode = "eWf24GgtTJlKjON",
+                            BiteCode = "1379",
                             GameId = 1,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.643009999999997,
-                            Longitude = 12.272368999999999,
+                            Latitude = 55.643500000000003,
+                            Longitude = 12.272500000000001,
                             SquadId = 5,
                             UserID = "87e22096-fce7-413d-a9e7-1ae785ef39ac"
                         },
                         new
                         {
                             Id = 16,
-                            BiteCode = "S6wblgtJU3qZfVk",
+                            BiteCode = "2556",
                             GameId = 1,
                             IsPatientZero = false,
                             IsZombie = true,
-                            Latitude = 55.643113999999997,
-                            Longitude = 12.271705000000001,
+                            Latitude = 55.643500000000003,
+                            Longitude = 12.272130000000001,
                             SquadId = 3,
                             UserID = "da02dda1-0510-4f20-8cd7-1e22c6e4321e"
                         },
                         new
                         {
                             Id = 17,
-                            BiteCode = "o4y0cavjJhrzQbf",
+                            BiteCode = "1987",
                             GameId = 1,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.642850000000003,
-                            Longitude = 12.270765000000001,
+                            Latitude = 55.643500000000003,
+                            Longitude = 12.272169999999999,
                             UserID = "61bb9ef9-9f9e-4ce5-b466-4add87940ed8"
                         },
                         new
                         {
                             Id = 18,
-                            BiteCode = "U5r8wLvykDzEu2N",
+                            BiteCode = "9876",
                             GameId = 1,
                             IsPatientZero = false,
                             IsZombie = true,
-                            Latitude = 55.642930999999997,
-                            Longitude = 12.270948000000001,
+                            Latitude = 55.643799999999999,
+                            Longitude = 12.27215,
                             SquadId = 1,
                             UserID = "ed860bdc-50ff-4637-81c2-af42cba90f54"
                         },
                         new
                         {
                             Id = 19,
-                            BiteCode = "ujnm8WbH5pVq3IO",
+                            BiteCode = "3837",
                             GameId = 1,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.642507999999999,
-                            Longitude = 12.272182000000001,
+                            Latitude = 55.643799999999999,
+                            Longitude = 12.272030000000001,
                             SquadId = 5,
                             UserID = "db7df012-1f85-44f4-a6b8-6bf95bc9b715"
                         },
                         new
                         {
                             Id = 20,
-                            BiteCode = "7u8jZMcrFVkvEPl",
+                            BiteCode = "4321",
                             GameId = 1,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.643118000000001,
-                            Longitude = 12.271001,
+                            Latitude = 55.643700000000003,
+                            Longitude = 12.2729,
                             UserID = "d676b8d0-8353-4e0e-900c-335719b031eb"
                         },
                         new
                         {
                             Id = 21,
-                            BiteCode = "TmXdjW2Yaxfs1AR",
+                            BiteCode = "5698",
                             GameId = 1,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.643101999999999,
-                            Longitude = 12.270457,
+                            Latitude = 55.6432,
+                            Longitude = 12.27272,
                             SquadId = 3,
                             UserID = "7c303786-36f5-410d-bae1-8fbcb92c6603"
                         },
                         new
                         {
                             Id = 22,
-                            BiteCode = "oHjdfw5r8R7GJNm",
+                            BiteCode = "6067",
                             GameId = 1,
                             IsPatientZero = false,
                             IsZombie = true,
-                            Latitude = 55.643051,
-                            Longitude = 12.272366,
+                            Latitude = 55.643099999999997,
+                            Longitude = 12.272600000000001,
                             SquadId = 5,
                             UserID = "1d270eb6-53bf-440b-8eb9-c71feedf49dd"
                         },
                         new
                         {
                             Id = 23,
-                            BiteCode = "9X6aPEu0twVjlKn",
+                            BiteCode = "7088",
                             GameId = 1,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.643076999999998,
-                            Longitude = 12.272321,
+                            Latitude = 55.6432,
+                            Longitude = 12.27261,
                             SquadId = 4,
                             UserID = "ba89254d-974f-4d64-abe8-8c2ddeabc1b7"
                         },
                         new
                         {
                             Id = 24,
-                            BiteCode = "JtivkhLW52I8FZD",
+                            BiteCode = "3219",
                             GameId = 1,
                             IsPatientZero = false,
                             IsZombie = true,
-                            Latitude = 55.642927,
-                            Longitude = 12.271069000000001,
+                            Latitude = 55.643500000000003,
+                            Longitude = 12.272259999999999,
                             UserID = "49c024eb-d205-4587-bfd6-e5dbfb1702f3"
                         },
                         new
                         {
                             Id = 25,
-                            BiteCode = "FyLmOhlMS7Te8Gv",
+                            BiteCode = "2198",
                             GameId = 1,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.643084000000002,
-                            Longitude = 12.271739,
+                            Latitude = 55.6432,
+                            Longitude = 12.27289,
                             SquadId = 4,
                             UserID = "43f44f34-5ee1-4b80-95c2-0cf2c2cb0776"
                         },
                         new
                         {
                             Id = 26,
-                            BiteCode = "A7GVb2zKQkrW3qN",
+                            BiteCode = "8765",
                             GameId = 1,
                             IsPatientZero = false,
                             IsZombie = true,
-                            Latitude = 55.643056999999999,
-                            Longitude = 12.270841000000001,
+                            Latitude = 55.643700000000003,
+                            Longitude = 12.272069999999999,
                             UserID = "b25e5332-0308-4e1c-b137-dae33588ea6c"
                         },
                         new
                         {
                             Id = 27,
-                            BiteCode = "HnFJiYfZw3zqKx1",
+                            BiteCode = "7654",
                             GameId = 1,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.642743000000003,
-                            Longitude = 12.271889,
+                            Latitude = 55.6432,
+                            Longitude = 12.27295,
                             SquadId = 1,
                             UserID = "0920e3c1-f978-4b70-a7f5-9c766595b475"
                         },
                         new
                         {
                             Id = 28,
-                            BiteCode = "WgZU6um5GNoR0IE",
+                            BiteCode = "8594",
                             GameId = 1,
                             IsPatientZero = false,
                             IsZombie = true,
-                            Latitude = 55.642747,
-                            Longitude = 12.271824000000001,
+                            Latitude = 55.643099999999997,
+                            Longitude = 12.272180000000001,
                             SquadId = 4,
                             UserID = "7b6371fd-a26f-41b0-9056-c793ff7e07d6"
                         },
                         new
                         {
                             Id = 29,
-                            BiteCode = "Px1akYUc2wS8iJZ",
+                            BiteCode = "5432",
                             GameId = 1,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.642916,
-                            Longitude = 12.270531999999999,
+                            Latitude = 55.6434,
+                            Longitude = 12.2722,
                             UserID = "6251cd7b-0a79-49e6-b4f2-b153bf21ac97"
                         },
                         new
                         {
                             Id = 30,
-                            BiteCode = "lP40aFbCXiTG8d9",
+                            BiteCode = "9645",
                             GameId = 1,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.642876000000001,
-                            Longitude = 12.270747,
+                            Latitude = 55.643599999999999,
+                            Longitude = 12.27276,
                             SquadId = 3,
                             UserID = "a56481e5-9c6a-4aef-9e07-c534a33f0097"
                         },
                         new
                         {
                             Id = 31,
-                            BiteCode = "oxMNUO4Y1LWwSfz",
+                            BiteCode = "1034",
                             GameId = 1,
                             IsPatientZero = false,
                             IsZombie = true,
-                            Latitude = 55.642800999999999,
-                            Longitude = 12.271651,
+                            Latitude = 55.643500000000003,
+                            Longitude = 12.27234,
                             SquadId = 5,
                             UserID = "2454c85a-b5b1-4c08-b265-e8e5a7ced4b7"
                         },
                         new
                         {
                             Id = 32,
-                            BiteCode = "kHRmPzOpZc4jEt8",
+                            BiteCode = "6543",
                             GameId = 1,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.642750999999997,
-                            Longitude = 12.272415000000001,
+                            Latitude = 55.643599999999999,
+                            Longitude = 12.272040000000001,
                             SquadId = 2,
                             UserID = "10db85db-9750-415f-b6f3-333bdd678758"
                         },
                         new
                         {
                             Id = 33,
-                            BiteCode = "q28oeCKkJYlG1h3",
+                            BiteCode = "2345",
                             GameId = 1,
                             IsPatientZero = false,
                             IsZombie = true,
-                            Latitude = 55.642651000000001,
-                            Longitude = 12.271390999999999,
+                            Latitude = 55.643500000000003,
+                            Longitude = 12.272220000000001,
                             UserID = "e386781a-bda7-4dba-a504-10999ed91267"
                         },
                         new
                         {
                             Id = 34,
-                            BiteCode = "nKG1pDjZUcvRa6J",
+                            BiteCode = "3456",
                             GameId = 1,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.642966999999999,
-                            Longitude = 12.271692,
+                            Latitude = 55.643000000000001,
+                            Longitude = 12.27266,
                             SquadId = 2,
                             UserID = "01731ab5-8f28-4a7b-afe7-c892fc5bd8d9"
                         },
                         new
                         {
                             Id = 35,
-                            BiteCode = "Q5H6WsNfjhB2VaY",
+                            BiteCode = "2223",
                             GameId = 1,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.642893999999998,
-                            Longitude = 12.271223000000001,
+                            Latitude = 55.643900000000002,
+                            Longitude = 12.27247,
                             SquadId = 3,
                             UserID = "a7551a99-7573-4abc-afae-b7186d35fb5a"
                         },
                         new
                         {
                             Id = 36,
-                            BiteCode = "HoV7SyzEfUa3xjb",
+                            BiteCode = "1543",
                             GameId = 2,
                             IsPatientZero = true,
                             IsZombie = true,
-                            Latitude = 55.642876000000001,
-                            Longitude = 12.272069999999999,
+                            Latitude = 55.643500000000003,
+                            Longitude = 12.272679999999999,
                             UserID = "542189b8-9df5-41d4-aece-5bff052a53f9"
                         },
                         new
                         {
                             Id = 37,
-                            BiteCode = "p6Aqf4XkW9KOyLD",
+                            BiteCode = "2804",
                             GameId = 2,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.642823999999997,
-                            Longitude = 12.270845,
+                            Latitude = 55.643799999999999,
+                            Longitude = 12.272130000000001,
                             SquadId = 7,
                             UserID = "bbf55298-5e22-49a3-945c-b4d79346a3ed"
                         },
                         new
                         {
                             Id = 38,
-                            BiteCode = "TI23R4Y8sAelPfH",
+                            BiteCode = "3110",
                             GameId = 2,
                             IsPatientZero = false,
                             IsZombie = true,
-                            Latitude = 55.642693000000001,
-                            Longitude = 12.271329,
+                            Latitude = 55.643099999999997,
+                            Longitude = 12.27257,
                             SquadId = 9,
                             UserID = "dba845f7-fd61-4f1a-b8a6-4c67de2e8612"
                         },
                         new
                         {
                             Id = 39,
-                            BiteCode = "ZPyCJUmK6O1M0Xv",
+                            BiteCode = "4975",
                             GameId = 2,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.642893000000001,
-                            Longitude = 12.271750000000001,
+                            Latitude = 55.643900000000002,
+                            Longitude = 12.272959999999999,
                             SquadId = 10,
                             UserID = "02e94a01-3d77-477f-8598-a87a0a91ea1a"
                         },
                         new
                         {
                             Id = 40,
-                            BiteCode = "GFnTjzDfKv7ZuUb",
+                            BiteCode = "5368",
                             GameId = 2,
                             IsPatientZero = false,
                             IsZombie = true,
-                            Latitude = 55.64273,
-                            Longitude = 12.271402,
+                            Latitude = 55.6432,
+                            Longitude = 12.272220000000001,
                             SquadId = 8,
                             UserID = "430d1e90-27d9-47ca-afa9-8f6c41d1e272"
                         },
                         new
                         {
                             Id = 41,
-                            BiteCode = "e7l0OL12zpNZvFy",
+                            BiteCode = "6729",
                             GameId = 2,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.642887000000002,
-                            Longitude = 12.271996,
+                            Latitude = 55.643799999999999,
+                            Longitude = 12.2728,
                             SquadId = 9,
                             UserID = "7596aaf8-c8a6-449a-be88-e2e0263e51de"
                         },
                         new
                         {
                             Id = 42,
-                            BiteCode = "kYdwnpjzvyERKx5",
+                            BiteCode = "7462",
                             GameId = 2,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.642888999999997,
-                            Longitude = 12.270871,
+                            Latitude = 55.643900000000002,
+                            Longitude = 12.27247,
                             SquadId = 9,
                             UserID = "eb78fe31-2baf-495c-bf32-6ac91a050d7e"
                         },
                         new
                         {
                             Id = 43,
-                            BiteCode = "VH0Jtn68qwQ2bPG",
+                            BiteCode = "8901",
                             GameId = 2,
                             IsPatientZero = false,
                             IsZombie = true,
-                            Latitude = 55.642715000000003,
-                            Longitude = 12.270735,
+                            Latitude = 55.643599999999999,
+                            Longitude = 12.272360000000001,
                             SquadId = 6,
                             UserID = "56e015d1-9ddf-4b6b-bc56-47b481696b04"
                         },
                         new
                         {
                             Id = 44,
-                            BiteCode = "u8yxaWzqB7M3smI",
+                            BiteCode = "9012",
                             GameId = 2,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.642712000000003,
-                            Longitude = 12.272012999999999,
+                            Latitude = 55.643599999999999,
+                            Longitude = 12.27295,
                             SquadId = 10,
                             UserID = "587e6433-36f0-4ec3-825f-318aecf427fb"
                         },
                         new
                         {
                             Id = 45,
-                            BiteCode = "ZS0Pw6ujKp3q1Uv",
+                            BiteCode = "1098",
                             GameId = 2,
                             IsPatientZero = false,
                             IsZombie = true,
-                            Latitude = 55.642775999999998,
-                            Longitude = 12.270441999999999,
+                            Latitude = 55.643099999999997,
+                            Longitude = 12.272779999999999,
                             SquadId = 6,
                             UserID = "726f19c4-d67e-4584-aaf9-eb74eb9a6309"
                         },
                         new
                         {
                             Id = 46,
-                            BiteCode = "f4nUjKquE2eRzIo",
+                            BiteCode = "2109",
                             GameId = 2,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.642764,
-                            Longitude = 12.271779,
+                            Latitude = 55.643900000000002,
+                            Longitude = 12.272,
                             SquadId = 8,
                             UserID = "98ae3b89-2b66-4113-b369-b06e7af7960e"
                         },
                         new
                         {
                             Id = 47,
-                            BiteCode = "gCXcZBql1mKjJhM",
+                            BiteCode = "3210",
                             GameId = 2,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.642854999999997,
-                            Longitude = 12.270875,
+                            Latitude = 55.643500000000003,
+                            Longitude = 12.27289,
                             SquadId = 6,
                             UserID = "c6561be2-a927-4cb4-86ad-42867a09f06d"
                         },
                         new
                         {
                             Id = 48,
-                            BiteCode = "R8IrL6Mz7GJjKsT",
+                            BiteCode = "8049",
                             GameId = 2,
                             IsPatientZero = false,
                             IsZombie = true,
-                            Latitude = 55.642876999999999,
-                            Longitude = 12.27214,
+                            Latitude = 55.643700000000003,
+                            Longitude = 12.27238,
                             SquadId = 7,
                             UserID = "247cb94a-606a-44b2-968f-244f26544797"
                         },
                         new
                         {
                             Id = 49,
-                            BiteCode = "Vwmsi6bOjK0JXNh",
+                            BiteCode = "9127",
                             GameId = 2,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.642747999999997,
-                            Longitude = 12.271273000000001,
+                            Latitude = 55.643700000000003,
+                            Longitude = 12.272790000000001,
                             SquadId = 7,
                             UserID = "38de1747-35cf-41d0-a275-e6a5e84b0b2e"
                         },
                         new
                         {
                             Id = 50,
-                            BiteCode = "eWf24GgtTJlKjON",
+                            BiteCode = "1379",
                             GameId = 2,
                             IsPatientZero = false,
                             IsZombie = true,
-                            Latitude = 55.642767999999997,
-                            Longitude = 12.271763,
+                            Latitude = 55.643500000000003,
+                            Longitude = 12.272500000000001,
                             SquadId = 9,
                             UserID = "9ce13bc9-7f8b-4be8-97c7-bd8d9370deb0"
                         },
                         new
                         {
                             Id = 51,
-                            BiteCode = "S6wblgtJU3qZfVk",
+                            BiteCode = "2556",
                             GameId = 2,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.642837,
-                            Longitude = 12.272221,
+                            Latitude = 55.643500000000003,
+                            Longitude = 12.272130000000001,
                             UserID = "9d394a75-27a0-4a21-b5f3-e0938da2725c"
                         },
                         new
                         {
                             Id = 52,
-                            BiteCode = "o4y0cavjJhrzQbf",
+                            BiteCode = "1987",
                             GameId = 2,
                             IsPatientZero = false,
                             IsZombie = true,
-                            Latitude = 55.642822000000002,
-                            Longitude = 12.270925,
+                            Latitude = 55.643500000000003,
+                            Longitude = 12.272169999999999,
                             UserID = "99000a0c-b069-4f61-9edd-0fc69a8accce"
                         },
                         new
                         {
                             Id = 53,
-                            BiteCode = "U5r8wLvykDzEu2N",
+                            BiteCode = "9876",
                             GameId = 2,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.642749999999999,
-                            Longitude = 12.270424,
+                            Latitude = 55.643799999999999,
+                            Longitude = 12.27215,
                             SquadId = 10,
                             UserID = "4afba9be-cd98-4070-9cb2-de3aa91e7203"
                         },
                         new
                         {
                             Id = 54,
-                            BiteCode = "ujnm8WbH5pVq3IO",
+                            BiteCode = "3837",
                             GameId = 2,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.642727000000001,
-                            Longitude = 12.271936999999999,
+                            Latitude = 55.643799999999999,
+                            Longitude = 12.272030000000001,
                             SquadId = 9,
                             UserID = "8e942c88-8b46-451c-a594-1029e59ffffe"
                         },
                         new
                         {
                             Id = 55,
-                            BiteCode = "7u8jZMcrFVkvEPl",
+                            BiteCode = "4321",
                             GameId = 2,
                             IsPatientZero = false,
                             IsZombie = true,
-                            Latitude = 55.642834999999998,
-                            Longitude = 12.271665,
+                            Latitude = 55.643700000000003,
+                            Longitude = 12.2729,
                             SquadId = 9,
                             UserID = "bf84285f-8bea-4639-bff5-404812e17e02"
                         },
                         new
                         {
                             Id = 56,
-                            BiteCode = "TmXdjW2Yaxfs1AR",
+                            BiteCode = "5698",
                             GameId = 2,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.642809,
-                            Longitude = 12.271324999999999,
+                            Latitude = 55.6432,
+                            Longitude = 12.27272,
                             SquadId = 8,
                             UserID = "6f90589f-df6b-4e3e-8adb-3986b1b1ae20"
                         },
                         new
                         {
                             Id = 57,
-                            BiteCode = "oHjdfw5r8R7GJNm",
+                            BiteCode = "6067",
                             GameId = 2,
                             IsPatientZero = false,
                             IsZombie = true,
-                            Latitude = 55.642829999999996,
-                            Longitude = 12.271938,
+                            Latitude = 55.643099999999997,
+                            Longitude = 12.272600000000001,
                             UserID = "c1dec74f-fc72-4f64-8cd1-4c35c48dba4b"
                         },
                         new
                         {
                             Id = 58,
-                            BiteCode = "9X6aPEu0twVjlKn",
+                            BiteCode = "7088",
                             GameId = 2,
                             IsPatientZero = false,
                             IsZombie = true,
-                            Latitude = 55.642733999999997,
-                            Longitude = 12.271164000000001,
+                            Latitude = 55.6432,
+                            Longitude = 12.27261,
                             UserID = "00a13984-f498-4161-b448-ada0d47b86d4"
                         },
                         new
                         {
                             Id = 59,
-                            BiteCode = "JtivkhLW52I8FZD",
+                            BiteCode = "3219",
                             GameId = 2,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.642871,
-                            Longitude = 12.272142000000001,
+                            Latitude = 55.643500000000003,
+                            Longitude = 12.272259999999999,
                             SquadId = 6,
                             UserID = "4306cf6f-f263-4bcc-a5af-5a4083bf2700"
                         },
                         new
                         {
                             Id = 60,
-                            BiteCode = "FyLmOhlMS7Te8Gv",
+                            BiteCode = "2198",
                             GameId = 2,
                             IsPatientZero = false,
                             IsZombie = true,
-                            Latitude = 55.642837999999998,
-                            Longitude = 12.271504999999999,
+                            Latitude = 55.6432,
+                            Longitude = 12.27289,
                             SquadId = 10,
                             UserID = "4655a760-e6b2-4035-b39c-cf1156f4a0fa"
                         },
                         new
                         {
                             Id = 61,
-                            BiteCode = "A7GVb2zKQkrW3qN",
+                            BiteCode = "8765",
                             GameId = 2,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.642704000000002,
-                            Longitude = 12.270797999999999,
+                            Latitude = 55.643700000000003,
+                            Longitude = 12.272069999999999,
                             UserID = "8fd9439a-d6f1-42e0-9d7e-04c8e8a0554b"
                         },
                         new
                         {
                             Id = 62,
-                            BiteCode = "HnFJiYfZw3zqKx1",
+                            BiteCode = "7654",
                             GameId = 2,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.642828999999999,
-                            Longitude = 12.271853,
+                            Latitude = 55.6432,
+                            Longitude = 12.27295,
                             UserID = "4fef8bff-b177-4919-a3b1-8d5b81bccedd"
                         },
                         new
                         {
                             Id = 63,
-                            BiteCode = "WgZU6um5GNoR0IE",
+                            BiteCode = "8594",
                             GameId = 2,
                             IsPatientZero = false,
                             IsZombie = true,
-                            Latitude = 55.642859999999999,
-                            Longitude = 12.271362999999999,
+                            Latitude = 55.643099999999997,
+                            Longitude = 12.272180000000001,
                             UserID = "82f60c88-dfcf-4993-96ca-a68188a6a109"
                         },
                         new
                         {
                             Id = 64,
-                            BiteCode = "Px1akYUc2wS8iJZ",
+                            BiteCode = "5432",
                             GameId = 2,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.642704999999999,
-                            Longitude = 12.271343,
+                            Latitude = 55.6434,
+                            Longitude = 12.2722,
                             UserID = "135ac31d-9dd8-4ebf-b1ea-8e530e86dfc3"
                         },
                         new
                         {
                             Id = 65,
-                            BiteCode = "lP40aFbCXiTG8d9",
+                            BiteCode = "9645",
                             GameId = 2,
                             IsPatientZero = false,
                             IsZombie = true,
-                            Latitude = 55.642707000000001,
-                            Longitude = 12.270989999999999,
+                            Latitude = 55.643599999999999,
+                            Longitude = 12.27276,
                             SquadId = 7,
                             UserID = "fd9ea2b3-f9a3-447b-a614-ef6c44f4b0c6"
                         },
                         new
                         {
                             Id = 66,
-                            BiteCode = "oxMNUO4Y1LWwSfz",
+                            BiteCode = "1034",
                             GameId = 2,
                             IsPatientZero = false,
                             IsZombie = true,
-                            Latitude = 55.642752999999999,
-                            Longitude = 12.272098,
+                            Latitude = 55.643500000000003,
+                            Longitude = 12.27234,
                             SquadId = 10,
                             UserID = "b12a9834-293d-47d3-b6b4-5f8f57c1d092"
                         },
                         new
                         {
                             Id = 67,
-                            BiteCode = "kHRmPzOpZc4jEt8",
+                            BiteCode = "6543",
                             GameId = 2,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.642775999999998,
-                            Longitude = 12.271477000000001,
+                            Latitude = 55.643599999999999,
+                            Longitude = 12.272040000000001,
                             SquadId = 10,
                             UserID = "75eaa26a-6552-4822-8973-94948ccafb22"
                         },
                         new
                         {
                             Id = 68,
-                            BiteCode = "q28oeCKkJYlG1h3",
+                            BiteCode = "2345",
                             GameId = 2,
                             IsPatientZero = false,
                             IsZombie = true,
-                            Latitude = 55.642854,
-                            Longitude = 12.270531,
+                            Latitude = 55.643500000000003,
+                            Longitude = 12.272220000000001,
                             SquadId = 8,
                             UserID = "1a91b5d0-06df-4eb6-911d-2ce1a9766a9b"
                         },
                         new
                         {
                             Id = 69,
-                            BiteCode = "nKG1pDjZUcvRa6J",
+                            BiteCode = "3456",
                             GameId = 2,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.642702,
-                            Longitude = 12.272188,
+                            Latitude = 55.643000000000001,
+                            Longitude = 12.27266,
                             SquadId = 6,
                             UserID = "215a49a4-d9b5-4e86-86ba-35d69781649e"
                         },
                         new
                         {
                             Id = 70,
-                            BiteCode = "Q5H6WsNfjhB2VaY",
+                            BiteCode = "2223",
                             GameId = 2,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.642816000000003,
-                            Longitude = 12.271462,
+                            Latitude = 55.643900000000002,
+                            Longitude = 12.27247,
                             UserID = "5f70e435-d750-4961-a790-704312ae1336"
                         },
                         new
                         {
                             Id = 71,
-                            BiteCode = "HoV7SyzEfUa3xjb",
+                            BiteCode = "2804",
                             GameId = 3,
                             IsPatientZero = true,
                             IsZombie = true,
-                            Latitude = 55.642972,
-                            Longitude = 12.270531,
+                            Latitude = 55.643281000000002,
+                            Longitude = 12.27284,
                             UserID = "d19c226a-22fb-4e6f-81a4-c1d153f929b7"
                         },
                         new
                         {
                             Id = 72,
-                            BiteCode = "p6Aqf4XkW9KOyLD",
+                            BiteCode = "4975",
                             GameId = 3,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.642527000000001,
-                            Longitude = 12.271440999999999,
+                            Latitude = 55.643011999999999,
+                            Longitude = 12.27298,
                             SquadId = 11,
                             UserID = "70a4f7b8-a619-438f-b309-fd333a9e8577"
                         },
                         new
                         {
                             Id = 73,
-                            BiteCode = "TI23R4Y8sAelPfH",
+                            BiteCode = "5368",
                             GameId = 3,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.642718000000002,
-                            Longitude = 12.271458000000001,
+                            Latitude = 55.643459,
+                            Longitude = 12.27234,
                             SquadId = 12,
                             UserID = "1861c804-6669-49bb-b35b-5b2c191b850c"
                         },
                         new
                         {
                             Id = 74,
-                            BiteCode = "ZPyCJUmK6O1M0Xv",
+                            BiteCode = "6729",
                             GameId = 3,
                             IsPatientZero = false,
                             IsZombie = true,
-                            Latitude = 55.642614000000002,
-                            Longitude = 12.271435,
+                            Latitude = 55.643614999999997,
+                            Longitude = 12.27267,
                             UserID = "245b9d79-0aa1-435d-9878-4896744f221b"
                         },
                         new
                         {
                             Id = 75,
-                            BiteCode = "GFnTjzDfKv7ZuUb",
+                            BiteCode = "8901",
                             GameId = 3,
                             IsPatientZero = false,
                             IsZombie = true,
-                            Latitude = 55.642893999999998,
-                            Longitude = 12.271431,
+                            Latitude = 55.643872999999999,
+                            Longitude = 12.27256,
                             UserID = "f52236fb-2ab2-4345-bfe5-bfa82b776cf1"
                         },
                         new
                         {
                             Id = 76,
-                            BiteCode = "e7l0OL12zpNZvFy",
+                            BiteCode = "1098",
                             GameId = 3,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.642470000000003,
-                            Longitude = 12.271428999999999,
+                            Latitude = 55.643377000000001,
+                            Longitude = 12.27252,
                             UserID = "fb55b851-bfeb-4781-8e8a-bc2af03fea63"
                         },
                         new
                         {
                             Id = 77,
-                            BiteCode = "kYdwnpjzvyERKx5",
+                            BiteCode = "3210",
                             GameId = 3,
                             IsPatientZero = false,
                             IsZombie = true,
-                            Latitude = 55.642828000000002,
-                            Longitude = 12.271454,
+                            Latitude = 55.643180000000001,
+                            Longitude = 12.272690000000001,
                             SquadId = 13,
                             UserID = "203837e7-29b9-400f-bdd8-5094abb4f3ab"
                         },
                         new
                         {
                             Id = 78,
-                            BiteCode = "VH0Jtn68qwQ2bPG",
+                            BiteCode = "9127",
                             GameId = 3,
                             IsPatientZero = false,
                             IsZombie = true,
-                            Latitude = 55.642991000000002,
-                            Longitude = 12.271437000000001,
+                            Latitude = 55.643549999999998,
+                            Longitude = 12.272869999999999,
                             SquadId = 14,
                             UserID = "1ca26c1d-7737-44aa-abc3-4120d1e84cde"
                         },
                         new
                         {
                             Id = 79,
-                            BiteCode = "u8yxaWzqB7M3smI",
+                            BiteCode = "1379",
                             GameId = 3,
                             IsPatientZero = false,
                             IsZombie = true,
-                            Latitude = 55.642719,
-                            Longitude = 12.271443,
+                            Latitude = 55.643304000000001,
+                            Longitude = 12.27206,
                             UserID = "87e22096-fce7-413d-a9e7-1ae785ef39ac"
                         },
                         new
                         {
                             Id = 80,
-                            BiteCode = "ZS0Pw6ujKp3q1Uv",
+                            BiteCode = "1987",
                             GameId = 3,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.642687000000002,
-                            Longitude = 12.271438,
+                            Latitude = 55.643596000000002,
+                            Longitude = 12.272959999999999,
                             UserID = "61bb9ef9-9f9e-4ce5-b466-4add87940ed8"
                         },
                         new
                         {
                             Id = 81,
-                            BiteCode = "f4nUjKquE2eRzIo",
+                            BiteCode = "3837",
                             GameId = 3,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.642758000000001,
-                            Longitude = 12.271424,
+                            Latitude = 55.643009999999997,
+                            Longitude = 12.272259999999999,
                             UserID = "db7df012-1f85-44f4-a6b8-6bf95bc9b715"
                         },
                         new
                         {
                             Id = 82,
-                            BiteCode = "gCXcZBql1mKjJhM",
+                            BiteCode = "4321",
                             GameId = 3,
                             IsPatientZero = false,
                             IsZombie = true,
-                            Latitude = 55.642805000000003,
-                            Longitude = 12.271447999999999,
+                            Latitude = 55.643233000000002,
+                            Longitude = 12.272489999999999,
                             UserID = "d676b8d0-8353-4e0e-900c-335719b031eb"
                         },
                         new
                         {
                             Id = 83,
-                            BiteCode = "R8IrL6Mz7GJjKsT",
+                            BiteCode = "5698",
                             GameId = 3,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.642977000000002,
-                            Longitude = 12.271426,
+                            Latitude = 55.643129000000002,
+                            Longitude = 12.27298,
                             SquadId = 11,
                             UserID = "7c303786-36f5-410d-bae1-8fbcb92c6603"
                         },
                         new
                         {
                             Id = 84,
-                            BiteCode = "Vwmsi6bOjK0JXNh",
+                            BiteCode = "7088",
                             GameId = 3,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.642736999999997,
-                            Longitude = 12.271447999999999,
+                            Latitude = 55.643794,
+                            Longitude = 12.272640000000001,
                             SquadId = 13,
                             UserID = "ba89254d-974f-4d64-abe8-8c2ddeabc1b7"
                         },
                         new
                         {
                             Id = 85,
-                            BiteCode = "eWf24GgtTJlKjON",
+                            BiteCode = "2198",
                             GameId = 3,
                             IsPatientZero = false,
                             IsZombie = true,
-                            Latitude = 55.642927,
-                            Longitude = 12.271445,
+                            Latitude = 55.643804000000003,
+                            Longitude = 12.27211,
                             SquadId = 13,
                             UserID = "43f44f34-5ee1-4b80-95c2-0cf2c2cb0776"
                         },
                         new
                         {
                             Id = 86,
-                            BiteCode = "S6wblgtJU3qZfVk",
+                            BiteCode = "7654",
                             GameId = 3,
                             IsPatientZero = false,
                             IsZombie = true,
-                            Latitude = 55.642710999999998,
-                            Longitude = 12.271437000000001,
+                            Latitude = 55.643416999999999,
+                            Longitude = 12.27253,
                             UserID = "0920e3c1-f978-4b70-a7f5-9c766595b475"
                         },
                         new
                         {
                             Id = 87,
-                            BiteCode = "o4y0cavjJhrzQbf",
+                            BiteCode = "5432",
                             GameId = 3,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.642941,
-                            Longitude = 12.271426999999999,
+                            Latitude = 55.643355,
+                            Longitude = 12.272209999999999,
                             SquadId = 14,
                             UserID = "6251cd7b-0a79-49e6-b4f2-b153bf21ac97"
                         },
                         new
                         {
                             Id = 88,
-                            BiteCode = "U5r8wLvykDzEu2N",
+                            BiteCode = "9645",
                             GameId = 3,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.64282,
-                            Longitude = 12.271449,
+                            Latitude = 55.643571000000001,
+                            Longitude = 12.27223,
                             UserID = "a56481e5-9c6a-4aef-9e07-c534a33f0097"
                         },
                         new
                         {
                             Id = 89,
-                            BiteCode = "ujnm8WbH5pVq3IO",
+                            BiteCode = "6543",
                             GameId = 3,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.642752000000002,
-                            Longitude = 12.271458000000001,
+                            Latitude = 55.643405000000001,
+                            Longitude = 12.27256,
                             SquadId = 12,
                             UserID = "10db85db-9750-415f-b6f3-333bdd678758"
                         },
                         new
                         {
                             Id = 90,
-                            BiteCode = "7u8jZMcrFVkvEPl",
+                            BiteCode = "3456",
                             GameId = 3,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.642843999999997,
-                            Longitude = 12.271452,
+                            Latitude = 55.643138999999998,
+                            Longitude = 12.2727,
                             SquadId = 12,
                             UserID = "01731ab5-8f28-4a7b-afe7-c892fc5bd8d9"
                         },
                         new
                         {
                             Id = 91,
-                            BiteCode = "TmXdjW2Yaxfs1AR",
+                            BiteCode = "2223",
                             GameId = 3,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.642555999999999,
-                            Longitude = 12.271430000000001,
+                            Latitude = 55.643838000000002,
+                            Longitude = 12.27205,
                             SquadId = 12,
                             UserID = "a7551a99-7573-4abc-afae-b7186d35fb5a"
                         },
                         new
                         {
                             Id = 92,
-                            BiteCode = "oHjdfw5r8R7GJNm",
+                            BiteCode = "2804",
                             GameId = 3,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.642785000000003,
-                            Longitude = 12.271433,
+                            Latitude = 55.643135000000001,
+                            Longitude = 12.272679999999999,
                             UserID = "bbf55298-5e22-49a3-945c-b4d79346a3ed"
                         },
                         new
                         {
                             Id = 93,
-                            BiteCode = "9X6aPEu0twVjlKn",
+                            BiteCode = "4975",
                             GameId = 3,
                             IsPatientZero = false,
                             IsZombie = true,
-                            Latitude = 55.642881000000003,
-                            Longitude = 12.271442,
+                            Latitude = 55.643616999999999,
+                            Longitude = 12.27294,
                             SquadId = 13,
                             UserID = "02e94a01-3d77-477f-8598-a87a0a91ea1a"
                         },
                         new
                         {
                             Id = 94,
-                            BiteCode = "JtivkhLW52I8FZD",
+                            BiteCode = "6729",
                             GameId = 3,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.642955999999998,
-                            Longitude = 12.271438,
+                            Latitude = 55.643734000000002,
+                            Longitude = 12.27234,
                             SquadId = 11,
                             UserID = "7596aaf8-c8a6-449a-be88-e2e0263e51de"
                         },
                         new
                         {
                             Id = 95,
-                            BiteCode = "FyLmOhlMS7Te8Gv",
+                            BiteCode = "7462",
                             GameId = 3,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.642532000000003,
-                            Longitude = 12.271440999999999,
+                            Latitude = 55.643774999999998,
+                            Longitude = 12.27247,
                             UserID = "eb78fe31-2baf-495c-bf32-6ac91a050d7e"
                         },
                         new
                         {
                             Id = 96,
-                            BiteCode = "A7GVb2zKQkrW3qN",
+                            BiteCode = "9012",
                             GameId = 3,
                             IsPatientZero = false,
                             IsZombie = true,
-                            Latitude = 55.642854999999997,
-                            Longitude = 12.271440999999999,
+                            Latitude = 55.643523999999999,
+                            Longitude = 12.27276,
                             UserID = "587e6433-36f0-4ec3-825f-318aecf427fb"
                         },
                         new
                         {
                             Id = 97,
-                            BiteCode = "HnFJiYfZw3zqKx1",
+                            BiteCode = "2109",
                             GameId = 3,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.642547999999998,
-                            Longitude = 12.271442,
+                            Latitude = 55.643042000000001,
+                            Longitude = 12.2729,
                             SquadId = 11,
                             UserID = "98ae3b89-2b66-4113-b369-b06e7af7960e"
                         },
                         new
                         {
                             Id = 98,
-                            BiteCode = "WgZU6um5GNoR0IE",
+                            BiteCode = "3210",
                             GameId = 3,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.642623,
-                            Longitude = 12.271447,
+                            Latitude = 55.643455000000003,
+                            Longitude = 12.27256,
                             SquadId = 13,
                             UserID = "c6561be2-a927-4cb4-86ad-42867a09f06d"
                         },
                         new
                         {
                             Id = 99,
-                            BiteCode = "Px1akYUc2wS8iJZ",
+                            BiteCode = "9127",
                             GameId = 3,
                             IsPatientZero = false,
                             IsZombie = true,
-                            Latitude = 55.642643999999997,
-                            Longitude = 12.271439000000001,
+                            Latitude = 55.643731000000002,
+                            Longitude = 12.27257,
                             UserID = "38de1747-35cf-41d0-a275-e6a5e84b0b2e"
                         },
                         new
                         {
                             Id = 100,
-                            BiteCode = "lP40aFbCXiTG8d9",
+                            BiteCode = "2556",
                             GameId = 3,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.642766000000002,
-                            Longitude = 12.271430000000001,
+                            Latitude = 55.643256000000001,
+                            Longitude = 12.27205,
                             SquadId = 13,
                             UserID = "9d394a75-27a0-4a21-b5f3-e0938da2725c"
                         },
                         new
                         {
                             Id = 101,
-                            BiteCode = "oxMNUO4Y1LWwSfz",
+                            BiteCode = "9876",
                             GameId = 3,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.642899,
-                            Longitude = 12.271430000000001,
+                            Latitude = 55.643222999999999,
+                            Longitude = 12.27216,
                             UserID = "4afba9be-cd98-4070-9cb2-de3aa91e7203"
                         },
                         new
                         {
                             Id = 102,
-                            BiteCode = "kHRmPzOpZc4jEt8",
+                            BiteCode = "3837",
                             GameId = 3,
                             IsPatientZero = false,
                             IsZombie = true,
-                            Latitude = 55.642682000000001,
-                            Longitude = 12.271440999999999,
+                            Latitude = 55.643436999999999,
+                            Longitude = 12.272209999999999,
                             SquadId = 14,
                             UserID = "8e942c88-8b46-451c-a594-1029e59ffffe"
                         },
                         new
                         {
                             Id = 103,
-                            BiteCode = "q28oeCKkJYlG1h3",
+                            BiteCode = "5698",
                             GameId = 3,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.642525999999997,
-                            Longitude = 12.271447999999999,
+                            Latitude = 55.643275000000003,
+                            Longitude = 12.272270000000001,
                             UserID = "6f90589f-df6b-4e3e-8adb-3986b1b1ae20"
                         },
                         new
                         {
                             Id = 104,
-                            BiteCode = "nKG1pDjZUcvRa6J",
+                            BiteCode = "3219",
                             GameId = 3,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.642854,
-                            Longitude = 12.271437000000001,
+                            Latitude = 55.643447999999999,
+                            Longitude = 12.272270000000001,
                             UserID = "4306cf6f-f263-4bcc-a5af-5a4083bf2700"
                         },
                         new
                         {
                             Id = 105,
-                            BiteCode = "Q5H6WsNfjhB2VaY",
+                            BiteCode = "8765",
                             GameId = 3,
                             IsPatientZero = false,
                             IsZombie = true,
-                            Latitude = 55.642913999999998,
-                            Longitude = 12.271431,
+                            Latitude = 55.643225000000001,
+                            Longitude = 12.272589999999999,
                             SquadId = 11,
                             UserID = "8fd9439a-d6f1-42e0-9d7e-04c8e8a0554b"
                         },
                         new
                         {
                             Id = 106,
-                            BiteCode = "dMtw8HYv0Kz76ax",
+                            BiteCode = "7654",
                             GameId = 3,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.642578,
-                            Longitude = 12.271452,
+                            Latitude = 55.643881999999998,
+                            Longitude = 12.272410000000001,
                             UserID = "4fef8bff-b177-4919-a3b1-8d5b81bccedd"
                         },
                         new
                         {
                             Id = 107,
-                            BiteCode = "oVgkYyW8TjJrPlb",
+                            BiteCode = "5432",
                             GameId = 3,
                             IsPatientZero = false,
                             IsZombie = true,
-                            Latitude = 55.642698000000003,
-                            Longitude = 12.271449,
+                            Latitude = 55.643596000000002,
+                            Longitude = 12.27233,
                             SquadId = 13,
                             UserID = "135ac31d-9dd8-4ebf-b1ea-8e530e86dfc3"
                         },
                         new
                         {
                             Id = 108,
-                            BiteCode = "pB9RJ6UZzNuOxKA",
+                            BiteCode = "6543",
                             GameId = 3,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.642547,
-                            Longitude = 12.271444000000001,
+                            Latitude = 55.643923999999998,
+                            Longitude = 12.27285,
                             UserID = "75eaa26a-6552-4822-8973-94948ccafb22"
                         },
                         new
                         {
                             Id = 109,
-                            BiteCode = "qIXN3Y2GPwWjeib",
+                            BiteCode = "3456",
                             GameId = 3,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.642954000000003,
-                            Longitude = 12.27144,
+                            Latitude = 55.643099999999997,
+                            Longitude = 12.272119999999999,
                             SquadId = 14,
                             UserID = "215a49a4-d9b5-4e86-86ba-35d69781649e"
                         },
                         new
                         {
                             Id = 110,
-                            BiteCode = "s1O6SKGq5M2alhx",
+                            BiteCode = "2223",
                             GameId = 3,
                             IsPatientZero = false,
                             IsZombie = true,
-                            Latitude = 55.642952000000001,
-                            Longitude = 12.271428,
+                            Latitude = 55.643085999999997,
+                            Longitude = 12.27214,
                             SquadId = 13,
                             UserID = "5f70e435-d750-4961-a790-704312ae1336"
                         },
                         new
                         {
                             Id = 111,
-                            BiteCode = "Uq3cPtSp1X7faEz",
+                            BiteCode = "4975",
                             GameId = 4,
                             IsPatientZero = true,
                             IsZombie = true,
-                            Latitude = 55.64282,
-                            Longitude = 12.271426999999999,
+                            Latitude = 55.643067000000002,
+                            Longitude = 12.272650000000001,
                             UserID = "70a4f7b8-a619-438f-b309-fd333a9e8577"
                         },
                         new
                         {
                             Id = 112,
-                            BiteCode = "zHTCmEo6lVnfKMw",
+                            BiteCode = "5368",
                             GameId = 4,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.642752000000002,
-                            Longitude = 12.271449,
+                            Latitude = 55.643945000000002,
+                            Longitude = 12.27242,
                             UserID = "1861c804-6669-49bb-b35b-5b2c191b850c"
                         },
                         new
                         {
                             Id = 113,
-                            BiteCode = "xV7aPmd54HkXQjl",
+                            BiteCode = "1098",
                             GameId = 4,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.642843999999997,
-                            Longitude = 12.271458000000001,
+                            Latitude = 55.643982000000001,
+                            Longitude = 12.27294,
                             UserID = "fb55b851-bfeb-4781-8e8a-bc2af03fea63"
                         },
                         new
                         {
                             Id = 114,
-                            BiteCode = "YcZuwqlOjSE80Ji",
+                            BiteCode = "1987",
                             GameId = 4,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.642555999999999,
-                            Longitude = 12.271452,
+                            Latitude = 55.643377000000001,
+                            Longitude = 12.272130000000001,
                             UserID = "61bb9ef9-9f9e-4ce5-b466-4add87940ed8"
                         },
                         new
                         {
                             Id = 115,
-                            BiteCode = "Nk6dxvUJSFh9pHa",
+                            BiteCode = "3837",
                             GameId = 4,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.642785000000003,
-                            Longitude = 12.271430000000001,
+                            Latitude = 55.643231,
+                            Longitude = 12.27291,
                             UserID = "db7df012-1f85-44f4-a6b8-6bf95bc9b715"
                         },
                         new
                         {
                             Id = 116,
-                            BiteCode = "Dlso8YrZq3h5VK1",
+                            BiteCode = "5698",
                             GameId = 4,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.642881000000003,
-                            Longitude = 12.271433,
+                            Latitude = 55.643923999999998,
+                            Longitude = 12.272349999999999,
                             UserID = "7c303786-36f5-410d-bae1-8fbcb92c6603"
                         },
                         new
                         {
                             Id = 117,
-                            BiteCode = "JkR8c0yfmLx9jTS",
+                            BiteCode = "7088",
                             GameId = 4,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.642955999999998,
-                            Longitude = 12.271442,
+                            Latitude = 55.643220999999997,
+                            Longitude = 12.27281,
                             UserID = "ba89254d-974f-4d64-abe8-8c2ddeabc1b7"
                         },
                         new
                         {
                             Id = 118,
-                            BiteCode = "hwe7S2zWYjVbIUD",
+                            BiteCode = "5432",
                             GameId = 4,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.642532000000003,
-                            Longitude = 12.271438,
+                            Latitude = 55.643253999999999,
+                            Longitude = 12.272270000000001,
                             UserID = "6251cd7b-0a79-49e6-b4f2-b153bf21ac97"
                         },
                         new
                         {
                             Id = 119,
-                            BiteCode = "Oi3zM4GeKWyJXtk",
+                            BiteCode = "9645",
                             GameId = 4,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.642854999999997,
-                            Longitude = 12.271440999999999,
+                            Latitude = 55.643450000000001,
+                            Longitude = 12.27234,
                             UserID = "a56481e5-9c6a-4aef-9e07-c534a33f0097"
                         },
                         new
                         {
                             Id = 120,
-                            BiteCode = "P4MvzJZ1i8Ys0ft",
+                            BiteCode = "6543",
                             GameId = 4,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.642547999999998,
-                            Longitude = 12.271440999999999,
+                            Latitude = 55.643313999999997,
+                            Longitude = 12.27295,
                             UserID = "10db85db-9750-415f-b6f3-333bdd678758"
                         },
                         new
                         {
                             Id = 121,
-                            BiteCode = "aCvRXjKbW8T1Q2y",
+                            BiteCode = "3456",
                             GameId = 4,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.642623,
-                            Longitude = 12.271442,
+                            Latitude = 55.643791,
+                            Longitude = 12.272019999999999,
                             UserID = "01731ab5-8f28-4a7b-afe7-c892fc5bd8d9"
                         },
                         new
                         {
                             Id = 122,
-                            BiteCode = "xNTPoKZuvzHD1kr",
+                            BiteCode = "2223",
                             GameId = 4,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.642643999999997,
-                            Longitude = 12.271447,
+                            Latitude = 55.643718999999997,
+                            Longitude = 12.272880000000001,
                             UserID = "a7551a99-7573-4abc-afae-b7186d35fb5a"
                         },
                         new
                         {
                             Id = 123,
-                            BiteCode = "QwyrBIV6MgmU8uj",
+                            BiteCode = "2804",
                             GameId = 4,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.642766000000002,
-                            Longitude = 12.271439000000001,
+                            Latitude = 55.643616999999999,
+                            Longitude = 12.27229,
                             UserID = "bbf55298-5e22-49a3-945c-b4d79346a3ed"
                         },
                         new
                         {
                             Id = 124,
-                            BiteCode = "JN14o5qZr3lYmca",
+                            BiteCode = "6729",
                             GameId = 4,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.642899,
-                            Longitude = 12.271430000000001,
+                            Latitude = 55.643906999999999,
+                            Longitude = 12.27298,
                             UserID = "7596aaf8-c8a6-449a-be88-e2e0263e51de"
                         },
                         new
                         {
                             Id = 125,
-                            BiteCode = "zREjJh1upMtGkW8",
+                            BiteCode = "7462",
                             GameId = 4,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.642682000000001,
-                            Longitude = 12.271430000000001,
+                            Latitude = 55.643917999999999,
+                            Longitude = 12.272779999999999,
                             UserID = "eb78fe31-2baf-495c-bf32-6ac91a050d7e"
                         },
                         new
                         {
                             Id = 126,
-                            BiteCode = "pEhUGjKq3rYM5OZ",
+                            BiteCode = "2109",
                             GameId = 4,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.642525999999997,
-                            Longitude = 12.271440999999999,
+                            Latitude = 55.643428,
+                            Longitude = 12.27247,
                             UserID = "98ae3b89-2b66-4113-b369-b06e7af7960e"
                         },
                         new
                         {
                             Id = 127,
-                            BiteCode = "nDijK5JupTGy2ao",
+                            BiteCode = "3210",
                             GameId = 4,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.642854,
-                            Longitude = 12.271447999999999,
+                            Latitude = 55.643943999999998,
+                            Longitude = 12.27201,
                             UserID = "c6561be2-a927-4cb4-86ad-42867a09f06d"
                         },
                         new
                         {
                             Id = 128,
-                            BiteCode = "bOYZ9Hx64jLepSW",
+                            BiteCode = "2556",
                             GameId = 4,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.642913999999998,
-                            Longitude = 12.271437000000001,
+                            Latitude = 55.643839999999997,
+                            Longitude = 12.27233,
                             UserID = "9d394a75-27a0-4a21-b5f3-e0938da2725c"
                         },
                         new
                         {
                             Id = 129,
-                            BiteCode = "WYUJF2gfEiONlB5",
+                            BiteCode = "9876",
                             GameId = 4,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.642578,
-                            Longitude = 12.271431,
+                            Latitude = 55.643926999999998,
+                            Longitude = 12.27219,
                             UserID = "4afba9be-cd98-4070-9cb2-de3aa91e7203"
                         },
                         new
                         {
                             Id = 130,
-                            BiteCode = "G6KjJruozBxpyfV",
+                            BiteCode = "5698",
                             GameId = 4,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.642698000000003,
-                            Longitude = 12.271452,
+                            Latitude = 55.643431999999997,
+                            Longitude = 12.272019999999999,
                             UserID = "6f90589f-df6b-4e3e-8adb-3986b1b1ae20"
                         },
                         new
                         {
                             Id = 131,
-                            BiteCode = "Lc8ZsNbuMkhoKJv",
+                            BiteCode = "3219",
                             GameId = 4,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.642547,
-                            Longitude = 12.271449,
+                            Latitude = 55.643721999999997,
+                            Longitude = 12.27291,
                             UserID = "4306cf6f-f263-4bcc-a5af-5a4083bf2700"
                         },
                         new
                         {
                             Id = 132,
-                            BiteCode = "HN8bXjqQczaTIO7",
+                            BiteCode = "7654",
                             GameId = 4,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.642954000000003,
-                            Longitude = 12.271444000000001,
+                            Latitude = 55.643462999999997,
+                            Longitude = 12.272790000000001,
                             UserID = "4fef8bff-b177-4919-a3b1-8d5b81bccedd"
                         },
                         new
                         {
                             Id = 133,
-                            BiteCode = "QJjz7VLoDdS4Bt3",
+                            BiteCode = "6543",
                             GameId = 4,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.642952000000001,
-                            Longitude = 12.27144,
+                            Latitude = 55.643875000000001,
+                            Longitude = 12.27205,
                             UserID = "75eaa26a-6552-4822-8973-94948ccafb22"
                         },
                         new
                         {
                             Id = 134,
-                            BiteCode = "rJ8tX9l4IuqOivZ",
+                            BiteCode = "3456",
                             GameId = 4,
                             IsPatientZero = false,
                             IsZombie = false,
-                            Latitude = 55.642972,
-                            Longitude = 12.271428,
+                            Latitude = 55.643205000000002,
+                            Longitude = 12.27275,
                             UserID = "215a49a4-d9b5-4e86-86ba-35d69781649e"
                         });
                 });

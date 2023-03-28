@@ -19,7 +19,7 @@ namespace hvz_backend.Models
         [Required, Range(-180.0, 180.0, ErrorMessage = "Longitude must be between -180 and 180.")]
         public double Longitude { get; set; }
 
-        public int SquadId { get; set; }
+        public int? SquadId { get; set; }
         public Squad Squad { get; set; }
         public int GameId { get; set; }
         public Game Game { get; set; }
