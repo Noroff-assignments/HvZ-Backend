@@ -3,6 +3,7 @@ using hvz_backend.Exceptions;
 using hvz_backend.Models;
 using hvz_backend.Models.DTOs.Game;
 using hvz_backend.Services.GameServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Mime;
 
@@ -51,6 +52,7 @@ namespace hvz_backend.Controllers
         #endregion
 
         #region HTTP GETs
+
         /// <summary>
         /// Get all games of the database.
         /// </summary>

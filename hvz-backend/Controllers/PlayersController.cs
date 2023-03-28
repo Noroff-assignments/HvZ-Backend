@@ -38,12 +38,6 @@ namespace hvz_backend.Controllers
         #endregion
 
 
-        /// <summary>
-        /// Create a player for the game
-        /// </summary>
-        /// <param name="gameId">Identifier for game.</param>
-        /// <param name="createPlayerDTO"></param>
-        /// <returns></returns>
         #region HTTP POST
         [HttpPost("{gameId}/player")]
         public async Task<ActionResult<Player>> CreatePlayer(int gameId, PlayerCreateDTO createPlayerDTO)
@@ -52,17 +46,24 @@ namespace hvz_backend.Controllers
             {
                 var player = _mapper.Map<Player>(createPlayerDTO);
                 player.GameId = gameId;
+                var ExistingBiteCode = await _service.GetAllBiteCodeInGame(gameId);
+                player.BiteCode = BiteCodeGenerator(ExistingBiteCode);
                 await _service.CreatePlayer(player);
                 var game = await _gameService.GetGameById(gameId);
                 var amountPlayer = game.AmountPlayers.HasValue ? (int)game.AmountPlayers + 1 : 1;
                 await _gameService.PatchAmountGame(gameId, amountPlayer);
-                return Ok(player);
+                return Ok();
                 //return CreatedAtAction(nameof(GetPlayerByIdInGame), new { gameId = gameId, id = player.Id }, player);
             }
             catch (Exception ex)
             { 
                 return BadRequest(ex.Message);
             }
+        }
+
+        private int BiteCodeGenerator(IEnumerable<int> existingBiteCode)
+        {
+            throw new NotImplementedException();
         }
         #endregion
 
@@ -132,6 +133,22 @@ namespace hvz_backend.Controllers
             try
             {
                 return Ok(_mapper.Map<PlayerReadDTO>(await _service.GetPlayerByIdInGame(gameId, id)));
+            }
+            catch (PlayerNotFoundException e)
+            {
+                return NotFound(new ProblemDetails
+                {
+                    Detail = e.Message
+                });
+            }
+        }
+
+        [HttpGet("{gameId}/user/{userId}")]
+        public async Task<ActionResult<PlayerReadDTO>> GetPlayerByUserIdInGame(int gameId, string userId)
+        {
+            try
+            {
+                return Ok(_mapper.Map<PlayerReadDTO>(await _service.GetPlayerByUserIdInGame(gameId, userId)));
             }
             catch (PlayerNotFoundException e)
             {

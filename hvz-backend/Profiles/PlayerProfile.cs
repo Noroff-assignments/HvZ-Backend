@@ -20,6 +20,7 @@ namespace hvz_backend.Profiles
             CreateMap<Player, PlayerSquadDTO>().ForMember(dto => dto.SquadId, opt => opt.MapFrom(game => game.SquadId));
             CreateMap<Player, PlayerUserDTO>().ForMember(dto => dto.UserID, opt => opt.MapFrom(game => game.UserID));
             CreateMap<Player, PlayerZombieDTO>().ForMember(dto => dto.IsZombie, opt => opt.MapFrom(game => game.IsZombie));
+            CreateMap<Player, PlayerBiteDTO>().ForMember(dto => dto.BiteCode, opt => opt.MapFrom(game => game.BiteCode));
 
         }
     }

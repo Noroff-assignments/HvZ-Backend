@@ -1,6 +1,6 @@
 ﻿using Azure.Identity;
 using Azure.Security.KeyVault.Secrets;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace hvz_backend.Controllers
@@ -9,7 +9,6 @@ namespace hvz_backend.Controllers
     [ApiController]
     public class VaultController : ControllerBase
     {
-
         [HttpGet]
         public async Task<ActionResult> AccessVaultSecret(string secretName)
         {

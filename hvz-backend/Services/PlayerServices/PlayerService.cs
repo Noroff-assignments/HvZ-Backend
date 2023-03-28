@@ -62,6 +62,20 @@ namespace hvz_backend.Services.PlayerServices
             return players;
         }
 
+        public async Task<IEnumerable<int>> GetAllBiteCodeInGame(int gameId)
+        {
+            var game = await _context.Games
+                .Include(m => m.Players)
+                .Where(k => k.Id == gameId)
+                .FirstOrDefaultAsync();
+
+            if (game == null) throw new GameNotFoundException(gameId);
+
+            var players = game.Players;
+            if (!players.Any()) throw new PlayerNotFoundException();
+            return players.Select(p => p.BiteCode);
+        }
+
         public async Task<Player> GetPlayerByIdInGame(int gameId, int id)
         {
             var game = await _context.Games
@@ -71,6 +85,18 @@ namespace hvz_backend.Services.PlayerServices
             if (game == null) throw new GameNotFoundException(gameId);
             var player = game.Players.FirstOrDefault(k => k.Id == id);
             if (player == null) throw new PlayerNotFoundException(id);
+            return player;
+        }
+
+        public async Task<Player> GetPlayerByUserIdInGame(int gameId, string userId)
+        {
+            var game = await _context.Games
+                .Include(m => m.Players)
+                .Where(k => k.Id == gameId)
+                .FirstOrDefaultAsync();
+            if (game == null) throw new GameNotFoundException(gameId);
+            var player = game.Players.FirstOrDefault(k => k.UserID == userId);
+            if (player == null) throw new PlayerNotFoundException(player.Id);
             return player;
         }
         #endregion
