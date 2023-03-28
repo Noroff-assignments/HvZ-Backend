@@ -62,7 +62,7 @@ namespace hvz_backend.Services.PlayerServices
             return players;
         }
 
-        public async Task<IEnumerable<int>> GetAllBiteCodeInGame(int gameId)
+        public async Task<IEnumerable<string>> GetAllBiteCodeInGame(int gameId)
         {
             var game = await _context.Games
                 .Include(m => m.Players)

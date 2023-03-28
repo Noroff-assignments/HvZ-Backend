@@ -7,7 +7,7 @@ namespace hvz_backend.Models
         [Key]
         public int Id { get; set; }
         [Required,Range(1000,9999)]
-        public int BiteCode { get; set; }
+        public string BiteCode { get; set; }
         [Required]
         public bool IsZombie { get; set; }
         [Required]

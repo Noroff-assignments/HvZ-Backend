@@ -1,15 +1,14 @@
 ﻿using AutoMapper;
 using hvz_backend.Exceptions;
 using hvz_backend.Models;
-using hvz_backend.Models.DTOs.Game;
-using hvz_backend.Models.DTOs.Kill;
 using hvz_backend.Models.DTOs.Player;
 using hvz_backend.Services.GameServices;
 using hvz_backend.Services.PlayerServices;
 using hvz_backend.Services.SquadServices;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Mime;
-using System.Numerics;
+using System;
+using System.Linq;
 
 namespace hvz_backend.Controllers
 {
@@ -56,14 +55,23 @@ namespace hvz_backend.Controllers
                 //return CreatedAtAction(nameof(GetPlayerByIdInGame), new { gameId = gameId, id = player.Id }, player);
             }
             catch (Exception ex)
-            { 
+            {
                 return BadRequest(ex.Message);
             }
         }
 
-        private int BiteCodeGenerator(IEnumerable<int> existingBiteCode)
+        private static string BiteCodeGenerator(IEnumerable<string> existingBiteCode)
         {
-            throw new NotImplementedException();
+            string charSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+-=[]{}|;':\",./<>?";
+            string code = "";
+            while (!existingBiteCode.Contains(code))
+            {
+                // Generate a new code
+                var random = new Random();
+                code = new string(Enumerable.Repeat(charSet, 15)
+                    .Select(s => s[random.Next(s.Length)]).ToArray());
+            }
+            return code;
         }
         #endregion
 
@@ -359,13 +367,13 @@ namespace hvz_backend.Controllers
             {
                 var player = await _service.GetPlayerByIdInGame(gameId, id);
                 var oldSquad = await _squadService.GetSquadByIdInGame(gameId, player.Id);
-                if (oldSquad != null) 
+                if (oldSquad != null)
                 {
                     int oldSquadAmount = oldSquad.TotalPlayer - 1;
                     await _squadService.PatchTotalPlayerSquad(gameId, oldSquad.Id, oldSquadAmount);
                 }
                 var newSquad = await _squadService.GetSquadByIdInGame(gameId, playerSquadDTO.SquadId);
-                int newSquadAmount = newSquad.TotalPlayer+1;
+                int newSquadAmount = newSquad.TotalPlayer + 1;
                 await _squadService.PatchTotalPlayerSquad(gameId, newSquad.Id, newSquadAmount);
                 await _service.PatchSquadPlayer(gameId, id, playerSquadDTO.SquadId);
             }
@@ -376,7 +384,7 @@ namespace hvz_backend.Controllers
                     Detail = e.Message
                 });
             }
-            catch(SquadNotFoundException e)
+            catch (SquadNotFoundException e)
             {
                 return NotFound(new ProblemDetails
                 {
