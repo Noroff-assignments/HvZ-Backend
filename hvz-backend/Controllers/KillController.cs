@@ -45,26 +45,28 @@ namespace hvz_backend.Controllers
         /// <returns></returns>
 
         [HttpPost("{gameId}/kill/")]
-        public async Task<ActionResult<Kill>> CreateKill(KillCreateDTO createKillDTO)
+        public async Task<ActionResult<Kill>> CreateKill(int gameId, KillCreateDTO createKillDTO)
         {
             try
             {
                 //map the kill
                 var kill = _mapper.Map<Kill>(createKillDTO);
+                kill.GameId= gameId;
                 int killId = kill.Id;
                 // get the two parter in the kill
-                Player killer = kill.Killer;
-                int gameId = killer.GameId;
-                string killCode = kill.biteCode;
-                Player victim = await _playerService.GetPlayerByBiteCodeInGame(gameId, killCode);
+                int killerId = kill.KillerId;
+                Player killer = await _playerService.GetPlayerByIdInGame(gameId, killerId);
+                string biteCode = kill.biteCode;
+                Player victim = await _playerService.GetPlayerByBiteCodeInGame(gameId, biteCode);
 
                 if (victim == null) throw new PlayerNotFoundException();
                 int victimId = victim.Id;
                 var victimSquadId = victim.SquadId;
+                kill.VictimId = victimId;
                 // Check if both player in same game
                 if (victim.GameId != killer.GameId) throw new DifferentGameUsedException();
                 await _service.CreateKill(kill);
-                Squad squad = await _squadService.GetSquadByIdInGame(victimId, (int)victimSquadId);
+                Squad squad = await _squadService.GetSquadByIdInGame(gameId, (int)victimSquadId);
 
                 if (victimSquadId != null) squad.TotalDead += 1;
                 victim.SquadId = null;
