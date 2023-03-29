@@ -44,8 +44,8 @@ namespace hvz_backend.Controllers
         /// <param name="createKillDTO"></param>
         /// <returns></returns>
 
-        [HttpPost("{gameId}/kill/{killCode}")]
-        public async Task<ActionResult<Kill>> CreateKill(string killCode,KillCreateDTO createKillDTO)
+        [HttpPost("{gameId}/kill/")]
+        public async Task<ActionResult<Kill>> CreateKill(KillCreateDTO createKillDTO)
         {
             try
             {
@@ -55,6 +55,7 @@ namespace hvz_backend.Controllers
                 // get the two parter in the kill
                 Player killer = kill.Killer;
                 int gameId = killer.GameId;
+                string killCode = kill.biteCode;
                 Player victim = await _playerService.GetPlayerByBiteCodeInGame(gameId, killCode);
 
                 if (victim == null) throw new PlayerNotFoundException();

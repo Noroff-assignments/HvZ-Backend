@@ -13,6 +13,8 @@ namespace hvz_backend.Models
         [MaxLength(150)]
         public string? DeadStory { get; set; }
 
+        public string? biteCode { get; set; }
+
         [Required, Range(-90.0, 90.0, ErrorMessage = "Latitude must be between -90 and 90.")]
         public double Latitude { get; set; }
 

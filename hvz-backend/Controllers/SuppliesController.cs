@@ -31,8 +31,8 @@ namespace hvz_backend.Controllers
         /// <summary>
         /// Create a supply for the map
         /// </summary>
-        /// <param name="createSupplyDTO"></param>
-        /// <returns></returns>
+        /// <param name="createSupplyDTO">Supply object</param>
+        /// <returns>Object created or bad request.</returns>
         #region HTTP POST
         [HttpPost("{mapId}/supply")]
         public async Task<ActionResult<Supply>> CreateSupply(SupplyCreateDTO createSupplyDTO)
@@ -55,7 +55,7 @@ namespace hvz_backend.Controllers
         /// Get all supplies in one specific map.
         /// </summary>
         /// <param name="mapId">The identifier of the map.</param>
-        /// <returns>List of supplies</returns>
+        /// <returns>List of supplies objects.</returns>
         [HttpGet("{mapId}/supply")]
         public async Task<ActionResult<IEnumerable<SupplyReadDTO>>> GetAllSuppliesInMap(int mapId)
         {
@@ -77,7 +77,7 @@ namespace hvz_backend.Controllers
         /// </summary>
         /// <param name="mapId">Identifier of the map.</param>
         /// <param name="id">Identifier of the supply.</param>
-        /// <returns>One supply.</returns>
+        /// <returns>One supply object.</returns>
         [HttpGet("{mapId}/supply/{id}")]
         public async Task<ActionResult<SupplyReadDTO>> GetSupplyByIdInMap(int mapId, int id)
         {
@@ -93,6 +93,12 @@ namespace hvz_backend.Controllers
                 });
             }
         }
+        /// <summary>
+        /// Get the title of one supply in one specific map.
+        /// </summary>
+        /// <param name="mapId">Identifier of map.</param>
+        /// <param name="id">Identifier of supply.</param>
+        /// <returns>string in a supply object</returns>
         [HttpGet("{mapId}/supply/{id}/title")]
         public async Task<ActionResult<SupplyTitleDTO>> GetTitleSupply(int mapId, int id)
         {
@@ -108,7 +114,12 @@ namespace hvz_backend.Controllers
                 });
             }
         }
-
+        /// <summary>
+        /// Get the description of a supply in a map.
+        /// </summary>
+        /// <param name="mapId">Identifier of map</param>
+        /// <param name="id">Identifier of supply.</param>
+        /// <returns>string in a supply object.</returns>
         [HttpGet("{mapId}/supply/{id}/description")]
         public async Task<ActionResult<SupplyDescriptionDTO>> GetDescriptionSupply(int mapId, int id)
         {
@@ -125,6 +136,12 @@ namespace hvz_backend.Controllers
             }
         }
 
+        /// <summary>
+        /// Get the latitude of a supply in map.
+        /// </summary>
+        /// <param name="mapId">Identifier of map.</param>
+        /// <param name="id">Identifier of supply.</param>
+        /// <returns>doube in a supply object..</returns>
         [HttpGet("{mapId}/supply/{id}/latitude")]
         public async Task<ActionResult<SupplyLatDTO>> GetLatitudeSupply(int mapId, int id)
         {
@@ -141,6 +158,12 @@ namespace hvz_backend.Controllers
             }
         }
 
+        /// <summary>
+        /// Get the longitude of a supply in map.
+        /// </summary>
+        /// <param name="mapId">Identifier of map.</param>
+        /// <param name="id">Identifier of supply.</param>
+        /// <returns>Double in a Supply object.</returns>
         [HttpGet("{mapId}/supply/{id}/longitude")]
         public async Task<ActionResult<SupplyLatDTO>> GetLongitudeSupply(int mapId, int id)
         {
@@ -157,6 +180,12 @@ namespace hvz_backend.Controllers
             }
         }
 
+        /// <summary>
+        /// Get if the supply is visible to zombies in map.
+        /// </summary>
+        /// <param name="mapId">Identifer if map.</param>
+        /// <param name="id">Identifier of suppy.</param>
+        /// <returns>Boolean in a Supply object.</returns>
         [HttpGet("{mapId}/supply/{id}/visible/zombie")]
         public async Task<ActionResult<SupplyZombieDTO>> GetZombieVisibleSupply(int mapId, int id)
         {
@@ -172,7 +201,12 @@ namespace hvz_backend.Controllers
                 });
             }
         }
-
+        /// <summary>
+        /// Get the boolean if the supply is visible to humans in map.
+        /// </summary>
+        /// <param name="mapId">Identifier of map.</param>
+        /// <param name="id">Identifier of supply.</param>
+        /// <returns>Boolean in a supply object.</returns>
         [HttpGet("{mapId}/supply/{id}/visible/human")]
         public async Task<ActionResult<SupplyHumanDTO>> GetHumanVisibleSupply(int mapId, int id)
         {
@@ -189,6 +223,12 @@ namespace hvz_backend.Controllers
             }
         }
 
+        /// <summary>
+        /// Get the begin time when the supply is active in the map.
+        /// </summary>
+        /// <param name="mapId">Identifier of map.</param>
+        /// <param name="id">Identifier of supply.</param>
+        /// <returns>DateTime in a supply object.</returns>
         [HttpGet("{mapId}/supply/{id}/begintime")]
         public async Task<ActionResult<SupplyBeginDTO>> GetBeginTimeSupply(int mapId, int id)
         {
@@ -204,7 +244,12 @@ namespace hvz_backend.Controllers
                 });
             }
         }
-
+        /// <summary>
+        /// Get the end time when the supply get inactive in map.
+        /// </summary>
+        /// <param name="mapId">Identifier of map.</param>
+        /// <param name="id">Identifier of supply.</param>
+        /// <returns>Datetime in a suply object.</returns>
         [HttpGet("{mapId}/supply/{id}/endtime")]
         public async Task<ActionResult<SupplyEndDTO>> GetEndTimeSupply(int mapId, int id)
         {
@@ -220,7 +265,12 @@ namespace hvz_backend.Controllers
                 });
             }
         }
-
+        /// <summary>
+        /// Get the type of a supply in map.
+        /// </summary>
+        /// <param name="mapId">Identifier of map.</param>
+        /// <param name="id">Identifier of supply.</param>
+        /// <returns>Int in a supply object. (0=GENERADE, 1=NERFGUN, 2=AMMO)</returns>
         [HttpGet("{mapId}/supply/{id}/drop")]
         public async Task<ActionResult<SupplyDropDTO>> GetDropSupply(int mapId, int id)
         {
@@ -236,7 +286,12 @@ namespace hvz_backend.Controllers
                 });
             }
         }
-
+        /// <summary>
+        /// Get the amount of a supply in a map.
+        /// </summary>
+        /// <param name="mapId">Identifer of map.</param>
+        /// <param name="id">Identifier of supply.</param>
+        /// <returns>int in a supply object.</returns>
         [HttpGet("{mapId}/supply/{id}/drop/amount")]
         public async Task<ActionResult<SupplyAmountDTO>> GetAmountSupply(int mapId, int id)
         {
@@ -253,6 +308,12 @@ namespace hvz_backend.Controllers
             }
         }
 
+        /// <summary>
+        /// Get the radius of where a supply is in a map.
+        /// </summary>
+        /// <param name="mapId">Identifier of map.</param>
+        /// <param name="id">Identifier of supply.</param>
+        /// <returns>int in a supply object.</returns>
         [HttpGet("{mapId}/supply/{id}/radius")]
         public async Task<ActionResult<MissionRadiusDTO>> GetRadiusSupply(int mapId, int id)
         {
@@ -274,6 +335,13 @@ namespace hvz_backend.Controllers
 
 
         #region HTTP PATCH
+        /// <summary>
+        /// change the title of a supply in a map.
+        /// </summary>
+        /// <param name="mapId">Identifier of map.</param>
+        /// <param name="id">Identifier of supply.</param>
+        /// <param name="supplyTitleDTO">Supply object with only a string for title</param>
+        /// <returns></returns>
         [HttpPatch("{mapId}/supply/{id}/title")]
         public async Task<ActionResult> PatchTitleSupply(int mapId, int id, [FromBody] SupplyTitleDTO supplyTitleDTO)
         {
@@ -290,7 +358,13 @@ namespace hvz_backend.Controllers
             }
             return NoContent();
         }
-
+        /// <summary>
+        /// Change the description of a supply in a map.
+        /// </summary>
+        /// <param name="mapId">Identifier of map.</param>
+        /// <param name="id">Identifier of supply.</param>
+        /// <param name="supplyDescriptionDTO">Supply object with a string for description.</param>
+        /// <returns>no return</returns>
         [HttpPatch("{mapId}/supply/{id}/description")]
         public async Task<ActionResult> PatchDescriptionSupply(int mapId, int id, [FromBody] SupplyDescriptionDTO supplyDescriptionDTO)
         {
@@ -308,6 +382,13 @@ namespace hvz_backend.Controllers
             return NoContent();
         }
 
+        /// <summary>
+        /// Change the latitude of a supply in a map.
+        /// </summary>
+        /// <param name="mapId">Identifier of map.</param>
+        /// <param name="id">Identifier of supply.</param>
+        /// <param name="supplyLatDTO">Supply objectm with only a double for latitude.</param>
+        /// <returns>no return</returns>
         [HttpPatch("{mapId}/supply/{id}/latitude")]
         public async Task<ActionResult> PatchLatSupply(int mapId, int id, [FromBody] SupplyLatDTO supplyLatDTO)
         {
@@ -324,7 +405,13 @@ namespace hvz_backend.Controllers
             }
             return NoContent();
         }
-
+        /// <summary>
+        /// Change the longitude of a supply in a map.
+        /// </summary>
+        /// <param name="mapId">Identifier of map.</param>
+        /// <param name="id">Identifier of supply.</param>
+        /// <param name="supplyLongDTO">Supply object with only a double for longitude</param>
+        /// <returns>no return</returns>
         [HttpPatch("{mapId}/supply/{id}/longitude")]
         public async Task<ActionResult> PatchLongSupply(int mapId, int id, [FromBody] SupplyLongDTO supplyLongDTO)
         {
@@ -342,6 +429,13 @@ namespace hvz_backend.Controllers
             return NoContent();
         }
 
+        /// <summary>
+        /// Change the visibility of a supply toward humans in a map.
+        /// </summary>
+        /// <param name="mapId">Identifier of map.</param>
+        /// <param name="id">Identifier of supply. Supply object with only a boolean for human</param>
+        /// <param name="supplyHumanDTO"></param>
+        /// <returns>no return</returns>
         [HttpPatch("{mapId}/supply/{id}/visible/human")]
         public async Task<ActionResult> PatchHumanSupply(int mapId, int id, [FromBody] SupplyHumanDTO supplyHumanDTO)
         {
@@ -358,7 +452,13 @@ namespace hvz_backend.Controllers
             }
             return NoContent();
         }
-
+        /// <summary>
+        /// Change the visibility of a supply toward zombies in a map
+        /// </summary>
+        /// <param name="mapId">Identifier of map.</param>
+        /// <param name="id">Identifier of supply.</param>
+        /// <param name="supplyZombieDTO">Supply object with only a bolloan for zombie.</param>
+        /// <returns>no return</returns>
         [HttpPatch("{mapId}/supply/{id}/visible/zombie")]
         public async Task<ActionResult> PatchZombieSupply(int mapId, int id, [FromBody] SupplyZombieDTO supplyZombieDTO)
         {
@@ -375,7 +475,13 @@ namespace hvz_backend.Controllers
             }
             return NoContent();
         }
-
+        /// <summary>
+        /// Change the end time of a supply in map.
+        /// </summary>
+        /// <param name="mapId">Identifier of map.</param>
+        /// <param name="id">Identifier of supply.</param>
+        /// <param name="supplyEndDTO">Supply object with only a Datetime for endtime.</param>
+        /// <returns>no return.</returns>
         [HttpPatch("{mapId}/supply/{id}/endtime")]
         public async Task<ActionResult> PatchEndSupply(int mapId, int id, [FromBody] SupplyEndDTO supplyEndDTO)
         {
@@ -392,7 +498,13 @@ namespace hvz_backend.Controllers
             }
             return NoContent();
         }
-
+        /// <summary>
+        /// Change the begin time of a supply in a map.
+        /// </summary>
+        /// <param name="mapId">Identifier of map.</param>
+        /// <param name="id">Identifier of supply.</param>
+        /// <param name="supplyBeginDTO">Supply object with only a Datetime for begintime.</param>
+        /// <returns>No return</returns>
         [HttpPatch("{mapId}/supply/{id}/begintime")]
         public async Task<ActionResult> PatchBeginSupply(int mapId, int id, [FromBody] SupplyBeginDTO supplyBeginDTO)
         {
@@ -410,6 +522,13 @@ namespace hvz_backend.Controllers
             return NoContent();
         }
 
+        /// <summary>
+        /// Change the type of drop in a supply in a map.
+        /// </summary>
+        /// <param name="mapId">Identifier of map.</param>
+        /// <param name="id">Identifier of supply.</param>
+        /// <param name="supplyDropDTO">Supply object with only int for drop.</param>
+        /// <returns>no return</returns>
         [HttpPatch("{mapId}/supply/{id}/drop")]
         public async Task<ActionResult> PatchDropSupply(int mapId, int id, [FromBody] SupplyDropDTO supplyDropDTO)
         {
@@ -426,7 +545,13 @@ namespace hvz_backend.Controllers
             }
             return NoContent();
         }
-
+        /// <summary>
+        /// Change the amount of a supply in a map.
+        /// </summary>
+        /// <param name="mapId">Identier of map.</param>
+        /// <param name="id">Identifier of supply.</param>
+        /// <param name="supplyAmountDTO">Supply object with only a int for amount</param>
+        /// <returns>no return</returns>
         [HttpPatch("{mapId}/supply/{id}/drop/amount")]
         public async Task<ActionResult> PatchAmountSupply(int mapId, int id, [FromBody] SupplyAmountDTO supplyAmountDTO)
         {
@@ -444,6 +569,13 @@ namespace hvz_backend.Controllers
             return NoContent();
         }
 
+        /// <summary>
+        /// Change the radius of a supply in a map.
+        /// </summary>
+        /// <param name="mapId">Identifier of map</param>
+        /// <param name="id">Identifier of supply.</param>
+        /// <param name="supplyRadiusDTO">Supply object with only a int for radius.</param>
+        /// <returns>no return.</returns>
         [HttpPatch("{mapId}/supply/{id}/radius")]
         public async Task<ActionResult> PatchRadiusSupply(int mapId, int id, [FromBody] SupplyRadiusDTO supplyRadiusDTO)
         {
@@ -465,10 +597,10 @@ namespace hvz_backend.Controllers
 
         #region HTTP PUT
         /// <summary>
-        /// Possible to update one supply.
+        /// Possible to update one supply of a mpa.
         /// </summary>
         /// <param name="id">Identifier of the supply.</param>
-        /// <param name="supplyDTO"></param>
+        /// <param name="supplyDTO">Supply Object.</param>
         /// <returns></returns>
         [HttpPut("{mapId}/supply/{id}")]
         public async Task<IActionResult> PutSupply(int id, SupplyUpdateDTO supplyDTO)

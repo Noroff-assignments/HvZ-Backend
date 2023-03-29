@@ -11,7 +11,7 @@ namespace hvz_backend.Models
         [Required]
         public bool IsZombie { get; set; }
         [Required]
-        public bool IsPatientZero { get; set; }
+        public bool IsPatientZero { get; set; }  
 
         [Required, Range(-90.0, 90.0, ErrorMessage = "Latitude must be between -90 and 90.")]
         public double Latitude { get; set; }
