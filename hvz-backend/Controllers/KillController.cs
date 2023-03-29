@@ -44,7 +44,7 @@ namespace hvz_backend.Controllers
         /// <param name="createKillDTO"></param>
         /// <returns></returns>
 
-        [HttpPost("{gameId}/kill")]
+        [HttpPost("{gameId}/kill/{killCode}")]
         public async Task<ActionResult<Kill>> CreateKill(string killCode,KillCreateDTO createKillDTO)
         {
             try
