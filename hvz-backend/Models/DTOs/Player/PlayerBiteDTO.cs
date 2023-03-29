@@ -2,6 +2,6 @@
 {
     public class PlayerBiteDTO
     {
-        public int BiteCode { get; set; }
+        public string BiteCode { get; set; }
     }
 }

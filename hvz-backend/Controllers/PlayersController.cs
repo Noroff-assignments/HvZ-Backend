@@ -57,7 +57,7 @@ namespace hvz_backend.Controllers
                 var amountPlayer = game.AmountPlayers.HasValue ? (int)game.AmountPlayers + 1 : 1;
                 await _gameService.PatchAmountGame(gameId, amountPlayer);
                 int playerId = createdPlayer.Id;
-                return Ok(createdPlayer);
+                return Ok();
                 //}
             }
             catch (Exception ex)
