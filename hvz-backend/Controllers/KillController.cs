@@ -73,7 +73,7 @@ namespace hvz_backend.Controllers
                 victim.IsZombie = true;
                 await _squadService.UpdateSquad(squad);
                 await _playerService.UpdatePlayer(victim);
-                return CreatedAtAction(nameof(GetKillByIdInGame), new { gameId, killId }, kill);
+                return Ok();
             }
             catch (DifferentGameUsedException e)
             {
