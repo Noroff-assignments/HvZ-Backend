@@ -45,10 +45,10 @@ namespace hvz_backend.Controllers
             try
             {
                 var player = _mapper.Map<Player>(createPlayerDTO);
-                //var newUser = player.UserID;
-                //var UserExist = await _service.GetPlayerByUserIdInGame(gameId, newUser);
-                //if (UserExist == null)
-               // {
+                var newUser = player.UserID;
+                var UserExist = await _service.GetPlayerByUserIdInGame(gameId, newUser);
+                if (UserExist == null)
+                {
                 player.GameId = gameId;
                 var ExistingBiteCode = await _service.GetAllBiteCodeInGame(gameId);
                 player.BiteCode = BiteCodeGenerator(ExistingBiteCode);
@@ -57,8 +57,8 @@ namespace hvz_backend.Controllers
                 var amountPlayer = game.AmountPlayers.HasValue ? (int)game.AmountPlayers + 1 : 1;
                 await _gameService.PatchAmountGame(gameId, amountPlayer);
                 int playerId = createdPlayer.Id;
+                }
                 return Ok();
-                //}
             }
             catch (Exception ex)
             {
