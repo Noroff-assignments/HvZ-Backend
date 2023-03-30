@@ -58,20 +58,18 @@ namespace hvz_backend.Controllers
                 Player killer = await _playerService.GetPlayerByIdInGame(gameId, killerId);
                 string biteCode = kill.biteCode;
                 Player victim = await _playerService.GetPlayerByBiteCodeInGame(gameId, biteCode);
-
-                if (victim == null) throw new PlayerNotFoundException();
                 int victimId = victim.Id;
                 var victimSquadId = victim.SquadId;
                 kill.VictimId = victimId;
                 // Check if both player in same game
                 if (victim.GameId != killer.GameId) throw new DifferentGameUsedException();
                 await _service.CreateKill(kill);
-                Squad squad = await _squadService.GetSquadByIdInGame(gameId, (int)victimSquadId);
+                /*Squad squad = await _squadService.GetSquadByIdInGame(gameId, (int)victimSquadId);
 
-                if (victimSquadId != null) squad.TotalDead += 1;
+                if (victimSquadId != null) squad.TotalDead += 1;*/
                 victim.SquadId = null;
                 victim.IsZombie = true;
-                await _squadService.UpdateSquad(squad);
+                //await _squadService.UpdateSquad(squad);
                 await _playerService.UpdatePlayer(victim);
                 return Ok();
             }
