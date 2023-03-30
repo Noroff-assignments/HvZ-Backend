@@ -108,7 +108,7 @@ namespace hvz_backend.Services.PlayerServices
                 .FirstOrDefaultAsync();
             if (game == null) throw new GameNotFoundException(gameId);
             var player = game.Players.FirstOrDefault(k => k.UserID == userId);
-            if (player == null) throw new PlayerNotFoundException(player.Id);
+            //if (player == null) throw new PlayerNotFoundException(player.Id);
             return player;
         }
         #endregion

@@ -10,6 +10,11 @@ using System.Net.Mime;
 using System;
 using System.Linq;
 using System.Data;
+using System.Numerics;
+using System.Text.Json.Serialization;
+using System.Text.Json;
+
+
 
 namespace hvz_backend.Controllers
 {
@@ -38,17 +43,19 @@ namespace hvz_backend.Controllers
         #endregion
 
 
+
+
+
+
         #region HTTP POST
         [HttpPost("{gameId}/player")]
         public async Task<ActionResult<Player>> CreatePlayer(int gameId, PlayerCreateDTO createPlayerDTO)
         {
-            try
+            var userId = createPlayerDTO.UserID;
+            var userExist = await _service.GetPlayerByUserIdInGame(gameId, userId);
+            if (userExist == null)
             {
                 var player = _mapper.Map<Player>(createPlayerDTO);
-                var newUser = player.UserID;
-                var UserExist = await _service.GetPlayerByUserIdInGame(gameId, newUser);
-                if (UserExist == null)
-                {
                 player.GameId = gameId;
                 var ExistingBiteCode = await _service.GetAllBiteCodeInGame(gameId);
                 player.BiteCode = BiteCodeGenerator(ExistingBiteCode);
@@ -56,14 +63,14 @@ namespace hvz_backend.Controllers
                 var game = await _gameService.GetGameById(gameId);
                 var amountPlayer = game.AmountPlayers.HasValue ? (int)game.AmountPlayers + 1 : 1;
                 await _gameService.PatchAmountGame(gameId, amountPlayer);
-                int playerId = createdPlayer.Id;
-                }
-                return Ok();
             }
-            catch (Exception ex)
+            Player playerReturn = await _service.GetPlayerByUserIdInGame(gameId, userId);
+            var options = new JsonSerializerOptions
             {
-                return BadRequest(ex.Message);
-            }
+                ReferenceHandler = ReferenceHandler.Preserve
+            };
+            string json = JsonSerializer.Serialize(playerReturn, options);
+            return Ok(json);
         }
 
         private static string BiteCodeGenerator(List<string> existingBiteCode)
