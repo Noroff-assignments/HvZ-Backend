@@ -46,8 +46,13 @@ namespace hvz_backend.Controllers
 
 
 
-
         #region HTTP POST
+        /// <summary>
+        /// Make user to a player in game
+        /// </summary>
+        /// <param name="gameId">Identifer of game</param>
+        /// <param name="createPlayerDTO"></param>
+        /// <returns></returns>
         [HttpPost("{gameId}/player")]
         public async Task<ActionResult<Player>> CreatePlayer(int gameId, PlayerCreateDTO createPlayerDTO)
         {
@@ -111,7 +116,11 @@ namespace hvz_backend.Controllers
                 });
             }
         }
-
+        /// <summary>
+        /// Get all zombies in game
+        /// </summary>
+        /// <param name="gameId">Identifier of game</param>
+        /// <returns>List of players</returns>
         [HttpGet("{gameId}/zombies")]
         public async Task<ActionResult<IEnumerable<PlayerReadDTO>>> GetAllZombiesInGame(int gameId)
         {
@@ -127,7 +136,11 @@ namespace hvz_backend.Controllers
                 });
             }
         }
-
+        /// <summary>
+        /// Get all humans in game
+        /// </summary>
+        /// <param name="gameId">Identifier of game</param>
+        /// <returns>List of Players</returns>
         [HttpGet("{gameId}/humans")]
         public async Task<ActionResult<IEnumerable<PlayerReadDTO>>> GetAllHumansInGame(int gameId)
         {
@@ -165,7 +178,12 @@ namespace hvz_backend.Controllers
                 });
             }
         }
-
+        /// <summary>
+        /// Get player based on user id from keycloak
+        /// </summary>
+        /// <param name="gameId">Identifier of gmae</param>
+        /// <param name="userId">Keycloak Identifier for user</param>
+        /// <returns>Player</returns>
         [HttpGet("{gameId}/user/{userId}")]
         public async Task<ActionResult<PlayerReadDTO>> GetPlayerByUserIdInGame(int gameId, string userId)
         {
@@ -182,6 +200,12 @@ namespace hvz_backend.Controllers
             }
         }
 
+        /// <summary>
+        /// Get the bitecode of a player in game
+        /// </summary>
+        /// <param name="gameId">Identifier of game</param>
+        /// <param name="id">Identifier of player</param>
+        /// <returns>String</returns>
         [HttpGet("{gameId}/player/{id}/bitecode")]
         public async Task<ActionResult<PlayerBiteDTO>> GetBitePlayer(int gameId, int id)
         {
@@ -197,7 +221,12 @@ namespace hvz_backend.Controllers
                 });
             }
         }
-
+        /// <summary>
+        /// Get the latitude of player in game
+        /// </summary>
+        /// <param name="gameId">Identifier of game</param>
+        /// <param name="id">Identifier of player</param>
+        /// <returns>Double</returns>
         [HttpGet("{gameId}/player/{id}/latitude")]
         public async Task<ActionResult<PlayerBiteDTO>> GetLatPlayer(int gameId, int id)
         {
@@ -213,7 +242,12 @@ namespace hvz_backend.Controllers
                 });
             }
         }
-
+        /// <summary>
+        /// Get longitude of player in game
+        /// </summary>
+        /// <param name="gameId">Identifier of game</param>
+        /// <param name="id">Identifier of player</param>
+        /// <returns>Double</returns>
         [HttpGet("{gameId}/player/{id}/longitude")]
         public async Task<ActionResult<PlayerLongDTO>> GetLonPlayer(int gameId, int id)
         {
@@ -229,7 +263,12 @@ namespace hvz_backend.Controllers
                 });
             }
         }
-
+        /// <summary>
+        /// Get if the player is patient zero in game
+        /// </summary>
+        /// <param name="gameId">Identifier of game</param>
+        /// <param name="id">Identifier of player</param>
+        /// <returns>Boolean</returns>
         [HttpGet("{gameId}/player/{id}/patientzero")]
         public async Task<ActionResult<PlayerPatientDTO>> GetIsPatientZeroPlayer(int gameId, int id)
         {
@@ -245,8 +284,13 @@ namespace hvz_backend.Controllers
                 });
             }
         }
-
-        [HttpGet("{gameId}/player/{id}/squadid")]
+        /// <summary>
+        /// Get the squad id of player in gmae
+        /// </summary>
+        /// <param name="gameId">Identifier of game</param>
+        /// <param name="id">Identifier of player</param>
+        /// <returns>Integer</returns>
+        [HttpGet("{gameId}/player/{id}/squad")]
         public async Task<ActionResult<PlayerSquadDTO>> GetSquadIdPlayer(int gameId, int id)
         {
             try
@@ -261,7 +305,12 @@ namespace hvz_backend.Controllers
                 });
             }
         }
-
+        /// <summary>
+        /// Get the user of player in game
+        /// </summary>
+        /// <param name="gameId">Identifier of game</param>
+        /// <param name="id">Identifier of player</param>
+        /// <returns>User identifier</returns>
         [HttpGet("{gameId}/player/{id}/user")]
         public async Task<ActionResult<PlayerUserDTO>> GetUserPlayer(int gameId, int id)
         {
@@ -277,7 +326,12 @@ namespace hvz_backend.Controllers
                 });
             }
         }
-
+        /// <summary>
+        /// Get if the player in game is a zombie
+        /// </summary>
+        /// <param name="gameId">Identifier of game</param>
+        /// <param name="id">Identifier of player</param>
+        /// <returns>Boolean</returns>
         [HttpGet("{gameId}/player/{id}/iszombie")]
         public async Task<ActionResult<PlayerZombieDTO>> GetIsZombiePlayer(int gameId, int id)
         {
@@ -338,7 +392,13 @@ namespace hvz_backend.Controllers
 
         #region HTTP PATCH
 
-
+        /// <summary>
+        /// Update latitude of player in game
+        /// </summary>
+        /// <param name="gameId">Identifier of game</param>
+        /// <param name="id">identfier of player</param>
+        /// <param name="playerLatDTO"></param>
+        /// <returns></returns>
         [HttpPatch("{gameId}/player/{id}/latitude")]
         public async Task<ActionResult> PatchLatPlayer(int gameId, int id, [FromBody] PlayerLatDTO playerLatDTO)
         {
@@ -357,6 +417,13 @@ namespace hvz_backend.Controllers
 
         }
 
+        /// <summary>
+        /// Update longitude of player in game
+        /// </summary>
+        /// <param name="gameId">Identifier of game</param>
+        /// <param name="id">Identifier of player</param>
+        /// <param name="playerLongDTO"></param>
+        /// <returns></returns>
         [HttpPatch("{gameId}/player/{id}/longitude")]
         public async Task<ActionResult> PatchlongPlayer(int gameId, int id, [FromBody] PlayerLongDTO playerLongDTO)
         {
@@ -375,7 +442,14 @@ namespace hvz_backend.Controllers
 
         }
 
-        [HttpPatch("{gameId}/player/{id}/squadid")]
+        /// <summary>
+        /// update squad to player in game
+        /// </summary>
+        /// <param name="gameId">Identifier of game</param>
+        /// <param name="id">Identifier of player</param>
+        /// <param name="playerSquadDTO"></param>
+        /// <returns></returns>
+        [HttpPatch("{gameId}/player/{id}/squad")]
         public async Task<ActionResult> PatchSquadPlayer(int gameId, int id, [FromBody] PlayerSquadDTO playerSquadDTO)
         {
             try
@@ -410,6 +484,13 @@ namespace hvz_backend.Controllers
 
         }
 
+        /// <summary>
+        /// Update the player state as zombie in game
+        /// </summary>
+        /// <param name="gameId">Identifier of game</param>
+        /// <param name="id">Identifier of player</param>
+        /// <param name="playerZombieDTO"></param>
+        /// <returns></returns>
         [HttpPatch("{gameId}/player/{id}/iszombie")]
         public async Task<ActionResult> PatchIsZombiePlayer(int gameId, int id, [FromBody] PlayerZombieDTO playerZombieDTO)
         {

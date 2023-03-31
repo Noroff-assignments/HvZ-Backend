@@ -26,7 +26,11 @@ namespace hvz_backend.Controllers
             _mapper = mapper;
         }
         #endregion
-
+        /// <summary>
+        /// Create a safezone in map
+        /// </summary>
+        /// <param name="createSafezoneDTO"></param>
+        /// <returns></returns>
         #region HTTP POST
         [HttpPost("{mapId}/safezone")]
         public async Task<ActionResult<Safezone>> CreateSafezone(SafezoneCreateDTO createSafezoneDTO)
@@ -87,6 +91,12 @@ namespace hvz_backend.Controllers
                 });
             }
         }
+        /// <summary>
+        /// Get title of safezone in map
+        /// </summary>
+        /// <param name="mapId">Identifier of map</param>
+        /// <param name="id">Identifer of safezone</param>
+        /// <returns>String</returns>
         [HttpGet("{mapId}/safezone/{id}/title")]
         public async Task<ActionResult<SafezoneTitleDTO>> GetTitleSafezone(int mapId, int id)
         {
@@ -102,7 +112,12 @@ namespace hvz_backend.Controllers
                 });
             }
         }
-
+        /// <summary>
+        /// Get the description of safezone in map
+        /// </summary>
+        /// <param name="mapId">Identifier of map</param>
+        /// <param name="id">Identifier of safezone</param>
+        /// <returns></returns>
         [HttpGet("{mapId}/safezone/{id}/description")]
         public async Task<ActionResult<SafezoneDescriptionDTO>> GetDescriptionSafezone(int mapId, int id)
         {
@@ -119,6 +134,12 @@ namespace hvz_backend.Controllers
             }
         }
 
+        /// <summary>
+        /// Get the latitude of safezone in map
+        /// </summary>
+        /// <param name="mapId">Identifier of map</param>
+        /// <param name="id">Identifier of safezone</param>
+        /// <returns></returns>
         [HttpGet("{mapId}/safezone/{id}/latitude")]
         public async Task<ActionResult<SafezoneLatDTO>> GetLatitudeSafezone(int mapId, int id)
         {
@@ -134,7 +155,12 @@ namespace hvz_backend.Controllers
                 });
             }
         }
-
+        /// <summary>
+        /// Get longitude of safezone in map
+        /// </summary>
+        /// <param name="mapId">Identifier of map</param>
+        /// <param name="id">Identifer of safezone</param>
+        /// <returns></returns>
         [HttpGet("{mapId}/safezone/{id}/longitude")]
         public async Task<ActionResult<SafezoneLatDTO>> GetLongitudeSafezone(int mapId, int id)
         {
@@ -150,7 +176,12 @@ namespace hvz_backend.Controllers
                 });
             }
         }
-
+        /// <summary>
+        /// Get the visibility of safezone toward zombies in map
+        /// </summary>
+        /// <param name="mapId">Identifier of map</param>
+        /// <param name="id">Identifier of safezone</param>
+        /// <returns>Boolean</returns>
         [HttpGet("{mapId}/safezone/{id}/visible/zombie")]
         public async Task<ActionResult<SafezoneZombieDTO>> GetZombieVisibleSafezone(int mapId, int id)
         {
@@ -166,7 +197,12 @@ namespace hvz_backend.Controllers
                 });
             }
         }
-
+        /// <summary>
+        /// Get the visibility of safezone toward humans in map
+        /// </summary>
+        /// <param name="mapId">Identifier of map</param>
+        /// <param name="id">Identifier of safezone </param>
+        /// <returns>Boolean</returns>
         [HttpGet("{mapId}/safezone/{id}/visible/human")]
         public async Task<ActionResult<SafezoneHumanDTO>> GetHumanVisibleSafezone(int mapId, int id)
         {
@@ -182,7 +218,12 @@ namespace hvz_backend.Controllers
                 });
             }
         }
-
+        /// <summary>
+        /// Get the begin time of the safezone in map
+        /// </summary>
+        /// <param name="mapId">Identifier of map</param>
+        /// <param name="id">Identifier of safezone</param>
+        /// <returns>dateTime</returns>
         [HttpGet("{mapId}/safezone/{id}/begintime")]
         public async Task<ActionResult<SafezoneBeginDTO>> GetBeginTimeSafezone(int mapId, int id)
         {
@@ -198,7 +239,12 @@ namespace hvz_backend.Controllers
                 });
             }
         }
-
+        /// <summary>
+        /// Get the end time of safezone in map
+        /// </summary>
+        /// <param name="mapId">Identifier of map</param>
+        /// <param name="id">Identifier of safezone</param>
+        /// <returns>DateTime</returns>
         [HttpGet("{mapId}/safezone/{id}/endtime")]
         public async Task<ActionResult<SafezoneEndDTO>> GetEndTimeSafezone(int mapId, int id)
         {
@@ -214,7 +260,12 @@ namespace hvz_backend.Controllers
                 });
             }
         }
-
+        /// <summary>
+        /// Get the radius of safezone in map
+        /// </summary>
+        /// <param name="mapId">Identifier of map</param>
+        /// <param name="id">Identifier of safezone</param>
+        /// <returns>DateTime</returns>
         [HttpGet("{mapId}/safezone/{id}/radius")]
         public async Task<ActionResult<SafezoneRadiusDTO>> GetRadiusSafezone(int mapId, int id)
         {
@@ -232,7 +283,13 @@ namespace hvz_backend.Controllers
         }
 
         #endregion
-
+        /// <summary>
+        /// Update the title of safezone in map
+        /// </summary>
+        /// <param name="mapId">Identifier of map</param>
+        /// <param name="id">Identifier of safezone</param>
+        /// <param name="safezoneTitleDTO"></param>
+        /// <returns></returns>
         #region HTTP PATCH
         [HttpPatch("{mapId}/safezone/{id}/title")]
         public async Task<ActionResult> PatchTitleSafezone(int mapId, int id, [FromBody] SafezoneTitleDTO safezoneTitleDTO)
@@ -250,7 +307,13 @@ namespace hvz_backend.Controllers
             }
             return NoContent();
         }
-
+        /// <summary>
+        /// Update the description of safezone in map
+        /// </summary>
+        /// <param name="mapId">Identifier of map</param>
+        /// <param name="id">Identifier of safezone</param>
+        /// <param name="safezoneDescriptionDTO"></param>
+        /// <returns></returns>
         [HttpPatch("{mapId}/safezone/{id}/description")]
         public async Task<ActionResult> PatchDescriptionSafezone(int mapId, int id, [FromBody] SafezoneDescriptionDTO safezoneDescriptionDTO)
         {
@@ -267,7 +330,13 @@ namespace hvz_backend.Controllers
             }
             return NoContent();
         }
-
+        /// <summary>
+        /// Update the latitude of safezone in map
+        /// </summary>
+        /// <param name="mapId">Identifier of map</param>
+        /// <param name="id">Identifier of safezone</param>
+        /// <param name="safezoneLatDTO"></param>
+        /// <returns></returns>
         [HttpPatch("{mapId}/safezone/{id}/latitude")]
         public async Task<ActionResult> PatchLatSafezone(int mapId, int id, [FromBody] SafezoneLatDTO safezoneLatDTO)
         {
@@ -284,7 +353,13 @@ namespace hvz_backend.Controllers
             }
             return NoContent();
         }
-
+        /// <summary>
+        /// Update longitude of safezone in map
+        /// </summary>
+        /// <param name="mapId">Identifier of map</param>
+        /// <param name="id">Identifier of safezone</param>
+        /// <param name="safezoneLongDTO"></param>
+        /// <returns></returns>
         [HttpPatch("{mapId}/safezone/{id}/longitude")]
         public async Task<ActionResult> PatchLongSafezone(int mapId, int id, [FromBody] SafezoneLonDTO safezoneLongDTO)
         {
@@ -301,7 +376,13 @@ namespace hvz_backend.Controllers
             }
             return NoContent();
         }
-
+        /// <summary>
+        /// Update the visibility of safezone toward humans in map
+        /// </summary>
+        /// <param name="mapId">Identifier of map</param>
+        /// <param name="id">Identifier of safezone</param>
+        /// <param name="safezoneHumanDTO"></param>
+        /// <returns></returns>
         [HttpPatch("{mapId}/safezone/{id}/visible/human")]
         public async Task<ActionResult> PatchHumanSafezone(int mapId, int id, [FromBody] SafezoneHumanDTO safezoneHumanDTO)
         {
@@ -318,7 +399,13 @@ namespace hvz_backend.Controllers
             }
             return NoContent();
         }
-
+        /// <summary>
+        /// Update visibility of safezone toward zombies in map
+        /// </summary>
+        /// <param name="mapId">Identifier of map</param>
+        /// <param name="id">Identifier of safezone</param>
+        /// <param name="safezoneZombieDTO"></param>
+        /// <returns></returns>
         [HttpPatch("{mapId}/safezone/{id}/visible/zombie")]
         public async Task<ActionResult> PatchZombieSafezone(int mapId, int id, [FromBody] SafezoneZombieDTO safezoneZombieDTO)
         {
@@ -335,7 +422,13 @@ namespace hvz_backend.Controllers
             }
             return NoContent();
         }
-
+        /// <summary>
+        /// Updat the end time of safezone in map
+        /// </summary>
+        /// <param name="mapId">Identifier of map</param>
+        /// <param name="id">Identifier of safezone</param>
+        /// <param name="safezoneEndDTO"></param>
+        /// <returns></returns>
         [HttpPatch("{mapId}/safezone/{id}/endtime")]
         public async Task<ActionResult> PatchEndSafezone(int mapId, int id, [FromBody] SafezoneEndDTO safezoneEndDTO)
         {
@@ -352,7 +445,13 @@ namespace hvz_backend.Controllers
             }
             return NoContent();
         }
-
+        /// <summary>
+        /// Update the begin time of safezone in map
+        /// </summary>
+        /// <param name="mapId">Identifier of map</param>
+        /// <param name="id">Identifier of safezone</param>
+        /// <param name="safezoneBeginDTO"></param>
+        /// <returns></returns>
         [HttpPatch("{mapId}/safezone/{id}/begintime")]
         public async Task<ActionResult> PatchBeginSafezone(int mapId, int id, [FromBody] SafezoneBeginDTO safezoneBeginDTO)
         {
@@ -369,7 +468,13 @@ namespace hvz_backend.Controllers
             }
             return NoContent();
         }
-
+        /// <summary>
+        /// Update the radius of safezone in map
+        /// </summary>
+        /// <param name="mapId">Identifier of map</param>
+        /// <param name="id">Identifier of safezone</param>
+        /// <param name="safezoneRadiusDTO"></param>
+        /// <returns></returns>
         [HttpPatch("{mapId}/safezone/{id}/radius")]
         public async Task<ActionResult> PatchRadiusSafezone(int mapId, int id, [FromBody] SafezoneRadiusDTO safezoneRadiusDTO)
         {

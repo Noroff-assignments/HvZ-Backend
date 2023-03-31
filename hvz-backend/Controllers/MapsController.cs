@@ -35,7 +35,7 @@ namespace hvz_backend.Controllers
         /// Create a new map.
         /// </summary>
         /// <param name="createMapDto"></param>
-        /// <returns></returns>
+        /// <returns>The newly created map</returns>
         [HttpPost]
         public async Task<ActionResult<Map>> CreateMap(MapCreateDTO createMapDto)
         {
@@ -94,7 +94,11 @@ namespace hvz_backend.Controllers
             }
         }
 
-
+        /// <summary>
+        /// Get the name of map
+        /// </summary>
+        /// <param name="id">Identifier of map</param>
+        /// <returns>String</returns>
         [HttpGet("{id}/name")]
         public async Task<ActionResult<MapNameDTO>> GetNameMap(int id)
         {
@@ -110,7 +114,11 @@ namespace hvz_backend.Controllers
                 });
             }
         }
-
+        /// <summary>
+        /// Get the description of map
+        /// </summary>
+        /// <param name="id">Identifer of map</param>
+        /// <returns>String</returns>
         [HttpGet("{id}/description")]
         public async Task<ActionResult<MapDescriptionDTO>> GetDescriptionMap(int id)
         {
@@ -126,7 +134,11 @@ namespace hvz_backend.Controllers
                 });
             }
         }
-
+        /// <summary>
+        /// Get the latitude of map center
+        /// </summary>
+        /// <param name="id">Identifier of map</param>
+        /// <returns>Double</returns>
         [HttpGet("{id}/latitude")]
         public async Task<ActionResult<MapLatDTO>> GetLatitudeMap(int id)
         {
@@ -142,7 +154,11 @@ namespace hvz_backend.Controllers
                 });
             }
         }
-
+        /// <summary>
+        /// Get the longitude of map center
+        /// </summary>
+        /// <param name="id">Identifier of map</param>
+        /// <returns>Double</returns>
         [HttpGet("{id}/longitude")]
         public async Task<ActionResult<MapLongDTO>> GetLongitudeMap(int id)
         {
@@ -159,6 +175,11 @@ namespace hvz_backend.Controllers
             }
         }
 
+        /// <summary>
+        /// Get the radius of map
+        /// </summary>
+        /// <param name="id">Identifer of map</param>
+        /// <returns>Int</returns>
         [HttpGet("/{id}/radius")]
         public async Task<ActionResult<MapRadiusDTO>> GetRadiusMap(int id)
         {
@@ -178,7 +199,12 @@ namespace hvz_backend.Controllers
         #endregion
 
         #region HTTP PUT
-
+        /// <summary>
+        /// Update the whole map object
+        /// </summary>
+        /// <param name="id">Identifier of map</param>
+        /// <param name="mapDTO"></param>
+        /// <returns></returns>
         [HttpPut("{id}")]
         public async Task<IActionResult> PutMap(int id, MapUpdateDTO mapDTO)
         {
@@ -200,6 +226,12 @@ namespace hvz_backend.Controllers
         #endregion
 
         #region PATCH 
+        /// <summary>
+        /// Update the name of map
+        /// </summary>
+        /// <param name="id">Identifier of map</param>
+        /// <param name="mapNameDTO"></param>
+        /// <returns></returns>
         [HttpPatch("{id}/name")]
         public async Task<ActionResult> PatchNameMap(int id, [FromBody] MapNameDTO mapNameDTO)
         {
@@ -216,7 +248,12 @@ namespace hvz_backend.Controllers
             }
             return NoContent();
         }
-
+        /// <summary>
+        /// Update the description of map
+        /// </summary>
+        /// <param name="id">Identifier of map</param>
+        /// <param name="mapDescriptionDTO"></param>
+        /// <returns></returns>
         [HttpPatch("{id}/description")]
         public async Task<ActionResult> PatchDescriptionMap(int id, [FromBody] MapDescriptionDTO mapDescriptionDTO)
         {
@@ -233,7 +270,12 @@ namespace hvz_backend.Controllers
             }
             return NoContent();
         }
-
+        /// <summary>
+        /// Update latitude of map
+        /// </summary>
+        /// <param name="id">Identifier of map</param>
+        /// <param name="mapLatDTO"></param>
+        /// <returns></returns>
         [HttpPatch("{id}/latitude")]
         public async Task<ActionResult> PatchLatitudeMap(int id, [FromBody] MapLatDTO mapLatDTO)
         {
@@ -250,7 +292,12 @@ namespace hvz_backend.Controllers
             }
             return NoContent();
         }
-
+        /// <summary>
+        /// Update longitude of map
+        /// </summary>
+        /// <param name="id">Identifier of map</param>
+        /// <param name="mapLongDTO"></param>
+        /// <returns></returns>
         [HttpPatch("{id}/longitude")]
         public async Task<ActionResult> PatchLongitudeMap(int id, [FromBody] MapLongDTO mapLongDTO)
         {
@@ -267,7 +314,12 @@ namespace hvz_backend.Controllers
             }
             return NoContent();
         }
-
+        /// <summary>
+        /// Update radius of map
+        /// </summary>
+        /// <param name="id">Identifier of map</param>
+        /// <param name="mapRadiusDTO"></param>
+        /// <returns></returns>
         [HttpPatch("{id}/radius")]
         public async Task<ActionResult> PatchRadiusMap(int id, [FromBody] MapRadiusDTO mapRadiusDTO)
         {
@@ -289,7 +341,11 @@ namespace hvz_backend.Controllers
         #endregion
 
         #region HTTP DELETE
-
+        /// <summary>
+        /// Delete map and corresponding supplies, missions and safezones
+        /// </summary>
+        /// <param name="id">Identifier of map</param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteMap(int id)
         {

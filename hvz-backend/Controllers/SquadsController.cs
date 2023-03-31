@@ -101,7 +101,12 @@ namespace hvz_backend.Controllers
                 });
             }
         }
-
+        /// <summary>
+        /// Get the name of squad in game
+        /// </summary>
+        /// <param name="gameId">Identifier of game</param>
+        /// <param name="id">Identifier of squad</param>
+        /// <returns>String</returns>
         [HttpGet("{gameId}/squad/{id}/name")]
         public async Task<ActionResult<SquadNameDTO>> GetNameSquad(int gameId, int id)
         {
@@ -117,7 +122,12 @@ namespace hvz_backend.Controllers
                 });
             }
         }
-
+        /// <summary>
+        /// Get the description of squad in game
+        /// </summary>
+        /// <param name="gameId">Identifier of game</param>
+        /// <param name="id">Identifier of squad</param>
+        /// <returns></returns>
         [HttpGet("{gameId}/squad/{id}/description")]
         public async Task<ActionResult<SquadDescriptionDTO>> GetDescriptionSquad(int gameId, int id)
         {
@@ -133,7 +143,12 @@ namespace hvz_backend.Controllers
                 });
             }
         }
-
+        /// <summary>
+        /// Get the total player of squad in game
+        /// </summary>
+        /// <param name="gameId">Identifier of game</param>
+        /// <param name="id">Identifier of squad</param>
+        /// <returns>Integer</returns>
         [HttpGet("{gameId}/squad/{id}/totalplayer")]
         public async Task<ActionResult<SquadTotalPlayerDTO>> GetTotalPlayerSquad(int gameId, int id)
         {
@@ -149,7 +164,12 @@ namespace hvz_backend.Controllers
                 });
             }
         }
-
+        /// <summary>
+        /// Get the total dead in squad of game
+        /// </summary>
+        /// <param name="gameId">Identifier of game</param>
+        /// <param name="id">Identifier of squad</param>
+        /// <returns>Integer</returns>
         [HttpGet("{gameId}/squad/{id}/totaldead")]
         public async Task<ActionResult<SquadTotalDeadDTO>> GetTotalDeadSquad(int gameId, int id)
         {
@@ -169,6 +189,13 @@ namespace hvz_backend.Controllers
         #endregion
 
         #region HTTP PATCH
+        /// <summary>
+        /// Update the name of squad in game
+        /// </summary>
+        /// <param name="gameId">Identifier of game</param>
+        /// <param name="id">Identifier of squad</param>
+        /// <param name="squadNameDTO"></param>
+        /// <returns></returns>
         [HttpPatch("{gameId}/squad/{id}/name")]
         public async Task<ActionResult> PatchNameSquad(int gameId, int id, [FromBody] SquadNameDTO squadNameDTO)
         {
@@ -186,6 +213,13 @@ namespace hvz_backend.Controllers
             return NoContent();
         }
 
+        /// <summary>
+        /// Update description of squad in game
+        /// </summary>
+        /// <param name="gameId">Identifier of game</param>
+        /// <param name="id">Identifier of squad</param>
+        /// <param name="squadDescriptionDTO"></param>
+        /// <returns></returns>
         [HttpPatch("{gameId}/squad/{id}/description")]
         public async Task<ActionResult> PatchDescriptionSquad(int gameId, int id, [FromBody] SquadDescriptionDTO squadDescriptionDTO)
         {
@@ -202,7 +236,13 @@ namespace hvz_backend.Controllers
             }
             return NoContent();
         }
-
+        /// <summary>
+        /// Update the total player in squad in game
+        /// </summary>
+        /// <param name="gameId">Identifier of game</param>
+        /// <param name="id">Identifier of squad</param>
+        /// <param name="squadTotalPlayerDTO"></param>
+        /// <returns></returns>
         [HttpPatch("{gameId}/squad/{id}/totalplayer")]
         public async Task<ActionResult> PatchTotalPlayerSquad(int gameId, int id, [FromBody] SquadTotalPlayerDTO squadTotalPlayerDTO)
         {
@@ -219,7 +259,13 @@ namespace hvz_backend.Controllers
             }
             return NoContent();
         }
-
+        /// <summary>
+        /// Update the total number of dead in squad in game
+        /// </summary>
+        /// <param name="gameId">Identifier of game</param>
+        /// <param name="id">Identifier of squad</param>
+        /// <param name="squadTotalDeadDTO"></param>
+        /// <returns></returns>
         [HttpPatch("{gameId}/squad/{id}/totaldead")]
         public async Task<ActionResult> PatchTotalDeadSquad(int gameId, int id, [FromBody] SquadTotalDeadDTO squadTotalDeadDTO)
         {

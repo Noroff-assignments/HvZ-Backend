@@ -7,7 +7,7 @@ namespace hvz_backend.Models
         [Key]
         public int Id { get; set; }
 
-        [Required, DisplayFormat(DataFormatString = "{0:HH:mm}", ApplyFormatInEditMode = true)]
+        [Required]
         public DateTime TimeDead { get; set; }
 
         [MaxLength(150)]

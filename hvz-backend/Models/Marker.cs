@@ -13,7 +13,7 @@ namespace hvz_backend.Models
         [MaxLength(300)]
         public string? Description { get; set; }
 
-        [Required, Range(1, 50, ErrorMessage = "Radius must be between 1 and 50.")]
+        [Required]
         public int Radius { get; set; }
 
         [Required, Range(-90.0, 90.0, ErrorMessage = "Latitude must be between -90 and 90.")]
@@ -28,10 +28,10 @@ namespace hvz_backend.Models
         [Required]
         public bool HumanVisible { get; set; }
 
-        [Required, DisplayFormat(DataFormatString = "{0:HH:mm}", ApplyFormatInEditMode = true)]
+        [Required]
         public DateTime? BeginTime { get; set; }
 
-        [Required, DisplayFormat(DataFormatString = "{0:HH:mm}", ApplyFormatInEditMode = true)]
+        [Required]
         public DateTime EndTime { get; set; }
 
         public int MapId { get; set; }

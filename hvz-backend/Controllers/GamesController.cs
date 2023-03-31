@@ -94,6 +94,11 @@ namespace hvz_backend.Controllers
             }
         }
 
+        /// <summary>
+        /// Get the title of a specific game.
+        /// </summary>
+        /// <param name="id">Identifier of game.</param>
+        /// <returns>title as a string</returns>
         [HttpGet("{id}/title")]
         public async Task<ActionResult<GameTitleDTO>> GetTitleGame(int id)
         {
@@ -109,7 +114,11 @@ namespace hvz_backend.Controllers
                 });
             }
         }
-
+        /// <summary>
+        /// Get the state of a game.
+        /// </summary>
+        /// <param name="id">Identifier of game</param>
+        /// <returns>the state of game in int (0=open for registration, 1=running and 2= completed)</returns>
         [HttpGet("{id}/state")]
         public async Task<ActionResult<GameStateDTO>> GetStateGame(int id)
         {
@@ -125,7 +134,11 @@ namespace hvz_backend.Controllers
                 });
             }
         }
-
+        /// <summary>
+        /// Ge the time when the game ends.
+        /// </summary>
+        /// <param name="id">Identifier of game</param>
+        /// <returns>The endtime in a DateTime format</returns>
         [HttpGet("{id}/endtime")]
         public async Task<ActionResult<GameEndTimeDTO>> GetEndTimeGame(int id)
         {
@@ -142,6 +155,11 @@ namespace hvz_backend.Controllers
             }
         }
 
+        /// <summary>
+        /// Get the begining time of a game.
+        /// </summary>
+        /// <param name="id">Identifier of game.</param>
+        /// <returns>The begin time in a DateTime format</returns>
         [HttpGet("{id}/begintime")]
         public async Task<ActionResult<GameBeginTimeDTO>> GetBeginTimeGame(int id)
         {
@@ -158,6 +176,11 @@ namespace hvz_backend.Controllers
             }
         }
 
+        /// <summary>
+        /// Get the description of a game
+        /// </summary>
+        /// <param name="id">Identifier of game</param>
+        /// <returns>The description in a string</returns>
         [HttpGet("{id}/description")]
         public async Task<ActionResult<GameDescriptionDTO>> GetDescriptionGame(int id)
         {
@@ -173,7 +196,11 @@ namespace hvz_backend.Controllers
                 });
             }
         }
-
+        /// <summary>
+        /// Get the userid of the admin on a game
+        /// </summary>
+        /// <param name="id">Identifier of game</param>
+        /// <returns>User id of the admin in a string</returns>
         [HttpGet("{id}/admin")]
         public async Task<ActionResult<GameAdminDTO>> GetAdminGame(int id)
         {
@@ -190,6 +217,11 @@ namespace hvz_backend.Controllers
             }
         }
 
+        /// <summary>
+        /// Get the total amount of players in a game
+        /// </summary>
+        /// <param name="id">Identifer of game</param>
+        /// <returns>Int value of total amount players</returns>
         [HttpGet("{id}/amountplayers")]
         public async Task<ActionResult<GamePlayersDTO>> GetAmountPlayerGame(int id)
         {
@@ -211,6 +243,12 @@ namespace hvz_backend.Controllers
 
 
         #region HTTP PATCH
+        /// <summary>
+        /// Update the title of a gmae
+        /// </summary>
+        /// <param name="id">Identifier of game</param>
+        /// <param name="gameTitleDTO">Game object with Title</param>
+        /// <returns></returns>
         [HttpPatch("{id}/title")]
         public async Task<ActionResult> PatchTitleGame(int id, [FromBody] GameTitleDTO gameTitleDTO)
         {
@@ -227,7 +265,12 @@ namespace hvz_backend.Controllers
             }
             return NoContent();
         }
-
+        /// <summary>
+        /// Update the state of the game
+        /// </summary>
+        /// <param name="id">Identifier of game</param>
+        /// <param name="gameStateDTO">Game object with int field for Status (0=open for registrating, 1=running, 2=completed)</param>
+        /// <returns></returns>
         [HttpPatch("{id}/state")]
         public async Task<ActionResult> PatchStateGame(int id, [FromBody] GameStateDTO gameStateDTO)
         {
@@ -244,7 +287,12 @@ namespace hvz_backend.Controllers
             }
             return NoContent();
         }
-
+        /// <summary>
+        /// Update the begin time of game
+        /// </summary>
+        /// <param name="id">Identifier of game</param>
+        /// <param name="gameBeginTimeDTO">Game object with BeginTime</param>
+        /// <returns></returns>
         [HttpPatch("{id}/begintime")]
         public async Task<ActionResult> PatchPeriodGame(int id, [FromBody] GameBeginTimeDTO gameBeginTimeDTO)
         {
@@ -261,7 +309,12 @@ namespace hvz_backend.Controllers
             }
             return NoContent();
         }
-
+        /// <summary>
+        /// Update the end time of game
+        /// </summary>
+        /// <param name="id">Identifier of game</param>
+        /// <param name="gameEndTimeDTO">Game object with EndTime</param>
+        /// <returns></returns>
         [HttpPatch("{id}/endtime")]
         public async Task<ActionResult> PatchEndtimeGame(int id, [FromBody] GameEndTimeDTO gameEndTimeDTO)
         {
@@ -279,6 +332,12 @@ namespace hvz_backend.Controllers
             return NoContent();
         }
 
+        /// <summary>
+        /// Update the description of game
+        /// </summary>
+        /// <param name="id">Identifier of game</param>
+        /// <param name="gameDescriptionDTO">Game object with field for Description</param>
+        /// <returns></returns>
         [HttpPatch("{id}/Description")]
         public async Task<ActionResult> PatchDescriptionGame(int id, [FromBody] GameDescriptionDTO gameDescriptionDTO)
         {
@@ -295,8 +354,13 @@ namespace hvz_backend.Controllers
             }
             return NoContent();
         }
-
-        [HttpPatch("{id}/Admin")]
+        /// <summary>
+        /// Update the admin user in game
+        /// </summary>
+        /// <param name="id">Identifier of game</param>
+        /// <param name="gameAdminDTO">Game object with field Admin</param>
+        /// <returns></returns>
+        [HttpPatch("{id}/admin")]
         public async Task<ActionResult> PatchAdminGame(int id, [FromBody] GameAdminDTO gameAdminDTO)
         {
             try
@@ -312,7 +376,12 @@ namespace hvz_backend.Controllers
             }
             return NoContent();
         }
-
+        /// <summary>
+        /// Update the amount of player in game
+        /// </summary>
+        /// <param name="id">Identifier of game</param>
+        /// <param name="gamePlayerDTO">Game object with field AmountPlayers</param>
+        /// <returns></returns>
         [HttpPatch("{id}/amountplayers")]
         public async Task<ActionResult> PatchAmountGame(int id, [FromBody] GamePlayersDTO gamePlayerDTO)
         {
@@ -337,7 +406,7 @@ namespace hvz_backend.Controllers
         /// Possible to update one game.
         /// </summary>
         /// <param name="id">Identifier of the game.</param>
-        /// <param name="gameDTO"></param>
+        /// <param name="gameDTO">The game object</param>
         /// <returns></returns>
         [HttpPut("{id}")]
         public async Task<IActionResult> PutGame(int id, GameUpdateDTO gameDTO)

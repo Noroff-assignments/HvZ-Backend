@@ -62,7 +62,7 @@ namespace hvz_backend.Migrations
                     b.HasIndex("MapId")
                         .IsUnique();
 
-                    b.ToTable("Games");
+                    b.ToTable("Games", (string)null);
 
                     b.HasData(
                         new
@@ -156,7 +156,7 @@ namespace hvz_backend.Migrations
 
                     b.HasIndex("VictimId");
 
-                    b.ToTable("Kills");
+                    b.ToTable("Kills", (string)null);
 
                     b.HasData(
                         new
@@ -632,7 +632,7 @@ namespace hvz_backend.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Maps");
+                    b.ToTable("Maps", (string)null);
 
                     b.HasData(
                         new
@@ -719,7 +719,7 @@ namespace hvz_backend.Migrations
 
                     b.HasIndex("MapId");
 
-                    b.ToTable("Missions");
+                    b.ToTable("Missions", (string)null);
 
                     b.HasData(
                         new
@@ -988,7 +988,7 @@ namespace hvz_backend.Migrations
 
                     b.HasIndex("SquadId");
 
-                    b.ToTable("Players");
+                    b.ToTable("Players", (string)null);
 
                     b.HasData(
                         new
@@ -2583,7 +2583,7 @@ namespace hvz_backend.Migrations
 
                     b.HasIndex("MapId");
 
-                    b.ToTable("Safezones");
+                    b.ToTable("Safezones", (string)null);
 
                     b.HasData(
                         new
@@ -2675,7 +2675,7 @@ namespace hvz_backend.Migrations
 
                     b.HasIndex("GameId");
 
-                    b.ToTable("Squads");
+                    b.ToTable("Squads", (string)null);
 
                     b.HasData(
                         new
@@ -2858,7 +2858,7 @@ namespace hvz_backend.Migrations
 
                     b.HasIndex("MapId");
 
-                    b.ToTable("Supplies");
+                    b.ToTable("Supplies", (string)null);
 
                     b.HasData(
                         new

@@ -92,7 +92,12 @@ namespace hvz_backend.Controllers
                 });
             }
         }
-
+        /// <summary>
+        /// Get the title of mission in map
+        /// </summary>
+        /// <param name="mapId">Identifier of map</param>
+        /// <param name="id">Identifier of mission</param>
+        /// <returns>String</returns>
         [HttpGet("{mapId}/mission/{id}/title")]
         public async Task<ActionResult<MissionTitleDTO>> GetTitleMission(int mapId, int id)
         {
@@ -108,7 +113,12 @@ namespace hvz_backend.Controllers
                 });
             }
         }
-
+        /// <summary>
+        /// Get the description of mission in map
+        /// </summary>
+        /// <param name="mapId">Identifier of map</param>
+        /// <param name="id">Identifier of mission</param>
+        /// <returns>String</returns>
         [HttpGet("{mapId}/mission/{id}/description")]
         public async Task<ActionResult<MissionDescriptionDTO>> GetDescriptionMission(int mapId, int id)
         {
@@ -124,7 +134,12 @@ namespace hvz_backend.Controllers
                 });
             }
         }
-
+        /// <summary>
+        /// Get the latitude of mission in map
+        /// </summary>
+        /// <param name="mapId">Identifier of map</param>
+        /// <param name="id">Identifier of mission</param>
+        /// <returns>Double</returns>
         [HttpGet("{mapId}/mission/{id}/latitude")]
         public async Task<ActionResult<MissionLatDTO>> GetLatitudeMission(int mapId, int id)
         {
@@ -140,7 +155,12 @@ namespace hvz_backend.Controllers
                 });
             }
         }
-
+        /// <summary>
+        /// Get the longitude of mission in map
+        /// </summary>
+        /// <param name="mapId">Identifier of map</param>
+        /// <param name="id">Identifier of mission</param>
+        /// <returns>Double</returns>
         [HttpGet("{mapId}/mission/{id}/longitude")]
         public async Task<ActionResult<MissionLatDTO>> GetLongitudeMission(int mapId, int id)
         {
@@ -156,7 +176,12 @@ namespace hvz_backend.Controllers
                 });
             }
         }
-
+        /// <summary>
+        /// Get the check if mission is visble for zombies in map
+        /// </summary>
+        /// <param name="mapId">Identifier of map</param>
+        /// <param name="id">Identifier of mission</param>
+        /// <returns>Boolean</returns>
         [HttpGet("{mapId}/mission/{id}/visible/zombie")]
         public async Task<ActionResult<MissionZombieDTO>> GetZombieVisibleMission(int mapId, int id)
         {
@@ -172,7 +197,12 @@ namespace hvz_backend.Controllers
                 });
             }
         }
-
+        /// <summary>
+        /// Get the check if mission is visible for humans in map
+        /// </summary>
+        /// <param name="mapId">Identifier of map</param>
+        /// <param name="id">Identifier of mission</param>
+        /// <returns>Boolean</returns>
         [HttpGet("{mapId}/mission/{id}/visible/human")]
         public async Task<ActionResult<MissionHumanDTO>> GetHumanVisibleMission(int mapId, int id)
         {
@@ -188,7 +218,12 @@ namespace hvz_backend.Controllers
                 });
             }
         }
-
+        /// <summary>
+        /// Get the begin time of mission in map
+        /// </summary>
+        /// <param name="mapId">Identifier of map</param>
+        /// <param name="id">Identifier of mission</param>
+        /// <returns>DateTime</returns>
         [HttpGet("{mapId}/mission/{id}/begintime")]
         public async Task<ActionResult<MissionBeginDTO>> GetBeginTimeMission(int mapId, int id)
         {
@@ -204,7 +239,12 @@ namespace hvz_backend.Controllers
                 });
             }
         }
-
+        /// <summary>
+        /// Get the end time of mission in map
+        /// </summary>
+        /// <param name="mapId">Identifier of map</param>
+        /// <param name="id">Identifier of mission</param>
+        /// <returns>DateTime</returns>
         [HttpGet("{mapId}/mission/{id}/endtime")]
         public async Task<ActionResult<MissionEndDTO>> GetEndTimeMission(int mapId, int id)
         {
@@ -220,7 +260,12 @@ namespace hvz_backend.Controllers
                 });
             }
         }
-
+        /// <summary>
+        /// Get the radius of mission in map
+        /// </summary>
+        /// <param name="mapId">Identifier of map</param>
+        /// <param name="id">Identifier of mission</param>
+        /// <returns>Integer</returns>
         [HttpGet("{mapId}/mission/{id}/radius")]
         public async Task<ActionResult<MissionRadiusDTO>> GetRadiusMission(int mapId, int id)
         {
@@ -241,6 +286,13 @@ namespace hvz_backend.Controllers
 
 
         #region HTTP PATCH
+        /// <summary>
+        /// Update title of mission in map
+        /// </summary>
+        /// <param name="mapId">Identifier of map</param>
+        /// <param name="id">Identifier of mission</param>
+        /// <param name="missionTitleDTO"></param>
+        /// <returns></returns>
         [HttpPatch("{mapId}/mission/{id}/title")]
         public async Task<ActionResult> PatchTitleMission(int mapId, int id, [FromBody] MissionTitleDTO missionTitleDTO)
         {
@@ -257,7 +309,13 @@ namespace hvz_backend.Controllers
             }
             return NoContent();
         }
-
+        /// <summary>
+        /// Update description of mission in map
+        /// </summary>
+        /// <param name="mapId">Identifier of map</param>
+        /// <param name="id">Identifier of mission</param>
+        /// <param name="missionDescriptionDTO"></param>
+        /// <returns></returns>
         [HttpPatch("{mapId}/mission/{id}/description")]
         public async Task<ActionResult> PatchDescriptionMission(int mapId, int id, [FromBody] MissionDescriptionDTO missionDescriptionDTO)
         {
@@ -274,7 +332,13 @@ namespace hvz_backend.Controllers
             }
             return NoContent();
         }
-
+        /// <summary>
+        /// Update latitude of mission in map
+        /// </summary>
+        /// <param name="mapId">Identifier of map</param>
+        /// <param name="id">Identifier of mission</param>
+        /// <param name="missionLatDTO"></param>
+        /// <returns></returns>
         [HttpPatch("{mapId}/mission/{id}/latitude")]
         public async Task<ActionResult> PatchLatMission(int mapId, int id, [FromBody] MissionLatDTO missionLatDTO)
         {
@@ -291,7 +355,13 @@ namespace hvz_backend.Controllers
             }
             return NoContent();
         }
-
+        /// <summary>
+        /// Update the longitude of mission in map
+        /// </summary>
+        /// <param name="mapId">Identifier of map</param>
+        /// <param name="id">Identifier of mission</param>
+        /// <param name="missionLongDTO"></param>
+        /// <returns></returns>
         [HttpPatch("{mapId}/mission/{id}/longitude")]
         public async Task<ActionResult> PatchLongMission(int mapId, int id, [FromBody] MissionLongDTO missionLongDTO)
         {
@@ -308,7 +378,13 @@ namespace hvz_backend.Controllers
             }
             return NoContent();
         }
-
+        /// <summary>
+        /// Update the visibility of mission toward humans in map
+        /// </summary>
+        /// <param name="mapId">Identifier of map</param>
+        /// <param name="id">Identifier of mission</param>
+        /// <param name="missionHumanDTO"></param>
+        /// <returns></returns>
         [HttpPatch("{mapId}/mission/{id}/visible/human")]
         public async Task<ActionResult> PatchHumanMission(int mapId, int id, [FromBody] MissionHumanDTO missionHumanDTO)
         {
@@ -325,7 +401,13 @@ namespace hvz_backend.Controllers
             }
             return NoContent();
         }
-
+        /// <summary>
+        /// Update the visibility of mission toward zombies in map
+        /// </summary>
+        /// <param name="mapId">Identifier of map</param>
+        /// <param name="id">Identifer of mission</param>
+        /// <param name="missionZombieDTO"></param>
+        /// <returns></returns>
         [HttpPatch("{mapId}/mission/{id}/visible/zombie")]
         public async Task<ActionResult> PatchZombieMission(int mapId, int id, [FromBody] MissionZombieDTO missionZombieDTO)
         {
@@ -342,7 +424,13 @@ namespace hvz_backend.Controllers
             }
             return NoContent();
         }
-
+        /// <summary>
+        /// Update end time of mission in map
+        /// </summary>
+        /// <param name="mapId">Identifier of map</param>
+        /// <param name="id">Identifer of mission</param>
+        /// <param name="missionEndDTO"></param>
+        /// <returns></returns>
         [HttpPatch("{mapId}/mission/{id}/endtime")]
         public async Task<ActionResult> PatchEndMission(int mapId, int id, [FromBody] MissionEndDTO missionEndDTO)
         {
@@ -359,7 +447,13 @@ namespace hvz_backend.Controllers
             }
             return NoContent();
         }
-
+        /// <summary>
+        /// Update begin time of mission in map
+        /// </summary>
+        /// <param name="mapId">Identifier of map</param>
+        /// <param name="id">Identifier of mission</param>
+        /// <param name="missionBeginDTO"></param>
+        /// <returns></returns>
         [HttpPatch("{mapId}/mission/{id}/begintime")]
         public async Task<ActionResult> PatchBeginMission(int mapId, int id, [FromBody] MissionBeginDTO missionBeginDTO)
         {
@@ -376,7 +470,13 @@ namespace hvz_backend.Controllers
             }
             return NoContent();
         }
-
+        /// <summary>
+        /// Update the radius of mission in map
+        /// </summary>
+        /// <param name="mapId">Identifier of map</param>
+        /// <param name="id">Identifier of mission</param>
+        /// <param name="missionRadiusDTO"></param>
+        /// <returns></returns>
         [HttpPatch("{mapId}/mission/{id}/radius")]
         public async Task<ActionResult> PatchRadiusMission(int mapId, int id, [FromBody] MissionRadiusDTO missionRadiusDTO)
         {

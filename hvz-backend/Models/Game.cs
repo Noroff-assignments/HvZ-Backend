@@ -13,10 +13,10 @@ namespace hvz_backend.Models
         public string Title { get; set; }
         public string? Description { get; set; }
 
-        [Required, DisplayFormat(DataFormatString = "{yyyy-MM-dd HH:mm}", ApplyFormatInEditMode = true)]
+        [Required]
         public DateTime BeginTime { get; set; }
 
-        [Required, DisplayFormat(DataFormatString = "{yyyy-MM-dd HH:mm}", ApplyFormatInEditMode = true)]
+        [Required]
         public DateTime EndTime { get; set; }
 
         [Required]

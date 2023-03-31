@@ -133,7 +133,12 @@ namespace hvz_backend.Controllers
                 });
             }
         }
-
+        /// <summary>
+        /// Get the time of dead to a kill
+        /// </summary>
+        /// <param name="gameId">Identifier of game</param>
+        /// <param name="id">Identifier of kill</param>
+        /// <returns>DateTime of dead</returns>
         [HttpGet("{gameId}/kill/{id}/timedead")]
         public async Task<ActionResult<KillTimeDeadDTO>> GetKillTime(int gameId, int id)
         {
@@ -150,6 +155,12 @@ namespace hvz_backend.Controllers
             }
         }
 
+        /// <summary>
+        /// Get the player which is the killer in a kill
+        /// </summary>
+        /// <param name="gameId">Identifier of game</param>
+        /// <param name="id">Identifier of kill</param>
+        /// <returns>A player object</returns>
         [HttpGet("{gameId}/kill/{id}/killer")]
         public async Task<ActionResult<KillKillerDTO>> GetKillKiller(int gameId, int id)
         {
@@ -165,7 +176,12 @@ namespace hvz_backend.Controllers
                 });
             }
         }
-
+        /// <summary>
+        /// Get the latitude of kill
+        /// </summary>
+        /// <param name="gameId">Identifier of game.</param>
+        /// <param name="id">Identifier of kill</param>
+        /// <returns>Double</returns>
         [HttpGet("{gameId}/kill/{id}/latitude")]
         public async Task<ActionResult<KillLatDTO>> GetKillLatitude(int gameId, int id)
         {
@@ -181,7 +197,12 @@ namespace hvz_backend.Controllers
                 });
             }
         }
-
+        /// <summary>
+        /// Get the longitude of kill
+        /// </summary>
+        /// <param name="gameId">Identifier of game</param>
+        /// <param name="id">Identifier of kill</param>
+        /// <returns>Double</returns>
         [HttpGet("{gameId}/kill/{id}/longitude")]
         public async Task<ActionResult<KillLongDTO>> GetKillLongitude(int gameId, int id)
         {
@@ -198,6 +219,12 @@ namespace hvz_backend.Controllers
             }
         }
 
+        /// <summary>
+        /// Get the story of kill
+        /// </summary>
+        /// <param name="gameId">Identifier of game</param>
+        /// <param name="id">Identifier of kill</param>
+        /// <returns>String</returns>
         [HttpGet("{gameId}/kill/{id}/story")]
         public async Task<ActionResult<KillStoryDTO>> GetKillStory(int gameId, int id)
         {
@@ -213,7 +240,12 @@ namespace hvz_backend.Controllers
                 });
             }
         }
-
+        /// <summary>
+        /// Get the victim of kill
+        /// </summary>
+        /// <param name="gameId">Identifer of game</param>
+        /// <param name="id">Identifier of kill</param>
+        /// <returns>Player object</returns>
         [HttpGet("{gameId}/kill/{id}/victim")]
         public async Task<ActionResult<KillVictimDTO>> GetKillVictim(int gameId, int id)
         {
@@ -259,6 +291,13 @@ namespace hvz_backend.Controllers
         #endregion
 
         #region HTTP PATCH
+        /// <summary>
+        /// Update the story to kill
+        /// </summary>
+        /// <param name="gameId">Identifier of game</param>
+        /// <param name="id">Identifier of kill</param>
+        /// <param name="killStoryDTO"></param>
+        /// <returns></returns>
         [HttpPatch("{gameId}/kill/{id}/story")]
         public async Task<ActionResult> PatchDeadStoryKill(int gameId, int id, [FromBody] KillStoryDTO killStoryDTO)
         {
@@ -275,7 +314,13 @@ namespace hvz_backend.Controllers
             }
             return NoContent();
         }
-
+        /// <summary>
+        /// Update the killer in kill
+        /// </summary>
+        /// <param name="gameId">Identifer of game</param>
+        /// <param name="id">Identifier of kill</param>
+        /// <param name="killKillerDTO"></param>
+        /// <returns></returns>
         [HttpPatch("{gameId}/kill/{id}/killer")]
         public async Task<ActionResult> PatchKillerKill(int gameId, int id, [FromBody] KillKillerDTO killKillerDTO)
         {
@@ -292,7 +337,13 @@ namespace hvz_backend.Controllers
             }
             return NoContent();
         }
-
+        /// <summary>
+        /// Update the victim of kill
+        /// </summary>
+        /// <param name="gameId">Identifier of game</param>
+        /// <param name="id">Identifier of kill</param>
+        /// <param name="killVictimDTO"></param>
+        /// <returns></returns>
         [HttpPatch("{gameId}/kill/{id}/victim")]
         public async Task<ActionResult> PatchVictimKill(int gameId, int id, [FromBody] KillVictimDTO killVictimDTO)
         {
